@@ -1,6 +1,6 @@
 import * as Icons from "lucide-react";
 
-import econverseLogo from "../assets/econverse-avatar.jpg";
+import econverseLogo from "../assets/ECONVERSE-AVATAR2.png";
 import type { AppTab, PetState } from "../types";
 
 interface HeaderProps {

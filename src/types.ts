@@ -1,6 +1,8 @@
 export type AppTab = "dashboard" | "learn" | "pet" | "shop" | "media";
 export type CourseCategory = "economics" | "finance";
-export type LearnSubTab = "video" | "summary" | "quiz";
+export type LearnCategoryFilter = CourseCategory | "all";
+export type LearnView = "catalog" | "lesson";
+export type LessonStage = "video" | "quiz";
 export type QuizStatus = "correct" | "incorrect";
 
 export interface Question {
@@ -11,28 +13,32 @@ export interface Question {
   explanation: string;
 }
 
+export interface Lesson {
+  id: string;
+  order?: number;
+  title: string;
+  shortDescription: string;
+  duration: string;
+  videoUrl?: string;
+  overview?: string;
+  mainContentTitle?: string;
+  mainContent?: string[];
+  objectives?: string[];
+  youtubeId?: string;
+  videoScript?: VideoScriptLine[];
+  summary?: {
+    title: string;
+    points: string[];
+    infographicUrl?: string;
+  };
+  quiz: Question[];
+  pointsReward: number;
+}
+
 export interface VideoScriptLine {
   role: "Youtuber" | "Meme" | "Học sinh" | "Thầy giáo";
   text: string;
   action?: string;
-}
-
-export interface Lesson {
-  id: string;
-  title: string;
-  shortDescription: string;
-  duration: string;
-  youtubeId: string; // Simulated youtube placeholder or embed
-  videoScript: VideoScriptLine[];
-  mainContentTitle: string;
-  mainContent: string[];
-  summary: {
-    title: string;
-    points: string[];
-    infographicUrl?: string; // or an SVG diagram details
-  };
-  quiz: Question[];
-  pointsReward: number;
 }
 
 export interface Course {
@@ -43,8 +49,25 @@ export interface Course {
   category: CourseCategory;
   duration: string;
   lessons: Lesson[];
-  icon: string; // lucide icon name
-  accentColor: string; // tailwind color class
+  icon: string;
+  accentColor: string;
+}
+
+export interface CourseModule {
+  id: string;
+  title: string;
+  description: string;
+  category: CourseCategory;
+  lessons: Lesson[];
+  icon: string;
+}
+
+export interface CourseCategoryCard {
+  category: CourseCategory;
+  title: string;
+  description: string;
+  icon: string;
+  accentColor: "lime" | "purple";
 }
 
 export interface PetAccessory {

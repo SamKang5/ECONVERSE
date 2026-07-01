@@ -8,15 +8,16 @@ import { LearnPage } from "./components/LearnPage";
 import { MediaPage } from "./components/MediaPage";
 import { PetPage } from "./components/PetPage";
 import { ShopPage } from "./components/ShopPage";
-import { INITIAL_COURSES, MOCK_SOCIAL_POSTS, SHOP_ITEMS } from "./data";
+import { MOCK_SOCIAL_POSTS, SHOP_ITEMS } from "./data";
+import { COURSE_MODULES } from "./learnData";
 import type {
   AppTab,
-  Course,
   CourseCategory,
-  LearnSubTab,
+  LearnCategoryFilter,
+  LearnView,
+  LessonStage,
   PetAccessory,
   PetState,
-  QuizStatus,
   SocialPost,
 } from "./types";
 
@@ -47,6 +48,10 @@ const DEFAULT_PET_STATE: PetState = {
   ownedAccessories: [],
 };
 
+const ALL_LESSON_ENTRIES = COURSE_MODULES.flatMap((module) =>
+  module.lessons.map((lesson) => ({ module, lesson })),
+);
+
 function readStoredValue<T>(key: string, fallback: T): T {
   if (typeof window === "undefined") {
     return fallback;
@@ -60,10 +65,15 @@ function readStoredValue<T>(key: string, fallback: T): T {
   }
 }
 
-function getCourseByCategory(category: CourseCategory): Course {
+function findLessonEntry(lessonId: string) {
+  return ALL_LESSON_ENTRIES.find((entry) => entry.lesson.id === lessonId) ?? null;
+}
+
+function getFirstLessonByCategory(category: CourseCategory) {
   return (
-    INITIAL_COURSES.find((course) => course.category === category) ??
-    INITIAL_COURSES[0]
+    ALL_LESSON_ENTRIES.find((entry) => entry.module.category === category) ??
+    ALL_LESSON_ENTRIES[0] ??
+    null
   );
 }
 
@@ -117,46 +127,33 @@ function resolveStreakMeta(savedMeta: StreakMeta | null): StreakMeta {
 }
 
 function findNextLesson(completedLessons: string[]) {
-  for (const course of INITIAL_COURSES) {
-    for (const lesson of course.lessons) {
-      if (!completedLessons.includes(lesson.id)) {
-        return {
-          category: course.category,
-          lessonId: lesson.id,
-          lessonTitle: lesson.title,
-          categoryLabel:
-            course.category === "economics" ? "Kinh tế" : "Tài chính",
-        };
-      }
-    }
+  const nextEntry =
+    ALL_LESSON_ENTRIES.find(
+      (entry) => !completedLessons.includes(entry.lesson.id),
+    ) ?? ALL_LESSON_ENTRIES[0];
+
+  if (!nextEntry) {
+    return null;
   }
 
-  const fallbackCourse = INITIAL_COURSES[0];
-  const fallbackLesson = fallbackCourse.lessons[0];
-
   return {
-    category: fallbackCourse.category,
-    lessonId: fallbackLesson.id,
-    lessonTitle: fallbackLesson.title,
+    category: nextEntry.module.category,
+    lessonId: nextEntry.lesson.id,
+    lessonTitle: nextEntry.lesson.title,
     categoryLabel:
-      fallbackCourse.category === "economics" ? "Kinh tế" : "Tài chính",
+      nextEntry.module.category === "economics" ? "Kinh tế" : "Tài chính",
   };
 }
 
 export default function App() {
-  const defaultCourse = getCourseByCategory("economics");
-
   const [activeTab, setActiveTabState] = useState<AppTab>("dashboard");
   const [selectedCategory, setSelectedCategory] =
-    useState<CourseCategory>("economics");
-  const [activeLessonId, setActiveLessonId] = useState<string>(
-    defaultCourse.lessons[0].id,
-  );
-  const [learnSubTab, setLearnSubTab] = useState<LearnSubTab>("video");
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [activeScriptIndex, setActiveScriptIndex] = useState(0);
+    useState<LearnCategoryFilter>("all");
+  const [learnView, setLearnView] = useState<LearnView>("catalog");
+  const [activeLessonId, setActiveLessonId] = useState<string | null>(null);
+  const [lessonStage, setLessonStage] = useState<LessonStage>("video");
   const [quizAnswers, setQuizAnswers] = useState<Record<string, number>>({});
-  const [quizResults, setQuizResults] = useState<Record<string, QuizStatus>>({});
+  const [isQuizSubmitted, setIsQuizSubmitted] = useState(false);
   const [feedbackMsg, setFeedbackMsg] = useState("");
   const [petState, setPetState] = useState<PetState>(() =>
     readStoredValue(STORAGE_KEYS.pet, DEFAULT_PET_STATE),
@@ -171,7 +168,9 @@ export default function App() {
     readStoredValue(STORAGE_KEYS.socialPosts, MOCK_SOCIAL_POSTS),
   );
   const [streakMeta] = useState<StreakMeta>(() =>
-    resolveStreakMeta(readStoredValue<StreakMeta | null>(STORAGE_KEYS.streakMeta, null)),
+    resolveStreakMeta(
+      readStoredValue<StreakMeta | null>(STORAGE_KEYS.streakMeta, null),
+    ),
   );
   const [memeScenario, setMemeScenario] = useState(
     "Hết tiền tiêu vặt ngày 10 của tháng",
@@ -184,22 +183,16 @@ export default function App() {
     "Nhìn bạn bè đi ăn lẩu, mình hút nước trà đá cầm cự!",
   );
 
-  const activeCourse = getCourseByCategory(selectedCategory);
-  const activeLesson =
-    activeCourse.lessons.find((lesson) => lesson.id === activeLessonId) ??
-    activeCourse.lessons[0];
-  const totalLessonCount = INITIAL_COURSES.reduce(
-    (sum, course) => sum + course.lessons.length,
-    0,
-  );
-  const videoProgress = activeLesson.videoScript.length
-    ? ((activeScriptIndex + 1) / activeLesson.videoScript.length) * 100
-    : 0;
+  const activeLessonEntry = activeLessonId ? findLessonEntry(activeLessonId) : null;
+  const activeModule = activeLessonEntry?.module ?? null;
+  const activeLesson = activeLessonEntry?.lesson ?? null;
+  const totalLessonCount = ALL_LESSON_ENTRIES.length;
   const nextLessonInfo = findNextLesson(lessonsCompleted);
   const pageMeta = getPageMeta(activeTab, {
-    activeLessonTitle: activeLesson.title,
+    activeLessonTitle: activeLesson?.title ?? null,
     selectedCategory,
     petName: petState.name,
+    isInLessonFlow: learnView === "lesson" && Boolean(activeLesson),
   });
 
   useEffect(() => {
@@ -231,75 +224,76 @@ export default function App() {
     );
   }, [streakMeta]);
 
-  useEffect(() => {
-    if (!isPlaying || learnSubTab !== "video") {
-      return;
-    }
-
-    if (activeScriptIndex >= activeLesson.videoScript.length - 1) {
-      const stopTimer = window.setTimeout(() => setIsPlaying(false), 1400);
-      return () => window.clearTimeout(stopTimer);
-    }
-
-    const playbackTimer = window.setTimeout(() => {
-      setActiveScriptIndex((currentIndex) =>
-        Math.min(currentIndex + 1, activeLesson.videoScript.length - 1),
-      );
-    }, 2400);
-
-    return () => window.clearTimeout(playbackTimer);
-  }, [
-    activeLesson.videoScript.length,
-    activeScriptIndex,
-    isPlaying,
-    learnSubTab,
-  ]);
-
   function setActiveTab(tab: AppTab) {
     startTransition(() => {
       setActiveTabState(tab);
     });
   }
 
+  function resetLessonFlow() {
+    setLessonStage("video");
+    setQuizAnswers({});
+    setIsQuizSubmitted(false);
+    setFeedbackMsg("");
+  }
+
   function openLearn() {
-    setActiveTab("learn");
+    startTransition(() => {
+      setActiveTabState("learn");
+      setLearnView("catalog");
+    });
   }
 
   function openShop() {
     setActiveTab("shop");
   }
 
-  function resetLessonExperience(nextSubTab: LearnSubTab = "video") {
-    setIsPlaying(false);
-    setActiveScriptIndex(0);
-    setLearnSubTab(nextSubTab);
-    setQuizAnswers({});
-    setQuizResults({});
-    setFeedbackMsg("");
-  }
+  function openLesson(lessonId: string, categoryOverride?: CourseCategory) {
+    const nextEntry = findLessonEntry(lessonId);
 
-  function openLesson(category: CourseCategory, lessonId: string) {
+    if (!nextEntry) {
+      return;
+    }
+
     startTransition(() => {
       setActiveTabState("learn");
-      setSelectedCategory(category);
+      if (categoryOverride) {
+        setSelectedCategory(categoryOverride);
+      }
+      setLearnView("lesson");
       setActiveLessonId(lessonId);
     });
 
-    resetLessonExperience();
+    resetLessonFlow();
   }
 
   function openCourse(category: CourseCategory) {
-    const nextCourse = getCourseByCategory(category);
-    openLesson(category, nextCourse.lessons[0].id);
+    const nextEntry = getFirstLessonByCategory(category);
+
+    if (!nextEntry) {
+      openLearn();
+      return;
+    }
+
+    openLesson(nextEntry.lesson.id, category);
   }
 
   function continueLearning() {
-    openLesson(nextLessonInfo.category, nextLessonInfo.lessonId);
+    if (!nextLessonInfo) {
+      openLearn();
+      return;
+    }
+
+    openLesson(nextLessonInfo.lessonId, nextLessonInfo.category);
   }
 
-  function selectLesson(lessonId: string) {
-    setActiveLessonId(lessonId);
-    resetLessonExperience();
+  function backToLessonCatalog() {
+    startTransition(() => {
+      setActiveTabState("learn");
+      setLearnView("catalog");
+    });
+
+    resetLessonFlow();
   }
 
   function handleSpeciesChange(species: PetState["species"]) {
@@ -363,96 +357,66 @@ export default function App() {
   }
 
   function handleSelectQuizOption(questionId: string, optionIndex: number) {
-    if (quizResults[questionId] === "correct") {
-      return;
-    }
-
     setQuizAnswers((currentAnswers) => ({
       ...currentAnswers,
       [questionId]: optionIndex,
     }));
+
+    if (isQuizSubmitted) {
+      setIsQuizSubmitted(false);
+      setFeedbackMsg("");
+    }
   }
 
-  function handleSubmitQuiz(questionId: string) {
-    const selectedAnswer = quizAnswers[questionId];
-    const question = activeLesson.quiz.find((item) => item.id === questionId);
-
-    if (!question) {
+  function handleSubmitQuiz() {
+    if (!activeLesson) {
       return;
     }
 
-    if (selectedAnswer === undefined) {
-      setFeedbackMsg("Chọn một đáp án rồi kiểm tra nhé.");
+    const unansweredQuestion = activeLesson.quiz.find(
+      (question) => quizAnswers[question.id] === undefined,
+    );
+
+    if (unansweredQuestion) {
+      setFeedbackMsg("Vui lòng chọn đáp án cho tất cả câu hỏi trước khi nộp bài.");
       return;
     }
 
-    if (quizResults[questionId] === "correct") {
-      return;
-    }
+    const correctCount = activeLesson.quiz.filter(
+      (question) => quizAnswers[question.id] === question.correctAnswer,
+    ).length;
+    const isPerfectScore = correctCount === activeLesson.quiz.length;
+    const alreadyCompleted = lessonsCompleted.includes(activeLesson.id);
 
-    if (selectedAnswer === question.correctAnswer) {
-      const nextResults = {
-        ...quizResults,
-        [questionId]: "correct" as const,
-      };
-      const gainedPoints = Math.round(
-        activeLesson.pointsReward / activeLesson.quiz.length,
-      );
-      const allCorrect = activeLesson.quiz.every(
-        (quizQuestion) => nextResults[quizQuestion.id] === "correct",
-      );
+    setIsQuizSubmitted(true);
 
-      setQuizResults(nextResults);
+    if (isPerfectScore && !alreadyCompleted) {
       setPetState((currentState) => {
-        const nextPoints = currentState.points + gainedPoints;
+        const nextPoints = currentState.points + activeLesson.pointsReward;
+
         return {
           ...currentState,
           points: nextPoints,
           level: Math.max(currentState.level, Math.floor(nextPoints / 300) + 1),
         };
       });
-
-      if (allCorrect && !lessonsCompleted.includes(activeLesson.id)) {
-        setLessonsCompleted((currentLessons) => [...currentLessons, activeLesson.id]);
-      }
-
+      setLessonsCompleted((currentLessons) => [...currentLessons, activeLesson.id]);
       setFeedbackMsg(
-        allCorrect
-          ? "Bạn đã hiểu phần này rồi, có thể qua bài tiếp theo hoặc ghé shop."
-          : `Chuẩn rồi! +${gainedPoints} XP đã cộng cho câu này.`,
+        `Bạn đã hoàn thành bài học và nhận +${activeLesson.pointsReward} XP. Có thể quay lại danh sách để mở bài tiếp theo.`,
       );
       return;
     }
 
-    setQuizResults((currentResults) => ({
-      ...currentResults,
-      [questionId]: "incorrect",
-    }));
-    setFeedbackMsg("Chưa đúng đâu, đổi đáp án khác rồi thử lại nhé.");
-  }
-
-  function handleToggleVideoPlayback() {
-    if (!isPlaying && activeScriptIndex >= activeLesson.videoScript.length - 1) {
-      setActiveScriptIndex(0);
+    if (isPerfectScore) {
+      setFeedbackMsg(
+        "Bài này đã hoàn thành trước đó rồi. Bạn có thể chuyển sang bài khác bất cứ lúc nào.",
+      );
+      return;
     }
 
-    setIsPlaying((currentState) => !currentState);
-  }
-
-  function handleAdvanceScript() {
-    setActiveScriptIndex((currentIndex) => {
-      if (currentIndex >= activeLesson.videoScript.length - 1) {
-        return 0;
-      }
-
-      return currentIndex + 1;
-    });
-    setIsPlaying(false);
-  }
-
-  function handleSelectScriptIndex(index: number) {
-    setActiveScriptIndex(index);
-    setIsPlaying(true);
+    setFeedbackMsg(
+      `Bạn đúng ${correctCount}/${activeLesson.quiz.length} câu. Xem lại phần giải thích rồi thử nộp lại nhé.`,
+    );
   }
 
   function handleLikePost(postId: string) {
@@ -541,7 +505,7 @@ export default function App() {
               </div>
             </section>
 
-            {activeTab === "dashboard" && (
+            {activeTab === "dashboard" && nextLessonInfo && (
               <Dashboard
                 petState={petState}
                 completedLessonCount={lessonsCompleted.length}
@@ -558,28 +522,21 @@ export default function App() {
 
             {activeTab === "learn" && (
               <LearnPage
+                modules={COURSE_MODULES}
                 selectedCategory={selectedCategory}
-                activeCourse={activeCourse}
-                activeLesson={activeLesson}
-                petState={petState}
+                activeModule={activeModule}
+                activeLesson={learnView === "lesson" ? activeLesson : null}
+                lessonStage={lessonStage}
                 lessonsCompleted={lessonsCompleted}
-                learnSubTab={learnSubTab}
-                isPlaying={isPlaying}
-                activeScriptIndex={activeScriptIndex}
-                videoProgress={videoProgress}
                 quizAnswers={quizAnswers}
-                quizResults={quizResults}
+                isQuizSubmitted={isQuizSubmitted}
                 feedbackMsg={feedbackMsg}
-                onSelectCourseCategory={openCourse}
-                onSelectLesson={selectLesson}
-                onChangeLearnSubTab={setLearnSubTab}
-                onToggleVideoPlayback={handleToggleVideoPlayback}
-                onAdvanceScript={handleAdvanceScript}
-                onSelectScriptIndex={handleSelectScriptIndex}
-                onSelectQuizOption={handleSelectQuizOption}
+                onSelectCategory={setSelectedCategory}
+                onOpenLesson={openLesson}
+                onBackToCatalog={backToLessonCatalog}
+                onChangeLessonStage={setLessonStage}
+                onSelectQuizAnswer={handleSelectQuizOption}
                 onSubmitQuiz={handleSubmitQuiz}
-                onOpenPet={() => setActiveTab("pet")}
-                onOpenShop={openShop}
               />
             )}
 
@@ -631,9 +588,10 @@ export default function App() {
 function getPageMeta(
   activeTab: AppTab,
   context: {
-    activeLessonTitle: string;
-    selectedCategory: CourseCategory;
+    activeLessonTitle: string | null;
+    selectedCategory: LearnCategoryFilter;
     petName: string;
+    isInLessonFlow: boolean;
   },
 ) {
   switch (activeTab) {
@@ -645,14 +603,26 @@ function getPageMeta(
           "Theo dõi tiến độ, XP và pet trong cùng một không gian sáng sủa hơn, với các khu vực lớn và dễ quét nhanh như một dashboard SaaS hiện đại.",
       };
     case "learn":
-      return {
-        eyebrow:
-          context.selectedCategory === "economics"
-            ? "Lộ trình kinh tế"
-            : "Lộ trình tài chính",
-        title: "Học theo từng chặng ngắn, chốt ý rồi nhận XP ngay.",
-        description: `Bạn đang mở "${context.activeLessonTitle}". Luồng học vẫn giữ nguyên, chỉ được sắp xếp lại để tập trung hơn trên cả desktop lẫn mobile.`,
-      };
+      return context.isInLessonFlow
+        ? {
+            eyebrow:
+              context.selectedCategory === "finance"
+                ? "Lộ trình tài chính"
+                : "Lộ trình bài học",
+            title: "Đi từng bài theo đúng flow video rồi đến quiz.",
+            description: `Bạn đang mở "${context.activeLessonTitle}". Giao diện mới giữ nguyên branding cũ nhưng đổi Learn thành một lesson flow rõ ràng hơn trên cả desktop lẫn mobile.`,
+          }
+        : {
+            eyebrow:
+              context.selectedCategory === "finance"
+                ? "Danh sách bài học tài chính"
+                : context.selectedCategory === "economics"
+                  ? "Danh sách bài học kinh tế"
+                  : "Thư viện bài học",
+            title: "Chọn một bài học từ danh sách module rồi bắt đầu ngay.",
+            description:
+              "Trang Learn giờ mở vào danh sách bài học có cấu trúc như một LMS mini, sau đó mới đi sâu vào màn hình video và quiz của từng bài.",
+          };
     case "pet":
       return {
         eyebrow: "Hồ sơ pet",
