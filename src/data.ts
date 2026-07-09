@@ -177,6 +177,7 @@ export const INITIAL_COURSES: Course[] = [
         title: "Cung và Cầu đại chiến – Điểm cân bằng",
         shortDescription: "Khi cung gặp cầu, thị trường tự tìm về một mức giá cân bằng để hàng hóa bán hết và người mua chấp nhận trả.",
         duration: "09 phút",
+        videoUrl: "https://www.youtube.com/embed/elHTLmaghlU?si=ZVa8LcAY7lW4Rrgi",
         pointsReward: 45,
         overview: "Tập 1C cho thấy cung và cầu không đứng riêng lẻ mà luôn kéo nhau về điểm cân bằng của thị trường.",
         mainContentTitle: "Điểm cân bằng, dư thừa và thiếu hụt",
