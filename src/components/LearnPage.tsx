@@ -29,19 +29,16 @@ interface LearnPageProps {
   onSubmitQuiz: () => void;
 }
 
-const categoryOptions: Array<{
-  value: LearnCategoryFilter;
-  label: string;
-  icon: typeof Icons.LayoutList;
-}> = [
-  { value: "all", label: "Tất cả", icon: Icons.LayoutList },
-  { value: "economics", label: "Kinh tế", icon: Icons.TrendingUp },
-  { value: "finance", label: "Tài chính", icon: Icons.PiggyBank },
-];
+function formatLessonHeading(lesson: Lesson) {
+  if (typeof lesson.order === "string") {
+    return `Tập ${lesson.order}: ${lesson.title}`;
+  }
+
+  return `Bài ${lesson.order ?? "?"} - "${lesson.title}"`;
+}
 
 export function LearnPage({
   modules,
-  selectedCategory,
   activeModule,
   activeLesson,
   lessonStage,
@@ -49,25 +46,21 @@ export function LearnPage({
   quizAnswers,
   isQuizSubmitted,
   feedbackMsg,
-  onSelectCategory,
   onOpenLesson,
   onBackToCatalog,
   onChangeLessonStage,
   onSelectQuizAnswer,
   onSubmitQuiz,
 }: LearnPageProps) {
-  const filteredModules =
-    selectedCategory === "all"
-      ? modules
-      : modules.filter((module) => module.category === selectedCategory);
-  const filteredLessons = filteredModules.flatMap((module) => module.lessons);
-  const completedFilteredCount = filteredLessons.filter((lesson) =>
+  const visibleModules = modules;
+  const visibleLessons = visibleModules.flatMap((module) => module.lessons);
+  const completedVisibleCount = visibleLessons.filter((lesson) =>
     lessonsCompleted.includes(lesson.id),
   ).length;
-  const filteredProgress =
-    filteredLessons.length === 0
+  const visibleProgress =
+    visibleLessons.length === 0
       ? 0
-      : (completedFilteredCount / filteredLessons.length) * 100;
+      : (completedVisibleCount / visibleLessons.length) * 100;
 
   if (activeLesson && activeModule) {
     const moduleCompletedCount = activeModule.lessons.filter((lesson) =>
@@ -93,7 +86,7 @@ export function LearnPage({
                   {activeModule.title}
                 </span>
                 <h2 className="mt-2 font-display text-2xl font-bold text-[#17191D] sm:text-3xl">
-                  {`Bài ${activeLesson.order ?? "?"} - "${activeLesson.title}"`}
+                  {formatLessonHeading(activeLesson)}
                 </h2>
                 <p className="mt-3 max-w-3xl text-sm leading-7 text-[#5E6571]">
                   {activeLesson.shortDescription}
@@ -202,7 +195,7 @@ export function LearnPage({
                   >
                     <div className="flex items-center justify-between gap-3">
                       <p className="text-sm font-semibold text-[#17191D]">
-                        {`Bài ${lesson.order ?? "?"} - "${lesson.title}"`}
+                        {formatLessonHeading(lesson)}
                       </p>
                       {isCompleted && (
                         <Icons.BadgeCheck className="h-4 w-4 text-[#365114]" />
@@ -224,56 +217,8 @@ export function LearnPage({
   return (
     <div className="grid gap-6 xl:grid-cols-12">
       <section className="space-y-6 xl:col-span-8">
-        <section className="surface-card overflow-hidden p-5 sm:p-6 xl:p-7">
-          <div className="space-y-5">
-            <div className="flex flex-wrap items-center gap-3">
-              <span className="badge badge-lime">
-                <Icons.BookOpenCheck className="h-4 w-4" />
-                Danh sách bài học
-              </span>
-              <span className="badge badge-purple">
-                <Icons.Route className="h-4 w-4" />
-                Video rồi đến quiz
-              </span>
-            </div>
-
-            <div>
-              <h2 className="font-display text-3xl font-bold tracking-tight text-[#17191D] sm:text-4xl">
-                Học theo module, mở từng bài và đi hết một luồng rõ ràng.
-              </h2>
-              <p className="mt-3 max-w-3xl text-sm leading-7 text-[#5E6571] sm:text-[0.98rem]">
-                Chọn module, bấm vào một bài học, xem phần video trước rồi chuyển sang
-                quiz bằng nút <b>Tiếp theo</b>. Tất cả vẫn giữ cùng theme và branding
-                hiện tại của ECONVERSE.
-              </p>
-            </div>
-
-            <div className="flex flex-wrap gap-2">
-              {categoryOptions.map((option) => {
-                const Icon = option.icon;
-                const isActive = selectedCategory === option.value;
-
-                return (
-                  <button
-                    key={option.value}
-                    onClick={() => onSelectCategory(option.value)}
-                    className={`flex items-center gap-2 rounded-full px-4 py-2.5 text-sm font-semibold transition-all ${
-                      isActive
-                        ? "bg-[rgba(157,132,246,0.14)] text-[#4C3C86] shadow-[inset_0_0_0_1px_rgba(157,132,246,0.16)]"
-                        : "border border-[rgba(23,25,29,0.08)] bg-white text-[#5E6571]"
-                    }`}
-                  >
-                    <Icon className="h-4 w-4" />
-                    {option.label}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-
         <div className="space-y-6">
-          {filteredModules.map((module) => (
+          {visibleModules.map((module) => (
             <ModuleSection
               key={module.id}
               module={module}
@@ -314,13 +259,13 @@ export function LearnPage({
               </h3>
             </div>
             <span className="badge badge-dark">
-              {completedFilteredCount}/{filteredLessons.length}
+              {completedVisibleCount}/{visibleLessons.length}
             </span>
           </div>
 
           <div className="mt-5 space-y-4">
             <div className="progress-track">
-              <div className="progress-fill" style={{ width: `${filteredProgress}%` }} />
+              <div className="progress-fill" style={{ width: `${visibleProgress}%` }} />
             </div>
 
             <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-1">
@@ -329,7 +274,7 @@ export function LearnPage({
                   Module đang hiển thị
                 </p>
                 <p className="mt-2 text-lg font-bold text-[#17191D]">
-                  {filteredModules.length}
+                  {visibleModules.length}
                 </p>
               </div>
               <div className="surface-card-muted p-4">
@@ -337,7 +282,7 @@ export function LearnPage({
                   Bài học
                 </p>
                 <p className="mt-2 text-lg font-bold text-[#17191D]">
-                  {filteredLessons.length}
+                  {visibleLessons.length}
                 </p>
               </div>
             </div>

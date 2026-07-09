@@ -24,10 +24,10 @@ const CATEGORY_META: Record<
 function enrichLesson(lesson: Lesson, order: number): Lesson {
   return {
     ...lesson,
-    objectives: lesson.summary?.points.slice(0, 3) ?? [],
-    order,
-    overview: lesson.mainContent?.[0] ?? lesson.shortDescription,
-    videoUrl: "placeholder",
+    objectives: lesson.objectives ?? lesson.summary?.points.slice(0, 3) ?? [],
+    order: lesson.order ?? order,
+    overview: lesson.overview ?? lesson.mainContent?.[0] ?? lesson.shortDescription,
+    videoUrl: lesson.videoUrl ?? "placeholder",
   };
 }
 

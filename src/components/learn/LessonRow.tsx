@@ -8,6 +8,14 @@ interface LessonRowProps {
   onClick: () => void;
 }
 
+function formatLessonHeading(lesson: Lesson) {
+  if (typeof lesson.order === "string") {
+    return `Tập ${lesson.order}: ${lesson.title}`;
+  }
+
+  return `Bài ${lesson.order ?? "?"} - "${lesson.title}"`;
+}
+
 export function LessonRow({ lesson, isCompleted, onClick }: LessonRowProps) {
   return (
     <button
@@ -24,7 +32,7 @@ export function LessonRow({ lesson, isCompleted, onClick }: LessonRowProps) {
 
       <div className="min-w-0 flex-1">
         <p className="text-sm font-semibold text-[#17191D]">
-          {`Bài ${lesson.order ?? "?"} - "${lesson.title}"`}
+          {formatLessonHeading(lesson)}
         </p>
         <p className="mt-1 text-sm leading-6 text-[#5E6571]">
           {lesson.shortDescription}

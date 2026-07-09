@@ -15,7 +15,7 @@ export interface Question {
 
 export interface Lesson {
   id: string;
-  order?: number;
+  order?: number | string;
   title: string;
   shortDescription: string;
   duration: string;
