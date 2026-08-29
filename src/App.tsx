@@ -1,8 +1,9 @@
 import * as Icons from "lucide-react";
-import { startTransition, useEffect, useState } from "react";
+import { startTransition, useEffect, useState, useRef } from "react";
 
 import { Dashboard } from "./components/Dashboard";
 import { ComingSoonModal } from "./components/ComingSoonModal";
+import { AuthModal } from "./components/AuthModal";
 import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
 import { LearnPage } from "./components/LearnPage";
@@ -11,6 +12,7 @@ import { PetPage } from "./components/PetPage";
 import { ShopPage } from "./components/ShopPage";
 import { MOCK_SOCIAL_POSTS, SHOP_ITEMS } from "./data";
 import { COURSE_MODULES } from "./learnData";
+import { apiClient, type PublicUser } from "./services/api";
 import type {
   AppTab,
   CourseCategory,
@@ -25,9 +27,7 @@ import type {
 const STORAGE_KEYS = {
   pet: "econedu_pet",
   shop: "econedu_shop",
-  completedLessons: "econedu_completed_lessons",
   socialPosts: "econedu_social_posts",
-  streakMeta: "econedu_streak_meta",
 } as const;
 
 const DISABLED_TABS: AppTab[] = ["pet", "shop", "media"];
@@ -37,9 +37,9 @@ type StreakMeta = {
   streak: number;
 };
 
-const DEFAULT_PET_STATE: PetState = {
+const DEFAULT_GUEST_PET_STATE: PetState = {
   name: "Tôm Heo Đất",
-  points: 150,
+  points: 0,
   level: 1,
   species: "gấu",
   equipped: {
@@ -89,46 +89,6 @@ function mergeShopItems(savedItems: PetAccessory[]) {
   }));
 }
 
-function getTodayKey() {
-  return new Intl.DateTimeFormat("en-CA", {
-    timeZone: "Asia/Ho_Chi_Minh",
-  }).format(new Date());
-}
-
-function getDayDifference(previousDay: string, currentDay: string) {
-  const previousDate = new Date(`${previousDay}T00:00:00`);
-  const currentDate = new Date(`${currentDay}T00:00:00`);
-  return Math.round(
-    (currentDate.getTime() - previousDate.getTime()) / (1000 * 60 * 60 * 24),
-  );
-}
-
-function resolveStreakMeta(savedMeta: StreakMeta | null): StreakMeta {
-  const today = getTodayKey();
-
-  if (!savedMeta) {
-    return { lastVisit: today, streak: 1 };
-  }
-
-  const dayDiff = getDayDifference(savedMeta.lastVisit, today);
-
-  if (dayDiff <= 0) {
-    return savedMeta;
-  }
-
-  if (dayDiff === 1) {
-    return {
-      lastVisit: today,
-      streak: savedMeta.streak + 1,
-    };
-  }
-
-  return {
-    lastVisit: today,
-    streak: 1,
-  };
-}
-
 function findNextLesson(completedLessons: string[]) {
   const nextEntry =
     ALL_LESSON_ENTRIES.find(
@@ -158,23 +118,30 @@ export default function App() {
   const [quizAnswers, setQuizAnswers] = useState<Record<string, number>>({});
   const [isQuizSubmitted, setIsQuizSubmitted] = useState(false);
   const [feedbackMsg, setFeedbackMsg] = useState("");
+  
+  // Auth state
+  const [user, setUser] = useState<PublicUser | null>(null);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [authModalMode, setAuthModalMode] = useState<"login" | "register">("login");
+  const [authModalMessage, setAuthModalMessage] = useState("");
+  const activeSubmissionKeyRef = useRef<string | null>(null);
+
+  // Gamification & Progress state (Server Authoritative)
   const [petState, setPetState] = useState<PetState>(() =>
-    readStoredValue(STORAGE_KEYS.pet, DEFAULT_PET_STATE),
+    readStoredValue(STORAGE_KEYS.pet, DEFAULT_GUEST_PET_STATE),
   );
   const [shopItems, setShopItems] = useState<PetAccessory[]>(() =>
     mergeShopItems(readStoredValue(STORAGE_KEYS.shop, SHOP_ITEMS)),
   );
-  const [lessonsCompleted, setLessonsCompleted] = useState<string[]>(() =>
-    readStoredValue(STORAGE_KEYS.completedLessons, [] as string[]),
-  );
+  const [lessonsCompleted, setLessonsCompleted] = useState<string[]>([]);
   const [socialPosts, setSocialPosts] = useState<SocialPost[]>(() =>
     readStoredValue(STORAGE_KEYS.socialPosts, MOCK_SOCIAL_POSTS),
   );
-  const [streakMeta] = useState<StreakMeta>(() =>
-    resolveStreakMeta(
-      readStoredValue<StreakMeta | null>(STORAGE_KEYS.streakMeta, null),
-    ),
-  );
+  const [streakMeta, setStreakMeta] = useState<StreakMeta>({
+    lastVisit: "",
+    streak: 0,
+  });
+
   const [memeScenario, setMemeScenario] = useState(
     "Hết tiền tiêu vặt ngày 10 của tháng",
   );
@@ -199,34 +166,84 @@ export default function App() {
     isInLessonFlow: learnView === "lesson" && Boolean(activeLesson),
   });
 
-  useEffect(() => {
-    window.localStorage.setItem(STORAGE_KEYS.pet, JSON.stringify(petState));
-  }, [petState]);
+  // Load server state on auth
+  async function loadUserData() {
+    try {
+      const [progressRes, gamificationRes, petsRes] = await Promise.all([
+        apiClient.progress.get().catch(() => null),
+        apiClient.gamification.get().catch(() => null),
+        apiClient.pets.getMe().catch(() => null),
+      ]);
 
-  useEffect(() => {
-    window.localStorage.setItem(STORAGE_KEYS.shop, JSON.stringify(shopItems));
-  }, [shopItems]);
+      if (progressRes) {
+        const completedIds = progressRes.lessons
+          .filter((l) => l.status === "completed")
+          .map((l) => l.lessonId);
+        setLessonsCompleted(completedIds);
+      }
 
-  useEffect(() => {
-    window.localStorage.setItem(
-      STORAGE_KEYS.completedLessons,
-      JSON.stringify(lessonsCompleted),
-    );
-  }, [lessonsCompleted]);
+      if (gamificationRes) {
+        setPetState((prev) => ({
+          ...prev,
+          points: gamificationRes.totalXp,
+          level: gamificationRes.level,
+        }));
+        setStreakMeta({
+          lastVisit: gamificationRes.updatedAt || "",
+          streak: gamificationRes.currentStreak,
+        });
+      }
 
-  useEffect(() => {
-    window.localStorage.setItem(
-      STORAGE_KEYS.socialPosts,
-      JSON.stringify(socialPosts),
-    );
-  }, [socialPosts]);
+      if (petsRes?.activePet) {
+        const species = (petsRes.activePet.metadata?.species as PetState["species"]) || "gấu";
+        setPetState((prev) => ({
+          ...prev,
+          name: petsRes.activePet?.name || prev.name,
+          species,
+        }));
+      }
+    } catch {
+      // Ignore background sync errors
+    }
+  }
 
+  // Check session on mount
   useEffect(() => {
-    window.localStorage.setItem(
-      STORAGE_KEYS.streakMeta,
-      JSON.stringify(streakMeta),
-    );
-  }, [streakMeta]);
+    apiClient.auth
+      .getSession()
+      .then((session) => {
+        if (session.authenticated && session.user) {
+          setUser(session.user);
+          loadUserData();
+        }
+      })
+      .catch(() => {
+        // Guest mode
+      });
+  }, []);
+
+  function handleAuthSuccess(authenticatedUser: PublicUser) {
+    setUser(authenticatedUser);
+    loadUserData();
+  }
+
+  async function handleLogout() {
+    try {
+      await apiClient.auth.logout();
+    } catch {
+      // Ignore
+    }
+    setUser(null);
+    setLessonsCompleted([]);
+    setPetState(DEFAULT_GUEST_PET_STATE);
+    setStreakMeta({ lastVisit: "", streak: 0 });
+  }
+
+  function openAuthModal(mode: "login" | "register" = "login", customMsg = "") {
+    setAuthModalMode(mode);
+    setAuthModalMessage(customMsg);
+    setIsAuthModalOpen(true);
+  }
 
   function setActiveTab(tab: AppTab) {
     if (DISABLED_TABS.includes(tab)) {
@@ -244,6 +261,7 @@ export default function App() {
     setQuizAnswers({});
     setIsQuizSubmitted(false);
     setFeedbackMsg("");
+    activeSubmissionKeyRef.current = null;
   }
 
   function openLearn() {
@@ -274,6 +292,11 @@ export default function App() {
     });
 
     resetLessonFlow();
+
+    // If authenticated, sync in_progress status
+    if (user) {
+      apiClient.progress.update(lessonId, "in_progress").catch(() => {});
+    }
   }
 
   function openCourse(category: CourseCategory) {
@@ -377,8 +400,17 @@ export default function App() {
     }
   }
 
-  function handleSubmitQuiz() {
+  async function handleSubmitQuiz() {
     if (!activeLesson) {
+      return;
+    }
+
+    // Require authentication to submit quizzes and earn XP
+    if (!user) {
+      openAuthModal(
+        "login",
+        "Vui lòng đăng nhập hoặc tạo tài khoản để nộp bài và tích lũy XP!",
+      );
       return;
     }
 
@@ -391,41 +423,57 @@ export default function App() {
       return;
     }
 
-    const correctCount = activeLesson.quiz.filter(
-      (question) => quizAnswers[question.id] === question.correctAnswer,
-    ).length;
-    const isPerfectScore = correctCount === activeLesson.quiz.length;
-    const alreadyCompleted = lessonsCompleted.includes(activeLesson.id);
+    // Generate or reuse idempotency key for this attempt
+    if (!activeSubmissionKeyRef.current) {
+      activeSubmissionKeyRef.current = "idemp_" + crypto.randomUUID().replace(/-/g, "");
+    }
 
-    setIsQuizSubmitted(true);
-
-    if (isPerfectScore && !alreadyCompleted) {
-      setPetState((currentState) => {
-        const nextPoints = currentState.points + activeLesson.pointsReward;
-
-        return {
-          ...currentState,
-          points: nextPoints,
-          level: Math.max(currentState.level, Math.floor(nextPoints / 300) + 1),
-        };
+    try {
+      const res = await apiClient.quizzes.submit(activeLesson.id, {
+        answers: quizAnswers,
+        idempotencyKey: activeSubmissionKeyRef.current,
       });
-      setLessonsCompleted((currentLessons) => [...currentLessons, activeLesson.id]);
-      setFeedbackMsg(
-        `Bạn đã hoàn thành bài học và nhận +${activeLesson.pointsReward} XP. Có thể quay lại danh sách để mở bài tiếp theo.`,
-      );
-      return;
-    }
 
-    if (isPerfectScore) {
-      setFeedbackMsg(
-        "Bài này đã hoàn thành trước đó rồi. Bạn có thể chuyển sang bài khác bất cứ lúc nào.",
-      );
-      return;
-    }
+      setIsQuizSubmitted(true);
 
-    setFeedbackMsg(
-      `Bạn đúng ${correctCount}/${activeLesson.quiz.length} câu. Xem lại phần giải thích rồi thử nộp lại nhé.`,
-    );
+      if (res.lessonCompleted && res.xpAwarded > 0) {
+        setLessonsCompleted((prev) =>
+          prev.includes(activeLesson.id) ? prev : [...prev, activeLesson.id],
+        );
+        setFeedbackMsg(
+          `Chúc mừng! Bạn đã hoàn thành bài học xuất sắc và nhận +${res.xpAwarded} XP. Có thể quay lại danh sách để mở bài tiếp theo.`,
+        );
+        // Refresh server gamification
+        const gamif = await apiClient.gamification.get().catch(() => null);
+        if (gamif) {
+          setPetState((prev) => ({
+            ...prev,
+            points: gamif.totalXp,
+            level: gamif.level,
+          }));
+          setStreakMeta({
+            lastVisit: gamif.updatedAt || "",
+            streak: gamif.currentStreak,
+          });
+        }
+        return;
+      }
+
+      if (res.lessonCompleted && res.xpAwarded === 0) {
+        setFeedbackMsg(
+          "Bài học này bạn đã hoàn thành trước đó rồi. Đạt điểm tối đa nhưng không nhận thêm XP.",
+        );
+        return;
+      }
+
+      setFeedbackMsg(
+        `Bạn đúng ${res.correctCount}/${res.totalQuestions} câu (Điểm: ${res.score}%). Hãy xem lại nội dung và thử nộp lại nhé.`,
+      );
+    } catch (err: any) {
+      setFeedbackMsg(
+        err?.message || "Đã xảy ra lỗi khi nộp bài. Vui lòng thử lại sau.",
+      );
+    }
   }
 
   function handleLikePost(postId: string) {
@@ -468,8 +516,11 @@ export default function App() {
           streakDays={streakMeta.streak}
           completedLessonCount={lessonsCompleted.length}
           totalLessonCount={totalLessonCount}
+          user={user}
           onChangeTab={setActiveTab}
           onOpenLearn={openLearn}
+          onOpenAuth={() => openAuthModal("login")}
+          onLogout={handleLogout}
         />
 
         <div className="app-canvas">
@@ -594,6 +645,14 @@ export default function App() {
           isOpen={isComingSoonOpen}
           onClose={() => setIsComingSoonOpen(false)}
         />
+
+        <AuthModal
+          isOpen={isAuthModalOpen}
+          initialMode={authModalMode}
+          message={authModalMessage}
+          onClose={() => setIsAuthModalOpen(false)}
+          onSuccess={handleAuthSuccess}
+        />
       </div>
     </div>
   );
@@ -608,57 +667,64 @@ function getPageMeta(
     isInLessonFlow: boolean;
   },
 ) {
-  switch (activeTab) {
-    case "dashboard":
-      return {
-        eyebrow: "Không gian học tập",
-        title: "Bảng điều khiển học tập rõ ràng và dễ quay lại mỗi ngày.",
-        description:
-          "Theo dõi tiến độ, XP và pet trong cùng một không gian sáng sủa hơn, với các khu vực lớn và dễ quét nhanh như một dashboard SaaS hiện đại.",
-      };
-    case "learn":
-      return context.isInLessonFlow
-        ? {
-            eyebrow:
-              context.selectedCategory === "finance"
-                ? "Lộ trình tài chính"
-                : "Lộ trình bài học",
-            title: "Đi từng bài theo đúng flow video rồi đến quiz.",
-            description: `Bạn đang mở "${context.activeLessonTitle}". Giao diện mới giữ nguyên branding cũ nhưng đổi Learn thành một lesson flow rõ ràng hơn trên cả desktop lẫn mobile.`,
-          }
-        : {
-            eyebrow:
-              context.selectedCategory === "finance"
-                ? "Danh sách bài học tài chính"
-                : context.selectedCategory === "economics"
-                  ? "Danh sách bài học kinh tế"
-                  : "Thư viện bài học",
-            title: "Chọn một bài học từ danh sách module rồi bắt đầu ngay.",
-            description:
-              "Trang Learn giờ mở vào danh sách bài học có cấu trúc như một LMS mini, sau đó mới đi sâu vào màn hình video và quiz của từng bài.",
-          };
-    case "pet":
-      return {
-        eyebrow: "Hồ sơ pet",
-        title: `${context.petName} có một góc riêng để bạn theo dõi và tùy chỉnh.`,
-        description:
-          "Tiến độ thăng hạng, vật phẩm đang dùng và các thao tác cá nhân hóa được gom lại thành một bảng điều khiển nhẹ nhàng hơn.",
-      };
-    case "shop":
-      return {
-        eyebrow: "Phần thưởng XP",
-        title: "Shop được làm gọn để bạn so đồ, xem giá và ra quyết định nhanh.",
-        description:
-          "Giữ nguyên cơ chế mua và trang bị, nhưng chuyển sang ngôn ngữ thẻ sáng, nhấn mạnh vật phẩm có thể mở và khoảng cách XP còn thiếu.",
-      };
-    case "media":
-      return {
-        eyebrow: "Mẹo và media",
-        title: "Mẹo nhớ bài, meme vui và social mockup nay nằm trong cùng một studio.",
-        description:
-          "Khu nội dung phụ được làm đồng bộ với phần còn lại của ứng dụng để vẫn vui mắt mà không bị rối khi dùng lâu.",
-      };
+  if (activeTab === "dashboard") {
+    return {
+      eyebrow: "Học theo nhịp riêng",
+      title: "Chào mừng trở lại với ECONVERSE.",
+      description:
+        "Bắt đầu bài học hôm nay, làm quiz nhận XP và chăm sóc người bạn đồng hành theo cách trực quan nhất.",
+    };
   }
+
+  if (activeTab === "learn") {
+    if (context.isInLessonFlow && context.activeLessonTitle) {
+      return {
+        eyebrow: "Chi tiết bài học",
+        title: context.activeLessonTitle,
+        description:
+          "Xem nội dung bài học, theo dõi video và hoàn thành quiz để nhận XP.",
+      };
+    }
+
+    const categoryText =
+      context.selectedCategory === "economics"
+        ? "Kinh tế cơ bản"
+        : context.selectedCategory === "finance"
+          ? "Tài chính cá nhân"
+          : "Toàn bộ bài học";
+
+    return {
+      eyebrow: "Chương trình học",
+      title: `Danh mục bài học: ${categoryText}`,
+      description:
+        "Chọn bài học bạn muốn khám phá và bắt đầu học ngay bây giờ.",
+    };
+  }
+
+  if (activeTab === "pet") {
+    return {
+      eyebrow: "Bạn đồng hành",
+      title: `Hồ sơ pet: ${context.petName}`,
+      description:
+        "Tùy biến loài pet, đổi tên và theo dõi cấp bậc tăng trưởng theo XP tích lũy.",
+    };
+  }
+
+  if (activeTab === "shop") {
+    return {
+      eyebrow: "Cửa hàng phụ kiện",
+      title: "Đổi XP lấy đồ cho pet",
+      description:
+        "Mở khóa các phụ kiện thời trang và hình nền độc đáo để trang bị cho pet.",
+    };
+  }
+
+  return {
+    eyebrow: "Góc thư giãn",
+    title: "Mẹo tài chính & Media",
+    description:
+      "Khám phá các mẹo quản lý chi tiêu và tạo meme thú vị về kinh tế đời sống.",
+  };
 }
 
 function QuickMetricCard({
@@ -673,12 +739,16 @@ function QuickMetricCard({
   accentClassName: string;
 }) {
   return (
-    <div className="metric-card">
-      <p className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-[#7E8692]">
+    <div className="surface-card-muted flex flex-col justify-between p-4 rounded-2xl">
+      <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#7E8692]">
         {label}
       </p>
-      <strong className={accentClassName}>{value}</strong>
-      <p className="mt-1 text-xs text-[#5E6571]">{caption}</p>
+      <div className="mt-2">
+        <p className={`text-2xl font-black tracking-tight ${accentClassName}`}>
+          {value}
+        </p>
+        <p className="mt-0.5 text-xs text-[#5E6571]">{caption}</p>
+      </div>
     </div>
   );
 }

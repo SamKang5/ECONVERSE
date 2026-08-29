@@ -1,0 +1,9 @@
+name = "econverse"
+compatibility_date = "2024-09-01"
+pages_build_output_dir = "./dist"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "econverse-db"
+database_id = "5b7b26ca-78f9-4423-9b4b-356690e21475"
+migrations_dir = "migrations"

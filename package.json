@@ -7,7 +7,9 @@
     "dev": "node ./node_modules/vite/bin/vite.js --configLoader runner",
     "build": "node ./node_modules/vite/bin/vite.js build --configLoader runner",
     "preview": "node ./node_modules/vite/bin/vite.js preview --configLoader runner",
-    "typecheck": "node ./node_modules/typescript/bin/tsc --noEmit"
+    "typecheck": "node ./node_modules/typescript/bin/tsc --noEmit",
+    "test": "node tests/backend_foundation.test.mjs",
+    "test:prod": "node tests/production_smoke_test.mjs"
   },
   "dependencies": {
     "lucide-react": "^0.546.0",

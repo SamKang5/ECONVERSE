@@ -2,6 +2,7 @@ import * as Icons from "lucide-react";
 
 import econverseLogo from "../assets/ECONVERSE-AVATAR2.png";
 import type { AppTab, PetState } from "../types";
+import type { PublicUser } from "../services/api";
 
 interface HeaderProps {
   activeTab: AppTab;
@@ -9,8 +10,11 @@ interface HeaderProps {
   streakDays: number;
   completedLessonCount: number;
   totalLessonCount: number;
+  user: PublicUser | null;
   onChangeTab: (tab: AppTab) => void;
   onOpenLearn: () => void;
+  onOpenAuth: () => void;
+  onLogout: () => void;
 }
 
 const navItems = [
@@ -52,8 +56,11 @@ export function Header({
   streakDays,
   completedLessonCount,
   totalLessonCount,
+  user,
   onChangeTab,
   onOpenLearn,
+  onOpenAuth,
+  onLogout,
 }: HeaderProps) {
   const completedPercent =
     totalLessonCount === 0 ? 0 : (completedLessonCount / totalLessonCount) * 100;
@@ -169,38 +176,71 @@ export function Header({
           })}
         </nav>
 
-        <section className="surface-card-dark mt-auto p-4">
-          <div className="flex items-center gap-3">
+        <div className="mt-auto space-y-3">
+          {user ? (
+            <div className="surface-card-dark p-3.5 rounded-2xl">
+              <div className="flex items-center justify-between gap-2">
+                <div className="flex items-center gap-2.5 min-w-0">
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[linear-gradient(135deg,#B6EF55_0%,#9D84F6_100%)] text-[#17191D] text-xs font-black shadow-sm">
+                    {user.displayName.charAt(0).toUpperCase()}
+                  </div>
+                  <div className="min-w-0">
+                    <p className="truncate text-xs font-bold text-white">{user.displayName}</p>
+                    <p className="truncate text-[10px] text-slate-400">{user.email}</p>
+                  </div>
+                </div>
+                <button
+                  onClick={onLogout}
+                  className="flex h-7 w-7 items-center justify-center rounded-lg bg-white/5 text-slate-400 transition hover:bg-white/10 hover:text-red-300"
+                  title="Đăng xuất"
+                >
+                  <Icons.LogOut className="h-3.5 w-3.5" />
+                </button>
+              </div>
+            </div>
+          ) : (
             <button
-              onClick={() => onChangeTab("pet")}
-              className="flex h-14 w-14 shrink-0 items-center justify-center rounded-[1.2rem] bg-[rgba(255,255,255,0.08)] text-white transition-transform hover:-translate-y-[1px]"
-              title="Mở trang pet"
+              onClick={onOpenAuth}
+              className="accent-button w-full justify-center py-2.5 text-xs font-bold shadow-md"
             >
-              <Icons.PawPrint className="h-6 w-6 text-[#B6EF55]" />
+              <Icons.LogIn className="h-4 w-4" />
+              Đăng nhập / Đăng ký
             </button>
-            <div className="min-w-0">
-              <p className="text-[0.68rem] uppercase tracking-[0.18em] text-slate-400">
-                Hồ sơ pet
-              </p>
-              <p className="truncate text-base font-semibold text-white">
-                {petState.name}
-              </p>
-              <p className="mt-1 text-sm text-slate-400">
-                Level {petState.level} • {petState.ownedAccessories.length} món đã mở
-              </p>
-            </div>
-          </div>
+          )}
 
-          <div className="mt-4 space-y-2">
-            <div className="flex items-center justify-between text-xs text-slate-400">
-              <span>Tiến độ toàn app</span>
-              <span>{Math.round(completedPercent)}%</span>
+          <section className="surface-card-dark p-4 rounded-2xl">
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => onChangeTab("pet")}
+                className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[1.1rem] bg-[rgba(255,255,255,0.08)] text-white transition-transform hover:-translate-y-[1px]"
+                title="Mở trang pet"
+              >
+                <Icons.PawPrint className="h-5 w-5 text-[#B6EF55]" />
+              </button>
+              <div className="min-w-0">
+                <p className="text-[0.68rem] uppercase tracking-[0.18em] text-slate-400">
+                  Hồ sơ pet
+                </p>
+                <p className="truncate text-sm font-semibold text-white">
+                  {petState.name}
+                </p>
+                <p className="mt-0.5 text-xs text-slate-400">
+                  Level {petState.level} • {petState.ownedAccessories.length} món
+                </p>
+              </div>
             </div>
-            <div className="progress-track bg-[rgba(255,255,255,0.08)]">
-              <div className="progress-fill" style={{ width: `${completedPercent}%` }} />
+
+            <div className="mt-3 space-y-2">
+              <div className="flex items-center justify-between text-[11px] text-slate-400">
+                <span>Tiến độ toàn app</span>
+                <span>{Math.round(completedPercent)}%</span>
+              </div>
+              <div className="progress-track bg-[rgba(255,255,255,0.08)]">
+                <div className="progress-fill" style={{ width: `${completedPercent}%` }} />
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </div>
       </aside>
 
       <header className="border-b border-[rgba(23,25,29,0.08)] bg-[rgba(255,255,255,0.55)] px-4 py-4 backdrop-blur-xl lg:hidden">
@@ -237,6 +277,27 @@ export function Header({
                 {streakDays} ngày
               </div>
             </div>
+
+            {user ? (
+              <button
+                onClick={onLogout}
+                className="flex cursor-pointer items-center gap-1.5 rounded-full border border-[rgba(23,25,29,0.08)] bg-white/90 p-1.5 pr-2.5 text-xs text-[#17191D] shadow-sm transition hover:bg-slate-50"
+                title="Bấm để đăng xuất"
+              >
+                <div className="flex h-7 w-7 items-center justify-center rounded-full bg-[#B6EF55] font-bold text-[#17191D] text-xs">
+                  {user.displayName.charAt(0).toUpperCase()}
+                </div>
+                <span className="hidden font-medium sm:inline max-w-[80px] truncate">{user.displayName}</span>
+              </button>
+            ) : (
+              <button
+                onClick={onOpenAuth}
+                className="accent-button px-3 py-1.5 text-xs font-bold shadow-sm"
+              >
+                <Icons.LogIn className="h-3.5 w-3.5" />
+                <span>Đăng nhập</span>
+              </button>
+            )}
 
             <button
               onClick={() => onChangeTab("pet")}
