@@ -28,7 +28,6 @@ const STORAGE_KEYS = {
   completedLessons: "econedu_completed_lessons",
   socialPosts: "econedu_social_posts",
   streakMeta: "econedu_streak_meta",
-  recentLesson: "econedu_recent_lesson",
 } as const;
 
 const DISABLED_TABS: AppTab[] = ["pet", "shop", "media"];
@@ -36,10 +35,6 @@ const DISABLED_TABS: AppTab[] = ["pet", "shop", "media"];
 type StreakMeta = {
   lastVisit: string;
   streak: number;
-};
-
-type RecentLessonState = {
-  lessonId: string;
 };
 
 const DEFAULT_PET_STATE: PetState = {
@@ -180,9 +175,6 @@ export default function App() {
       readStoredValue<StreakMeta | null>(STORAGE_KEYS.streakMeta, null),
     ),
   );
-  const [recentLesson, setRecentLesson] = useState<RecentLessonState | null>(() =>
-    readStoredValue<RecentLessonState | null>(STORAGE_KEYS.recentLesson, null),
-  );
   const [memeScenario, setMemeScenario] = useState(
     "Hết tiền tiêu vặt ngày 10 của tháng",
   );
@@ -196,9 +188,6 @@ export default function App() {
   );
 
   const activeLessonEntry = activeLessonId ? findLessonEntry(activeLessonId) : null;
-  const recentLessonEntry = recentLesson
-    ? findLessonEntry(recentLesson.lessonId)
-    : null;
   const activeModule = activeLessonEntry?.module ?? null;
   const activeLesson = activeLessonEntry?.lesson ?? null;
   const totalLessonCount = ALL_LESSON_ENTRIES.length;
@@ -238,18 +227,6 @@ export default function App() {
       JSON.stringify(streakMeta),
     );
   }, [streakMeta]);
-
-  useEffect(() => {
-    if (recentLesson) {
-      window.localStorage.setItem(
-        STORAGE_KEYS.recentLesson,
-        JSON.stringify(recentLesson),
-      );
-      return;
-    }
-
-    window.localStorage.removeItem(STORAGE_KEYS.recentLesson);
-  }, [recentLesson]);
 
   function setActiveTab(tab: AppTab) {
     if (DISABLED_TABS.includes(tab)) {
@@ -294,7 +271,6 @@ export default function App() {
       }
       setLearnView("lesson");
       setActiveLessonId(lessonId);
-      setRecentLesson({ lessonId });
     });
 
     resetLessonFlow();
@@ -546,20 +522,8 @@ export default function App() {
                 streakDays={streakMeta.streak}
                 nextLessonTitle={nextLessonInfo.lessonTitle}
                 nextLessonCategoryLabel={nextLessonInfo.categoryLabel}
-                recentLesson={{
-                  moduleTitle: recentLessonEntry?.module.title ?? null,
-                  lessonTitle: recentLessonEntry?.lesson.title ?? null,
-                  lessonId: recentLessonEntry?.lesson.id ?? null,
-                  isCompleted: recentLessonEntry
-                    ? lessonsCompleted.includes(recentLessonEntry.lesson.id)
-                    : false,
-                }}
                 onContinueLearning={continueLearning}
-                onOpenRecentLesson={
-                  recentLessonEntry
-                    ? () => openLesson(recentLessonEntry.lesson.id)
-                    : null
-                }
+                onOpenCourse={openCourse}
                 onOpenPet={() => setActiveTab("pet")}
                 onOpenShop={openShop}
               />

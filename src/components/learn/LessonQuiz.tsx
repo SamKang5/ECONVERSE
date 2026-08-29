@@ -52,18 +52,17 @@ export function LessonQuiz({
 
         <div className="mt-5 space-y-4">
           {lesson.quiz.map((question, questionIndex) => {
-            const displayQuestionNumber = questionIndex + 1;
             const selectedAnswer = quizAnswers[question.id];
 
             return (
               <div key={question.id} className="surface-card-muted p-4 sm:p-5">
                 <div className="flex items-start gap-3">
                   <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[rgba(157,132,246,0.16)] font-mono text-xs font-bold text-[#4C3C86]">
-                    {displayQuestionNumber}
+                    {questionIndex + 1}
                   </span>
                   <div>
                     <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#7E8692]">
-                      Câu {displayQuestionNumber}
+                      Câu hỏi {questionIndex + 1}
                     </p>
                     <h4 className="mt-1 text-base font-semibold leading-7 text-[#17191D]">
                       {question.question}

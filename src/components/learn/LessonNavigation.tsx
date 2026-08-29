@@ -6,6 +6,10 @@ interface LessonNavigationProps {
   onBack?: () => void;
   onNext?: () => void;
   nextDisabled?: boolean;
+  prevLessonLabel?: string;
+  onPrevLesson?: () => void;
+  nextLessonLabel?: string;
+  onNextLesson?: () => void;
 }
 
 export function LessonNavigation({
@@ -14,22 +18,42 @@ export function LessonNavigation({
   onBack,
   onNext,
   nextDisabled = false,
+  prevLessonLabel,
+  onPrevLesson,
+  nextLessonLabel,
+  onNextLesson,
 }: LessonNavigationProps) {
   return (
     <div className="surface-card-muted flex flex-col gap-3 p-4 sm:flex-row sm:items-center sm:justify-between">
-      <div>
-        {backLabel && onBack ? (
+      <div className="flex flex-wrap items-center gap-2">
+        {backLabel && onBack && (
           <button onClick={onBack} className="secondary-button px-4 py-2.5 text-sm">
             <Icons.ArrowLeft className="h-4 w-4" />
             {backLabel}
           </button>
-        ) : (
-          <div className="hidden sm:block" />
+        )}
+        {prevLessonLabel && onPrevLesson && (
+          <button
+            onClick={onPrevLesson}
+            className="secondary-button px-3.5 py-2.5 text-xs text-[#5E6571]"
+          >
+            <Icons.ChevronLeft className="h-4 w-4" />
+            {prevLessonLabel}
+          </button>
         )}
       </div>
 
-      <div className="sm:ml-auto">
-        {nextLabel && onNext ? (
+      <div className="flex flex-wrap items-center gap-2 sm:ml-auto">
+        {nextLessonLabel && onNextLesson && (
+          <button
+            onClick={onNextLesson}
+            className="secondary-button px-3.5 py-2.5 text-xs text-[#5E6571]"
+          >
+            {nextLessonLabel}
+            <Icons.ChevronRight className="h-4 w-4" />
+          </button>
+        )}
+        {nextLabel && onNext && (
           <button
             onClick={onNext}
             disabled={nextDisabled}
@@ -40,8 +64,6 @@ export function LessonNavigation({
             {nextLabel}
             <Icons.ArrowRight className="h-4 w-4" />
           </button>
-        ) : (
-          <div className="hidden sm:block" />
         )}
       </div>
     </div>

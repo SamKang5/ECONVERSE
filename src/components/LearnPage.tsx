@@ -29,6 +29,16 @@ interface LearnPageProps {
   onSubmitQuiz: () => void;
 }
 
+const categoryOptions: Array<{
+  value: LearnCategoryFilter;
+  label: string;
+  icon: typeof Icons.LayoutList;
+}> = [
+  { value: "all", label: "Tất cả", icon: Icons.LayoutList },
+  { value: "economics", label: "Kinh tế", icon: Icons.TrendingUp },
+  { value: "finance", label: "Tài chính", icon: Icons.PiggyBank },
+];
+
 function formatLessonHeading(lesson: Lesson) {
   if (typeof lesson.order === "string") {
     return `Tập ${lesson.order}: ${lesson.title}`;
@@ -39,6 +49,7 @@ function formatLessonHeading(lesson: Lesson) {
 
 export function LearnPage({
   modules,
+  selectedCategory,
   activeModule,
   activeLesson,
   lessonStage,
@@ -46,21 +57,25 @@ export function LearnPage({
   quizAnswers,
   isQuizSubmitted,
   feedbackMsg,
+  onSelectCategory,
   onOpenLesson,
   onBackToCatalog,
   onChangeLessonStage,
   onSelectQuizAnswer,
   onSubmitQuiz,
 }: LearnPageProps) {
-  const visibleModules = modules;
-  const visibleLessons = visibleModules.flatMap((module) => module.lessons);
-  const completedVisibleCount = visibleLessons.filter((lesson) =>
+  const filteredModules =
+    selectedCategory === "all"
+      ? modules
+      : modules.filter((module) => module.category === selectedCategory);
+  const filteredLessons = filteredModules.flatMap((module) => module.lessons);
+  const completedFilteredCount = filteredLessons.filter((lesson) =>
     lessonsCompleted.includes(lesson.id),
   ).length;
-  const visibleProgress =
-    visibleLessons.length === 0
+  const filteredProgress =
+    filteredLessons.length === 0
       ? 0
-      : (completedVisibleCount / visibleLessons.length) * 100;
+      : (completedFilteredCount / filteredLessons.length) * 100;
 
   if (activeLesson && activeModule) {
     const moduleCompletedCount = activeModule.lessons.filter((lesson) =>
@@ -71,13 +86,56 @@ export function LearnPage({
         ? 0
         : (moduleCompletedCount / activeModule.lessons.length) * 100;
 
+    const globalLessonIndex = filteredLessons.findIndex(
+      (lesson) => lesson.id === activeLesson.id,
+    );
+    const prevLesson =
+      globalLessonIndex > 0 ? filteredLessons[globalLessonIndex - 1] : null;
+    const nextLesson =
+      globalLessonIndex >= 0 && globalLessonIndex < filteredLessons.length - 1
+        ? filteredLessons[globalLessonIndex + 1]
+        : null;
+
     return (
       <div className="grid gap-6 xl:grid-cols-12">
         <section className="space-y-6 xl:col-span-8">
-          <button onClick={onBackToCatalog} className="secondary-button px-4 py-2.5 text-sm">
-            <Icons.ArrowLeft className="h-4 w-4" />
-            Quay lại danh sách bài học
-          </button>
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <button onClick={onBackToCatalog} className="secondary-button px-4 py-2.5 text-sm">
+              <Icons.ArrowLeft className="h-4 w-4" />
+              Quay lại danh sách bài học
+            </button>
+
+            <div className="flex flex-wrap items-center gap-2">
+              {prevLesson && (
+                <button
+                  onClick={() => onOpenLesson(prevLesson.id)}
+                  className="secondary-button px-3.5 py-2.5 text-xs text-[#5E6571]"
+                  title={`Chuyển về ${formatLessonHeading(prevLesson)}`}
+                >
+                  <Icons.ChevronLeft className="h-4 w-4" />
+                  <span>
+                    {typeof prevLesson.order === "string"
+                      ? `Tập ${prevLesson.order}`
+                      : `Bài ${prevLesson.order ?? "?"}`}
+                  </span>
+                </button>
+              )}
+              {nextLesson && (
+                <button
+                  onClick={() => onOpenLesson(nextLesson.id)}
+                  className="secondary-button px-3.5 py-2.5 text-xs text-[#5E6571]"
+                  title={`Chuyển sang ${formatLessonHeading(nextLesson)}`}
+                >
+                  <span>
+                    {typeof nextLesson.order === "string"
+                      ? `Tập ${nextLesson.order}`
+                      : `Bài ${nextLesson.order ?? "?"}`}
+                  </span>
+                  <Icons.ChevronRight className="h-4 w-4" />
+                </button>
+              )}
+            </div>
+          </div>
 
           <section className="surface-card p-5 sm:p-6">
             <div className="flex flex-col gap-4 border-b border-[rgba(23,25,29,0.08)] pb-4 sm:flex-row sm:items-start sm:justify-between">
@@ -123,8 +181,16 @@ export function LearnPage({
           </section>
 
           <LessonNavigation
-            backLabel={lessonStage === "video" ? "Danh sách bài học" : "Quay lại"}
-            nextLabel={lessonStage === "video" ? "Tiếp theo" : "Nộp bài"}
+            backLabel={lessonStage === "video" ? "Danh sách bài học" : "Quay lại video"}
+            nextLabel={
+              lessonStage === "video"
+                ? "Làm Quiz ôn tập"
+                : isQuizSubmitted && nextLesson
+                  ? "Bài tiếp theo"
+                  : isQuizSubmitted
+                    ? "Danh sách bài học"
+                    : "Nộp bài"
+            }
             onBack={
               lessonStage === "video"
                 ? onBackToCatalog
@@ -133,7 +199,31 @@ export function LearnPage({
             onNext={
               lessonStage === "video"
                 ? () => onChangeLessonStage("quiz")
-                : onSubmitQuiz
+                : isQuizSubmitted && nextLesson
+                  ? () => onOpenLesson(nextLesson.id)
+                  : isQuizSubmitted
+                    ? onBackToCatalog
+                    : onSubmitQuiz
+            }
+            prevLessonLabel={
+              prevLesson
+                ? typeof prevLesson.order === "string"
+                  ? `Tập ${prevLesson.order}`
+                  : `Bài ${prevLesson.order ?? "?"}`
+                : undefined
+            }
+            onPrevLesson={prevLesson ? () => onOpenLesson(prevLesson.id) : undefined}
+            nextLessonLabel={
+              lessonStage === "video" && nextLesson
+                ? typeof nextLesson.order === "string"
+                  ? `Tập ${nextLesson.order}`
+                  : `Bài ${nextLesson.order ?? "?"}`
+                : undefined
+            }
+            onNextLesson={
+              lessonStage === "video" && nextLesson
+                ? () => onOpenLesson(nextLesson.id)
+                : undefined
             }
           />
         </section>
@@ -217,8 +307,56 @@ export function LearnPage({
   return (
     <div className="grid gap-6 xl:grid-cols-12">
       <section className="space-y-6 xl:col-span-8">
+        <section className="surface-card overflow-hidden p-5 sm:p-6 xl:p-7">
+          <div className="space-y-5">
+            <div className="flex flex-wrap items-center gap-3">
+              <span className="badge badge-lime">
+                <Icons.BookOpenCheck className="h-4 w-4" />
+                Danh sách bài học
+              </span>
+              <span className="badge badge-purple">
+                <Icons.Route className="h-4 w-4" />
+                Video rồi đến quiz
+              </span>
+            </div>
+
+            <div>
+              <h2 className="font-display text-3xl font-bold tracking-tight text-[#17191D] sm:text-4xl">
+                Học theo module, mở từng bài và đi hết một luồng rõ ràng.
+              </h2>
+              <p className="mt-3 max-w-3xl text-sm leading-7 text-[#5E6571] sm:text-[0.98rem]">
+                Chọn module, bấm vào một bài học, xem phần video trước rồi chuyển sang
+                quiz bằng nút <b>Tiếp theo</b>. Tất cả vẫn giữ cùng theme và branding
+                hiện tại của ECONVERSE.
+              </p>
+            </div>
+
+            <div className="flex flex-wrap gap-2">
+              {categoryOptions.map((option) => {
+                const Icon = option.icon;
+                const isActive = selectedCategory === option.value;
+
+                return (
+                  <button
+                    key={option.value}
+                    onClick={() => onSelectCategory(option.value)}
+                    className={`flex items-center gap-2 rounded-full px-4 py-2.5 text-sm font-semibold transition-all ${
+                      isActive
+                        ? "bg-[rgba(157,132,246,0.14)] text-[#4C3C86] shadow-[inset_0_0_0_1px_rgba(157,132,246,0.16)]"
+                        : "border border-[rgba(23,25,29,0.08)] bg-white text-[#5E6571]"
+                    }`}
+                  >
+                    <Icon className="h-4 w-4" />
+                    {option.label}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
         <div className="space-y-6">
-          {visibleModules.map((module) => (
+          {filteredModules.map((module) => (
             <ModuleSection
               key={module.id}
               module={module}
@@ -259,13 +397,13 @@ export function LearnPage({
               </h3>
             </div>
             <span className="badge badge-dark">
-              {completedVisibleCount}/{visibleLessons.length}
+              {completedFilteredCount}/{filteredLessons.length}
             </span>
           </div>
 
           <div className="mt-5 space-y-4">
             <div className="progress-track">
-              <div className="progress-fill" style={{ width: `${visibleProgress}%` }} />
+              <div className="progress-fill" style={{ width: `${filteredProgress}%` }} />
             </div>
 
             <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-1">
@@ -274,7 +412,7 @@ export function LearnPage({
                   Module đang hiển thị
                 </p>
                 <p className="mt-2 text-lg font-bold text-[#17191D]">
-                  {visibleModules.length}
+                  {filteredModules.length}
                 </p>
               </div>
               <div className="surface-card-muted p-4">
@@ -282,7 +420,7 @@ export function LearnPage({
                   Bài học
                 </p>
                 <p className="mt-2 text-lg font-bold text-[#17191D]">
-                  {visibleLessons.length}
+                  {filteredLessons.length}
                 </p>
               </div>
             </div>

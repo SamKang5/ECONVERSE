@@ -12,321 +12,150 @@ export const INITIAL_COURSES: Course[] = [
     accentColor: "emerald",
     lessons: [
       {
-        id: "lesson-1",
-        order: "1A",
-        title: "Quy luật Cầu",
-        shortDescription: "Càng đắt càng chê, càng rẻ càng mê: hiểu vì sao giá và lượng cầu luôn đi ngược chiều.",
-        duration: "08 phút",
-        pointsReward: 40,
-        videoUrl: "https://www.youtube.com/embed/0F137oc1cPQ",
-        overview: "Tập 1A giải thích quy luật cầu bằng những ví dụ rất gần với học sinh: giá càng cao thì người mua càng chùn tay, giá càng thấp thì lượng cầu càng tăng.",
-        mainContentTitle: "Quy luật cầu hoạt động ra sao?",
-        mainContent: [
-          "Trong điều kiện các yếu tố khác không đổi, khi giá tăng thì lượng cầu giảm; ngược lại, khi giá giảm thì lượng cầu tăng. Đây là mối quan hệ nghịch biến cơ bản giữa giá cả và hành vi mua của người tiêu dùng.",
-          "Quy luật cầu được chi phối bởi hai cơ chế quen thuộc. Hiệu ứng thay thế khiến người mua chuyển sang món rẻ hơn khi một món đồ trở nên quá đắt. Hiệu ứng thu nhập khiến sức mua thực tế giảm xuống, tạo cảm giác như túi tiền bị teo lại dù thu nhập danh nghĩa không đổi.",
-          "Vì vậy đường cầu thường dốc xuống từ trái sang phải. Chỉ cần nhìn vào những ví dụ như sneaker giảm giá, vé concert khan hiếm hay đồ ăn hot trend, người học có thể thấy lượng cầu phản ứng rất nhanh trước thay đổi về giá."
-        ],
-        objectives: [
-          "Phát biểu được quy luật cầu bằng ngôn ngữ đời thường.",
-          "Phân biệt hiệu ứng thay thế và hiệu ứng thu nhập.",
-          "Nhận ra hình dạng dốc xuống của đường cầu trên đồ thị."
+        id: "econ-l1",
+        title: "Bài 1: Cung & Cầu - Trận Chiến Trà Sữa",
+        shortDescription: "Tại sao trà sữa lại tăng giá vùn vụt hay giảm giá sập sàn? Tìm hiểu quy luật chi phối mọi vật giá.",
+        duration: "15 phút",
+        youtubeId: "dQw4w9WgXcQ", // Placeholder
+        pointsReward: 50,
+        videoScript: [
+          {
+            role: "Youtuber",
+            text: "Chào các bạn trẻ Gen Z, welcome back to kênh Lóng Kinh Tế! Hôm nay tụi mình sẽ nói về một chủ đề 'đau ví' nhất: TRÀ SỮA!",
+            action: "Cầm cốc trà sữa trân châu lắc lự"
+          },
+          {
+            role: "Học sinh",
+            text: "Anh ơi, tự dưng hôm nay quán ruột tăng giá từ 35k lên tận 60k một ly, trong khi em chỉ có đúng 40k! Sốc bay màu thực sự ạ!",
+            action: "Khuôn mặt mếu máo dở khóc dở cười"
+          },
+          {
+            role: "Youtuber",
+            text: "Đó chính là CUNG và CẦU đó em ơi! Quy luật Cung Cầu chính là 'bàn tay vô hình' điều khiển mọi thứ trên thế giới này, từ cái đùi gà chiên tới cái card đồ hoạ để chơi game.",
+            action: "Hiện hiệu ứng bàn tay mờ ảo bay lơ lửng"
+          },
+          {
+            role: "Youtuber",
+            text: "Hiểu đơn giản: CẦU là lượng người MUỐN và CÓ TIỀN mua ly trà sữa đó. CUNG là số lượng ly mà quán CÓ KHẢ NĂNG pha chế ra.",
+            action: "Sơ đồ Cung Cầu dạng vẽ tay hiện lên vui nhộn"
+          },
+          {
+            role: "Meme",
+            text: "Ví dụ: Ngày mưa tầm tã, ai cũng muốn rúc trong nhà làm ly trà sữa ấm nóng (CẦU tăng cực mạnh!). Nhưng shipper ngại đi, quán thiếu nhân viên xếp hàng (CUNG tụt thảm hại). Úm ba la... giá ly trà sữa sẽ bị đẩy bay lên trời!",
+            action: "Hiển thị ảnh meme chó Shiba khóc ròng rã"
+          },
+          {
+            role: "Youtuber",
+            text: "Ngược lại, nếu một ngày 100 quán trà sữa mọc lên quanh trường bạn (CUNG siêu khổng lồ) nhưng học sinh lại đang chuyển sang trend uống matcha (CẦU giảm). Để cứu vãn, các quán phải đua nhau giảm giá hạ nhiệt. Điểm cân bằng chính là mức giá hợp lý nhất mà cả người bán và người mua đều vui vẻ chốt đơn!"
+          }
         ],
         summary: {
-          title: "Tóm tắt Tập 1A: Quy luật Cầu",
+          title: "Tóm Tắt: Quy Luật Cung - Cầu",
           points: [
-            "Khi giá tăng thì lượng cầu giảm, khi giá giảm thì lượng cầu tăng nếu các yếu tố khác giữ nguyên.",
-            "Hiệu ứng thay thế khiến người mua chuyển sang món rẻ hơn khi giá mặt hàng hiện tại tăng.",
-            "Hiệu ứng thu nhập làm sức mua thực tế giảm xuống, khiến người tiêu dùng cảm thấy nghèo đi.",
-            "Đường cầu thông thường dốc xuống từ trái sang phải trên đồ thị."
+            "Cầu (Demand): Lòng ham muốn kèm khả năng thanh toán của người mua đối với một mức giá trong thời gian nhất định.",
+            "Cung (Supply): Số hàng hoá/dịch vụ mà người bán sẵn sàng và có khả năng bán ra thị trường ở các mức giá khác nhau.",
+            "Giá cân bằng (Equilibrium Price): Điểm giao nhau giữa đường Cung và đường Cầu. Tại đây, số lượng người muốn mua vừa vặn bằng số lượng người muốn bán.",
+            "Khi Cầu > Cung: Hàng hóa khan hiếm, giá thường tăng mạnh.",
+            "Khi Cung > Cầu: Hàng hóa dư thừa, giá có xu hướng giảm sâu để kích cầu."
           ]
         },
         quiz: [
           {
-            id: "lesson-1-q1",
-            question: "Khi một đôi giày sneaker giảm giá mạnh từ 2 triệu xuống còn 200k, hiện tượng gì sẽ xảy ra theo nội dung phim?",
+            id: "econ-q1-1",
+            question: "Hiện tượng nào xảy ra khi trào lưu săn lùng mô hình Labubu bùng nổ, nhưng lượng sản xuất của hãng cực kỳ hạn chế?",
             options: [
-              "Học sinh quay xe đi thẳng không thèm ngó.",
-              "Cả trăm người lao vào tranh nhau mua.",
-              "Người bán đóng cửa cửa hàng.",
-              "Lượng cầu của đôi giày giảm về mức bằng không."
+              "Cung vượt quá Cầu, giá máy giảm mạnh.",
+              "Cầu vượt quá Cung, giá mô hình trên chợ đen bị đẩy lên gấp 3-4 lần.",
+              "Thị trường đạt mức giá cân bằng tức thì.",
+              "Không ảnh hưởng gì đến giá cả mặt hàng."
             ],
             correctAnswer: 1,
-            explanation: "Đây là minh họa thực tế cho quy luật cầu: khi giá giảm sâu, lượng cầu (số lượng người muốn mua) sẽ tăng vọt."
+            explanation: "Do số lượng muốn mua (Cầu) tăng vọt vượt xa khả năng cung ứng hạn chế (Cung), người mua sẵn sàng trả giá cao để sở hữu phẩm vật khan hiếm, đẩy giá bán lên rất cao."
           },
           {
-            id: "lesson-1-q2",
-            question: "Trong điều kiện các yếu tố khác không đổi, mối quan hệ giữa giá ($P$) và lượng cầu ($Q$) được phát biểu như thế nào?",
+            id: "econ-q1-2",
+            question: "Điểm Cân Bằng (Market Equilibrium) đạt được khi nào?",
             options: [
-              "Khi giá (P) tăng lên, lượng cầu (Q) sẽ tăng theo.",
-              "Khi giá (P) giảm xuống, lượng cầu (Q) cũng giảm theo.",
-              "Khi giá (P) tăng lên, lượng cầu (Q) sẽ giảm xuống và ngược lại.",
-              "Giá cả và lượng cầu không có mối quan hệ gì với nhau."
+              "Khi người bán ép giá tối đa có thể.",
+              "Khi người mua không còn đồng nào trong túi.",
+              "Khi lượng Cung bằng lượng Cầu tại một mức giá thống nhất.",
+              "Khi chính phủ phát miễn phí hàng hoá cho toàn quốc."
             ],
             correctAnswer: 2,
-            explanation: "Quy luật cầu chỉ ra mối quan hệ nghịch biến (trái chiều) giữa giá cả và lượng cầu của một loại hàng hóa."
-          },
-          {
-            id: "lesson-1-q3",
-            question: "Hiệu ứng thay thế (Substitution Effect) tác động đến tâm lý người mua như thế nào khi một món đồ trở nên đắt hơn?",
-            options: [
-              "Người mua sẽ dồn hết tiền để mua món đồ đó bằng được.",
-              "Người mua sẽ tự động chuyển sang lựa chọn khác rẻ hơn nhưng vẫn đáp ứng được nhu cầu.",
-              "Người mua sẽ ngừng tiêu dùng tất cả các loại hàng hóa trên thị trường.",
-              "Người mua cảm thấy mình trở nên giàu có hơn."
-            ],
-            correctAnswer: 1,
-            explanation: "Hiệu ứng thay thế giải thích rằng khi giá một mặt hàng tăng, các mặt hàng thay thế tương đương trở nên hấp dẫn hơn về giá, khiến người tiêu dùng chuyển hướng lựa chọn."
-          },
-          {
-            id: "lesson-1-q4",
-            question: "Theo hiệu ứng thu nhập (Income Effect), điều gì xảy ra khiến bạn phải cắt giảm chi tiêu khi giá hàng hóa tăng lên?",
-            options: [
-              "Số tiền bạn có bị mất bớt đi một nửa một cách vô lý.",
-              "Số tiền bạn có không đổi nhưng mua được ít đồ hơn, tạo cảm giác như bị \"nghèo đi\".",
-              "Bạn nhận được nhiều tiền lương hơn từ công việc.",
-              "Bạn cảm thấy dư dả và muốn mua nhiều đồ xa xỉ hơn."
-            ],
-            correctAnswer: 1,
-            explanation: "Khi giá tăng, sức mua thực tế từ thu nhập của bạn giảm xuống, buộc bạn phải thắt chặt chi tiêu."
+            explanation: "Điểm cân bằng ổn định thị trường chỉ xuất hiện tại giao điểm của cung và cầu, tức lượng người bán muốn bán trùng khớp lượng người mua muốn mua."
           }
         ]
       },
       {
-        id: "lesson-2",
-        order: "1B",
-        title: "Quy luật Cung",
-        shortDescription: "Được giá thì bán, rẻ mạt thì nghỉ: hiểu vì sao người bán phản ứng mạnh với mức giá thị trường.",
-        duration: "08 phút",
-        pointsReward: 40,
-        videoUrl: "https://www.youtube.com/embed/B_UFQieeHbs",
-        overview: "Tập 1B chuyển góc nhìn sang phía người bán để giải thích vì sao giá càng cao thì lượng cung thường càng tăng.",
-        mainContentTitle: "Quy luật cung vận hành thế nào?",
-        mainContent: [
-          "Quy luật cung nói rằng mối quan hệ giữa giá và lượng cung là đồng biến. Giá càng cao, người bán càng muốn sản xuất hoặc bày bán nhiều hơn để tận dụng lợi nhuận tốt hơn.",
-          "Ngược lại, nếu giá quá thấp và không đủ bù vốn, người bán sẽ giảm sản lượng hoặc rời khỏi thị trường. Vì thế đường cung thường dốc lên từ trái sang phải, phản ánh động lực gia tăng cung khi giá tăng.",
-          "Động lực cốt lõi đứng sau quy luật cung là lợi nhuận. Từ quán trà sữa đến nhà sản xuất lớn, ai cũng phản ứng trước tín hiệu giá theo cách rất thực tế: nơi nào có cơ hội lời hơn thì nguồn lực sẽ đổ về đó."
-        ],
-        objectives: [
-          "Phát biểu được quy luật cung bằng ví dụ gần gũi.",
-          "Nhận ra đường cung dốc lên trên đồ thị.",
-          "Hiểu lợi nhuận là động lực chính của người bán."
-        ],
-        summary: {
-          title: "Tóm tắt Tập 1B: Quy luật Cung",
-          points: [
-            "Khi giá tăng thì lượng cung thường tăng, khi giá giảm quá thấp thì lượng cung giảm.",
-            "Đường cung thông thường dốc lên từ trái sang phải trên đồ thị.",
-            "Lợi nhuận là động lực cốt lõi khiến người bán tăng hay giảm sản lượng.",
-            "Giá quá thấp không đủ bù vốn sẽ khiến người bán thu hẹp hoặc ngừng bán."
-          ]
-        },
-        quiz: [
+        id: "econ-l2",
+        title: "Bài 2: Lạm Phát - Tại Sao Tờ 500k Cứ Bé Dần?",
+        shortDescription: "Năm xưa 10k mua được bát phở no nê, giờ 10k chỉ gửi xe được nửa buổi. Hãy vạch mặt hung thủ thầm lặng mang tên Lạm Phát.",
+        duration: "15 phút",
+        youtubeId: "dQw4w9WgXcQ",
+        pointsReward: 60,
+        videoScript: [
           {
-            id: "lesson-2-q1",
-            question: "Góc độ của người bán (chủ quán trà sữa) khi giá thị trường tăng vọt từ 30k lên 90k/ly sẽ là gì?",
-            options: [
-              "Đóng cửa quán và đi ngủ ngay lập tức.",
-              "Giữ nguyên công suất sản xuất như cũ.",
-              "Bật chế độ sản xuất hết công suất, bắt nhân viên làm xuyên đêm để vắt kiệt dòng tiền.",
-              "Giảm số lượng ly trà sữa làm ra mỗi ngày."
-            ],
-            correctAnswer: 2,
-            explanation: "Khi giá tăng cao, người bán có cơ hội thu về nguồn doanh thu lớn nên sẽ tìm mọi cách đẩy mạnh lượng cung ra thị trường."
+            role: "Youtuber",
+            text: "Ủy ban bóc phốt hôm nay xin được triệu hồi một thế lực siêu nhiên... lẳng lặng rút ruột heo đất của bạn mà bạn không hề hay biết. Tên của hắn là: LẠM PHÁT!",
+            action: "Nhạc kinh dị nổi lên, hình ảnh tờ tiền bay mất góc"
           },
           {
-            id: "lesson-2-q2",
-            question: "Đường Cung ($S$) trên đồ thị kinh tế học có đặc điểm hình học như thế nào?",
-            options: [
-              "Là một đường dốc xuống từ trái sang phải.",
-              "Là một đường dốc lên từ trái sang phải.",
-              "Là một đường thẳng nằm ngang song song với trục Lượng ($Q$).",
-              "Là một đường thẳng đứng song song với trục Giá ($P$)."
-            ],
-            correctAnswer: 1,
-            explanation: "Đường cung dốc lên thể hiện mối quan hệ đồng biến giữa giá cả và lượng cung: giá càng cao thì lượng cung càng lớn."
+            role: "Thầy giáo",
+            text: "E hèm, định nghĩa học thuật: Lạm phát là sự tăng mức giá chung liên tục của hàng hóa và dịch vụ theo thời gian, dẫn tới mất giá trị của một loại tiền tệ.",
+            action: "Kính cận phản quang sáng loà nghiêm nghị"
           },
           {
-            id: "lesson-2-q3",
-            question: "Động lực duy nhất và lớn nhất chi phối hành vi của người bán trong quy luật cung là gì?",
-            options: [
-              "Sự đồng cảm với khó khăn của người tiêu dùng.",
-              "Lợi nhuận kiếm được nhiều hơn trên mỗi sản phẩm.",
-              "Việc cắt giảm tối đa số lượng nhân viên sản xuất.",
-              "Đam mê làm việc không cần tiền bạc."
-            ],
-            correctAnswer: 1,
-            explanation: "Giá bán cao giúp biên độ lợi nhuận mở rộng, đó là động lực cốt lõi thúc đẩy các chủ thể sản xuất kinh doanh tăng sản lượng."
+            role: "Youtuber",
+            text: "Dịch sang tiếng người: Ngày xưa năm 2012, mẹ cho bạn 15k là bạn ăn được tô hủ tiếu gõ ngập tràn topping. Bây giờ năm 2026, 15k đó chỉ đủ mua cái quẩy chiên ăn kèm!",
+            action: "Meme ông chú bất ngờ ngã lộn nhào"
           },
           {
-            id: "lesson-2-q4",
-            question: "Theo quy luật cung, chuyện gì xảy ra nếu giá hàng hóa trên thị trường trở nên \"rẻ mạt\"?",
-            options: [
-              "Người bán càng hào hứng sản xuất gấp đôi.",
-              "Không đủ bù tiền vốn, người bán sẽ nghỉ khỏe, đóng cửa đi ngủ.",
-              "Lượng cung sẽ tăng vọt ra ngoài thị trường.",
-              "Người bán sẽ chuyển sang tặng miễn phí sản phẩm."
-            ],
-            correctAnswer: 1,
-            explanation: "Khi giá quá thấp không bao phủ được chi phí sản xuất, người bán sẽ không có động lực và buộc phải giảm sản lượng hoặc dừng bán."
+            role: "Youtuber",
+            text: "Vì sao lạm phát xảy ra? Có 2 lý do chính: 1. Chi phí đẩy (xăng tăng, nguyên liệu tăng khiến chủ quán phải tăng giá để giữ lãi). 2. Cầu kéo (kinh tế phát triển, ai cũng dư dả, tranh nhau mua đồ khiến người bán tự tin nâng giá)."
+          },
+          {
+            role: "Meme",
+            text: "Ủa thế ngân hàng nhà nước cứ in thật nhiều tiền phát cho dân nghèo là xong đúng không anh? Ez game giàu sang!",
+            action: "Mắt lấp lánh như nhân vật anime"
+          },
+          {
+            role: "Youtuber",
+            text: "Oh no! Đừng bao giờ làm thế! Nếu ai cũng có bao tải tiền, nhưng số lượng gà, vịt, trà sữa trên đời vẫn thế, thì người ta sẽ đấu giá những con gà đó với giá cắt cổ. Kết quả là đồng tiền biến thành giấy lộn như ở Zimbabwe hay Venezuela ngay!"
           }
-        ]
-      },
-      {
-        id: "lesson-1c",
-        order: "1C",
-        title: "Cung và Cầu đại chiến – Điểm cân bằng",
-        shortDescription: "Khi cung gặp cầu, thị trường tự tìm về một mức giá cân bằng để hàng hóa bán hết và người mua chấp nhận trả.",
-        duration: "09 phút",
-        videoUrl: "https://www.youtube.com/embed/elHTLmaghlU?si=ZVa8LcAY7lW4Rrgi",
-        pointsReward: 45,
-        overview: "Tập 1C cho thấy cung và cầu không đứng riêng lẻ mà luôn kéo nhau về điểm cân bằng của thị trường.",
-        mainContentTitle: "Điểm cân bằng, dư thừa và thiếu hụt",
-        mainContent: [
-          "Điểm cân bằng là nơi đường cung cắt đường cầu. Tại mức giá này, lượng người bán muốn bán vừa khớp với lượng người mua muốn mua, nên hàng hóa được tiêu thụ trọn vẹn mà không bị ế cũng không bị thiếu.",
-          "Nếu giá bị đẩy cao hơn điểm cân bằng, lượng cung sẽ lớn hơn lượng cầu. Thị trường rơi vào trạng thái dư thừa: hàng hóa tồn kho nhiều, người bán buộc phải hạ giá để kéo khách quay lại.",
-          "Nếu giá bị kéo thấp hơn điểm cân bằng, lượng cầu sẽ vượt lượng cung. Khi đó xuất hiện thiếu hụt: người mua tranh nhau mua, sẵn sàng trả cao hơn, và chính áp lực đó kéo giá tăng trở lại gần điểm cân bằng."
-        ],
-        objectives: [
-          "Xác định được điểm cân bằng trên đồ thị cung cầu.",
-          "Phân biệt trạng thái dư thừa và thiếu hụt.",
-          "Hiểu cơ chế tự điều chỉnh của giá trên thị trường."
         ],
         summary: {
-          title: "Tóm tắt Tập 1C: Điểm cân bằng",
+          title: "Tóm Tắt: Bản Chất Của Lạm Phát",
           points: [
-            "Điểm cân bằng là giao điểm của đường cung và đường cầu, nơi lượng cung bằng lượng cầu.",
-            "Giá cao hơn điểm cân bằng thường gây dư thừa vì cung lớn hơn cầu.",
-            "Giá thấp hơn điểm cân bằng thường gây thiếu hụt vì cầu lớn hơn cung.",
-            "Thị trường có xu hướng tự điều chỉnh để quay lại gần điểm cân bằng."
+            "Lạm phát (Inflation): Hiện tượng đồng tiền bị giảm sức mua (purchasing power). Cùng một số tiền nhưng mua được ít đồ hơn.",
+            "Lạm phát do cầu kéo: Sức mua của xã hội tăng quá nhanh, kéo giá cả tăng lên theo.",
+            "Lạm phát do chi phí đẩy: Giá nguyên liệu đầu vào (điện, xăng, thuế, lương) tăng khiến chi phí sản xuất tăng, buộc giá bán lẻ sản phẩm tăng.",
+            "Tác hại của in tiền quá mức: Tiền mặt chỉ là vật ngang giá. Nếu lượng tiền in ra nhiều hơn tốc độ sản xuất của cải, giá trị đồng tiền sẽ sụp đổ (Siêu lạm phát)."
           ]
         },
         quiz: [
           {
-            id: "lesson-1c-q1",
-            question: "Điểm Cân Bằng (Equilibrium - E) xuất hiện trên đồ thị kinh tế học khi nào?",
+            id: "econ-q2-1",
+            question: "Nếu một quốc gia thiếu hụt của cải nhưng quyết định in thêm 10 lần lượng tiền mặt để phân phát, điều gì sẽ xảy ra?",
             options: [
-              "Khi đường Cầu nằm hoàn toàn phía trên đường Cung.",
-              "Khi đường Cung và đường Cầu cắt nhau tại một điểm chạm.",
-              "Khi người bán ép được người mua phải trả mức giá đắt nhất.",
-              "Khi người mua ép được người bán phải bán mức giá rẻ nhất."
-            ],
-            correctAnswer: 1,
-            explanation: "Điểm cân bằng là giao điểm của đường cung và đường cầu, thể hiện sự thỏa thuận tự nhiên của thị trường."
-          },
-          {
-            id: "lesson-1c-q2",
-            question: "Tại Điểm Cân Bằng, trạng thái thị trường diễn ra như thế nào?",
-            options: [
-              "Hàng hóa ế ẩm đầy kho, người bán khóc ròng.",
-              "Thiếu hụt hàng hóa trầm trọng, người mua tranh giành nhau.",
-              "Mức giá người bán muốn bán vừa khớp với mức giá người mua muốn trả, hàng bán hết sạch.",
-              "Thị trường rơi vào khủng hoảng đóng cửa toàn bộ."
+              "Mọi người dân đều giàu lên gấp 10 lần thực tế.",
+              "Giá trị đồng nội tệ tăng vọt so với đô la Mỹ.",
+              "Xảy ra siêu lạm phát dữ dội, đồng tiền mất giá trị mua sắm gốc.",
+              "Nước đó trở thành cường quốc kinh tế số 1."
             ],
             correctAnswer: 2,
-            explanation: "Tại mức giá cân bằng, lượng cung bằng đúng lượng cầu, không có hiện tượng thừa hay thiếu hàng hóa."
+            explanation: "In thêm tiền không làm tăng sản lượng hàng hóa thực tế. Nó chỉ làm pha loãng giá trị tiền tệ, dẫn tới việc mọi người tranh nhau dùng nhiều tiền hơn để mua một lượng của cải không đổi, gây mất giá đồng tiền thảm hại."
           },
           {
-            id: "lesson-1c-q3",
-            question: "Hiện tượng \"Dư thừa\" (Surplus) xảy ra khi người bán tham lam hét giá quá cao là do?",
+            id: "econ-q2-2",
+            question: "Đâu là ví dụ điển hình của 'Lạm phát do chi phí đẩy'?",
             options: [
-              "Lượng cầu lớn hơn lượng cung trên thị trường.",
-              "Lượng cung lớn hơn lượng cầu, dẫn đến hàng hóa ế ẩm trong kho.",
-              "Người mua tranh nhau trả giá cao hơn để có được món đồ.",
-              "Cả người bán và người mua đều không muốn giao dịch."
+              "Dân chúng đổ xô đi mua bánh trung thu khiến bánh tăng giá.",
+              "Giá xăng dầu thế giới tăng vọt làm giá cước vận chuyển, đồ ăn, rau củ đồng loạt tăng theo.",
+              "Nhà nước giảm lãi suất cho vay mua sắm cá nhân.",
+              "Doanh nghiệp khuyến mãi mua 1 tặng 1 giảm giá sốc."
             ],
             correctAnswer: 1,
-            explanation: "Giá cao kích thích người bán sản xuất (Cung tăng) nhưng lại làm người mua chê đắt (Cầu giảm), gây ra dư thừa hàng hóa."
-          },
-          {
-            id: "lesson-1c-q4",
-            question: "Khi thị trường rơi vào trạng thái \"Thiếu hụt\" (Shortage) do giá quá rẻ, cơ chế tự điều chỉnh của thị trường sẽ là gì?",
-            options: [
-              "Người bán sẽ tiếp tục hạ giá thấp hơn nữa.",
-              "Người mua sẽ ngừng mua hàng hoàn toàn.",
-              "Người mua tranh nhau và tự động trả giá cao hơn, kéo mọi thứ quay về điểm E.",
-              "Nhà nước bắt buộc phải tịch thu toàn bộ hàng hóa."
-            ],
-            correctAnswer: 2,
-            explanation: "Sự khan hiếm khiến người mua sẵn sàng trả giá cao hơn để giành lấy sản phẩm, từ đó đẩy giá tăng dần trở lại mức cân bằng."
-          }
-        ]
-      },
-      {
-        id: "lesson-1d",
-        order: "1D",
-        title: "Ngoại lệ của Cung Cầu",
-        shortDescription: "Không phải lúc nào giá tăng cũng làm người ta mua ít hơn: Veblen và Giffen là hai ngoại lệ rất nổi tiếng.",
-        duration: "08 phút",
-        pointsReward: 45,
-        overview: "Tập 1D mở rộng quy luật cung cầu bằng hai trường hợp đặc biệt, nơi tâm lý và hoàn cảnh làm hành vi mua đi ngược trực giác thông thường.",
-        mainContentTitle: "Khi cung cầu gặp ngoại lệ",
-        mainContent: [
-          "Hàng hóa Veblen là những món đồ xa xỉ mà giá đắt lại chính là một phần sức hút của chúng. Người mua tìm đến không chỉ vì công dụng mà còn vì giá trị thể hiện đẳng cấp, nên giá càng cao đôi khi lượng cầu lại càng tăng.",
-          "Hàng hóa Giffen thường là nhu yếu phẩm giá rẻ trong bối cảnh người tiêu dùng quá hạn hẹp ngân sách. Khi giá tăng, họ không đủ tiền chuyển sang món tốt hơn nên lại buộc phải mua nhiều hàng hóa rẻ đó hơn để duy trì cuộc sống.",
-          "Hai ngoại lệ này cho thấy kinh tế học không chỉ là đồ thị và con số. Tâm lý, vị thế xã hội và hoàn cảnh sống thực tế đều có thể khiến hành vi con người khác đi so với mô hình thông thường."
-        ],
-        objectives: [
-          "Phân biệt ngoại lệ Veblen và Giffen.",
-          "Hiểu vai trò của tâm lý và hoàn cảnh trong hành vi mua.",
-          "Nhận ra vì sao đường cầu đôi khi không dốc xuống như bình thường."
-        ],
-        summary: {
-          title: "Tóm tắt Tập 1D: Ngoại lệ của Cung Cầu",
-          points: [
-            "Hàng hóa Veblen có thể được mua nhiều hơn khi giá tăng vì nó gắn với việc thể hiện đẳng cấp.",
-            "Hàng hóa Giffen là ngoại lệ khi người mua quá nghèo buộc phải mua nhiều nhu yếu phẩm rẻ hơn dù giá tăng.",
-            "Tâm lý và hoàn cảnh sống thực tế có thể làm hành vi mua đi ngược quy luật cầu thông thường.",
-            "Ngoại lệ cung cầu cho thấy kinh tế học gắn chặt với hành vi con người."
-          ]
-        },
-        quiz: [
-          {
-            id: "lesson-1d-q1",
-            question: "Đặc điểm cốt lõi của đường cầu đối với Hàng hóa Veblen ($D_v$) là gì?",
-            options: [
-              "Dốc xuống từ trái sang phải giống như hàng hóa thông thường.",
-              "Là một đường nằm ngang không đổi ở mọi mức giá.",
-              "Dốc ngược lên trời từ trái sang phải, giá càng tăng thì lượng cầu càng tăng.",
-              "Biến mất hoàn toàn khỏi đồ thị khi giá thay đổi."
-            ],
-            correctAnswer: 2,
-            explanation: "Hàng hóa Veblen đi ngược lại quy luật cầu thông thường, thể hiện mối quan hệ đồng biến giữa giá cả và lượng cầu."
-          },
-          {
-            id: "lesson-1d-q2",
-            question: "Tại sao người tiêu dùng lại thích mua hàng hóa Veblen khi giá của nó càng đắt?",
-            options: [
-              "Vì công dụng của nó tốt gấp hàng trăm lần hàng thông thường.",
-              "Vì họ mua để thể hiện đẳng cấp, phô diễn sự giàu có và \"khè\" thiên hạ.",
-              "Vì đây là nhu yếu phẩm bắt buộc phải ăn hằng ngày.",
-              "Vì họ muốn hỗ trợ tiền cho các tập đoàn xa xỉ."
-            ],
-            correctAnswer: 1,
-            explanation: "Giá trị của hàng hóa Veblen nằm ở tâm lý khẳng định vị thế xã hội thông qua mức giá đắt đỏ của sản phẩm."
-          },
-          {
-            id: "lesson-1d-q3",
-            question: "Đối với Hàng hóa Giffen (như mì tôm khi bạn quá nghèo), hành vi tiêu dùng sẽ thay thế như thế nào khi mặt hàng này tăng giá?",
-            options: [
-              "Người ta lập tức bớt mua mì tôm để chuyển sang ăn thịt.",
-              "Người ta không những không bớt mua, mà còn phải bấm bụng mua nhiều mì tôm hơn.",
-              "Người ta sẽ nhịn đói hoàn toàn không chi tiêu gì nữa.",
-              "Lượng mua mì tôm giảm ngay lập tức về bằng không."
-            ],
-            correctAnswer: 1,
-            explanation: "Khi mặt hàng nhu yếu phẩm giá rẻ tăng giá, túi tiền người nghèo bị kiệt quệ, họ không còn đủ kinh phí để mua các thực phẩm cao cấp hơn (như thịt) nên đành phải dồn toàn bộ số tiền còn lại để mua nhiều nhu yếu phẩm này hơn nhằm duy trì cuộc sống."
-          },
-          {
-            id: "lesson-1d-q4",
-            question: "Yếu tố vô hình nào được nhắc đến ở cuối tập phim đã làm cho kinh tế học trở nên thú vị và khiến lý thuyết cung cầu có những ngoại lệ?",
-            options: [
-              "Sự can thiệp bằng máy móc công nghệ cao.",
-              "Đồ thị toán học phức tạp.",
-              "Tâm lý và hành vi của con người.",
-              "Các quy định nghiêm ngặt về giá của thị trường."
-            ],
-            correctAnswer: 2,
-            explanation: "Kinh tế học không chỉ là những con số khô khan mà bị chi phối mạnh mẽ bởi tâm lý, cảm xúc và những lựa chọn đa dạng của con người trong thực tế."
+            explanation: "Xăng dầu tăng là nguyên liệu đầu vào (chi phí vận hành/sản xuất). Khi chi phí đầu vào tăng, nhà sản xuất bắt buộc phải đẩy giá bán ra cao hơn để không bị lỗ vốn."
           }
         ]
       }
@@ -379,12 +208,6 @@ export const INITIAL_COURSES: Course[] = [
             role: "Youtuber",
             text: "Và quan trọng nhất: 20% còn lại cất ngay vào lợn đất để Tiết Kiệm & Đầu Tư (Savings). Đây chính là tấm khiên hộ mệnh bảo vệ bạn khỏi những cơn sốc ví đột xuất!"
           }
-        ],
-        mainContentTitle: "Quy tắc 50/30/20 hoạt động ra sao?",
-        mainContent: [
-          "Quy tắc 50/30/20 là một cách chia tiền đơn giản để bạn không tiêu hết sạch trước khi tháng kết thúc. Ý tưởng cốt lõi là chia thu nhập thành ba nhóm rõ ràng: phần dành cho nhu cầu thiết yếu, phần dành cho sở thích cá nhân và phần bắt buộc phải giữ lại cho tiết kiệm hoặc đầu tư.",
-          "Khoảng 50% ngân sách nên dành cho những khoản khó cắt bỏ như ăn uống cơ bản, đi lại, học tập hoặc các chi phí sinh hoạt bắt buộc. Khoảng 30% còn lại là không gian cho niềm vui như giải trí, mua sắm nhỏ, trà sữa hay những thứ giúp cuộc sống bớt căng. 20% cuối cùng là phần quan trọng nhất vì đây là khoản giúp bạn tạo quỹ dự phòng và bớt bị động khi có việc bất ngờ.",
-          "Điểm mạnh của quy tắc này là nó giúp bạn nhìn tiền theo mục đích thay vì tiêu theo cảm xúc. Khi biết rõ mỗi đồng thuộc nhóm nào, bạn sẽ dễ tự kiểm soát hơn, ít rơi vào cảnh cuối tháng cạn ví và dần xây được thói quen tích lũy bền vững."
         ],
         summary: {
           title: "Tóm Tắt: Quy Luật Sắp Xếp Ngân Sách 50/30/20",
@@ -453,12 +276,6 @@ export const INITIAL_COURSES: Course[] = [
             role: "Youtuber",
             text: "Hai yếu tố cốt lõi giúp lãi kép bùng nổ là: KIÊN TRÌ và THỜI GIAN. Bạn đầu tư càng sớm, vòng quay lãi mẹ đẻ lãi con càng nhiều, số tiền tích lũy càng phình to khủng khiếp về sau."
           }
-        ],
-        mainContentTitle: "Lãi kép là gì và vì sao nên bắt đầu sớm?",
-        mainContent: [
-          "Lãi kép là cơ chế mà tiền lãi sau mỗi kỳ không bị tách riêng, mà được nhập ngược trở lại vào vốn ban đầu để tiếp tục sinh thêm lãi. Vì vậy, ở kỳ sau bạn không chỉ kiếm tiền từ số vốn gốc, mà còn kiếm tiền từ chính phần lãi đã tích lũy trước đó.",
-          "Trong giai đoạn đầu, tốc độ tăng trưởng của lãi kép có thể trông khá chậm nên nhiều người dễ nản. Nhưng càng về sau, khi số vốn tích lũy lớn dần, phần lãi sinh ra cũng lớn hơn và tạo cảm giác tăng tốc rất mạnh. Đó là lý do người bắt đầu sớm thường có lợi thế lớn hơn người đầu tư muộn, ngay cả khi mỗi tháng chỉ góp một khoản nhỏ.",
-          "Bài học quan trọng nhất của lãi kép không phải là kiếm lời thật nhanh, mà là kiên trì đủ lâu để thời gian làm việc thay bạn. Càng giữ được thói quen tiết kiệm và tái đầu tư đều đặn, bạn càng tận dụng tốt sức mạnh của tăng trưởng theo cấp số nhân."
         ],
         summary: {
           title: "Tóm Tắt: Sức Mạnh Lãi Kép",

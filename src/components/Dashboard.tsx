@@ -1,13 +1,8 @@
 import * as Icons from "lucide-react";
 
-import type { PetState } from "../types";
-
-interface RecentLessonSummary {
-  moduleTitle: string | null;
-  lessonTitle: string | null;
-  lessonId: string | null;
-  isCompleted: boolean;
-}
+import { COURSE_CATEGORY_CARDS, COURSE_MODULES } from "../learnData";
+import type { CourseCategory, PetState } from "../types";
+import { PetDisplay } from "./PetDisplay";
 
 interface DashboardProps {
   petState: PetState;
@@ -16,12 +11,29 @@ interface DashboardProps {
   streakDays: number;
   nextLessonTitle: string;
   nextLessonCategoryLabel: string;
-  recentLesson: RecentLessonSummary;
   onContinueLearning: () => void;
-  onOpenRecentLesson: (() => void) | null;
+  onOpenCourse: (category: CourseCategory) => void;
   onOpenPet: () => void;
   onOpenShop: () => void;
 }
+
+const courseMeta: Record<
+  CourseCategory,
+  { accent: string; chip: string; icon: typeof Icons.TrendingUp; label: string }
+> = {
+  economics: {
+    accent: "text-[#365114]",
+    chip: "bg-[rgba(182,239,85,0.22)]",
+    icon: Icons.TrendingUp,
+    label: "Kinh tế",
+  },
+  finance: {
+    accent: "text-[#4C3C86]",
+    chip: "bg-[rgba(157,132,246,0.16)]",
+    icon: Icons.PiggyBank,
+    label: "Tài chính",
+  },
+};
 
 export function Dashboard({
   petState,
@@ -30,19 +42,32 @@ export function Dashboard({
   streakDays,
   nextLessonTitle,
   nextLessonCategoryLabel,
-  recentLesson,
   onContinueLearning,
-  onOpenRecentLesson,
+  onOpenCourse,
   onOpenPet,
   onOpenShop,
 }: DashboardProps) {
   const progressPercent =
     totalLessonCount === 0 ? 0 : (completedLessonCount / totalLessonCount) * 100;
+  const ownedCount = petState.ownedAccessories.length;
+  const xpToNextLevel = Math.max(petState.level * 300 - petState.points, 0);
   const primaryCtaLabel =
     completedLessonCount > 0 ? "Tiếp tục bài học" : "Bắt đầu học";
-  const hasRecentLesson = Boolean(
-    recentLesson.lessonId && recentLesson.lessonTitle && recentLesson.moduleTitle,
+  const totalAvailableLessons = COURSE_MODULES.reduce(
+    (sum, module) => sum + module.lessons.length,
+    0,
   );
+  const categorySummaries = COURSE_CATEGORY_CARDS.map((categoryCard) => {
+    const lessons = COURSE_MODULES.filter(
+      (module) => module.category === categoryCard.category,
+    ).flatMap((module) => module.lessons);
+
+    return {
+      ...categoryCard,
+      lessonCount: lessons.length,
+      totalXp: lessons.reduce((sum, lesson) => sum + lesson.pointsReward, 0),
+    };
+  });
 
   return (
     <div className="space-y-6">
@@ -92,7 +117,7 @@ export function Dashboard({
               <DashboardStat
                 label="Pet"
                 value={`Level ${petState.level}`}
-                caption={`${petState.ownedAccessories.length} món đã mở`}
+                caption={`${ownedCount} món đã mở`}
                 accentClassName="text-[#0F766E]"
               />
             </div>
@@ -180,100 +205,106 @@ export function Dashboard({
         <div className="surface-card p-5 sm:p-6">
           <div className="flex flex-col gap-4 border-b border-[rgba(23,25,29,0.08)] pb-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <span className="section-label text-[#7E8692]">Bài học gần nhất</span>
+              <span className="section-label text-[#7E8692]">Chọn tuyến học</span>
               <h3 className="mt-2 font-display text-2xl font-bold text-[#17191D]">
-                Quay lại đúng bài bạn vừa mở mà không cần tìm lại.
+                Hai hướng học rõ ràng, mở nhanh và dễ quay lại.
               </h3>
             </div>
             <span className="badge badge-dark">
-              <Icons.History className="h-4 w-4" />
-              {hasRecentLesson ? "Đã lưu gần đây" : "Chưa có"}
+              <Icons.BookOpenCheck className="h-4 w-4" />
+              {totalAvailableLessons} bài học
             </span>
           </div>
 
-          {hasRecentLesson ? (
-            <button
-              onClick={onOpenRecentLesson ?? undefined}
-              className="surface-card-muted mt-5 flex w-full flex-col gap-4 p-5 text-left transition-transform hover:-translate-y-[2px] hover:shadow-[0_18px_36px_rgba(15,23,42,0.08)]"
-            >
-              <div className="flex items-start justify-between gap-3">
-                <div className="flex h-12 w-12 items-center justify-center rounded-[1.1rem] bg-[rgba(157,132,246,0.16)]">
-                  <Icons.BookMarked className="h-5 w-5 text-[#4C3C86]" />
-                </div>
-                <span
-                  className={`rounded-full px-3 py-1 text-xs font-semibold ${
-                    recentLesson.isCompleted
-                      ? "bg-[rgba(182,239,85,0.22)] text-[#365114]"
-                      : "bg-[rgba(157,132,246,0.14)] text-[#4C3C86]"
-                  }`}
+          <div className="mt-5 grid gap-4 md:grid-cols-2">
+            {categorySummaries.map((course) => {
+              const meta = courseMeta[course.category];
+              const Icon = meta.icon;
+
+              return (
+                <button
+                  key={course.category}
+                  onClick={() => onOpenCourse(course.category)}
+                  className="surface-card-muted group p-5 text-left transition-transform hover:-translate-y-[2px] hover:shadow-[0_18px_36px_rgba(15,23,42,0.08)]"
                 >
-                  {recentLesson.isCompleted ? "Đã hoàn thành" : "Đang học"}
-                </span>
-              </div>
-
-              <div className="space-y-2">
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#7E8692]">
-                  {recentLesson.moduleTitle}
-                </p>
-                <h4 className="text-lg font-semibold text-[#17191D]">
-                  {recentLesson.lessonTitle}
-                </h4>
-                <p className="text-sm leading-6 text-[#5E6571]">
-                  {recentLesson.isCompleted
-                    ? "Bài này đã xong. Bạn có thể mở lại để xem video hoặc làm quiz."
-                    : "Tiếp tục đúng bài học bạn vừa mở trong luồng Learn hiện tại."}
-                </p>
-              </div>
-
-              <div className="flex items-center justify-between gap-3">
-                <span className="text-xs font-semibold uppercase tracking-[0.14em] text-[#7E8692]">
-                  {recentLesson.isCompleted ? "Sẵn sàng xem lại" : "Sẵn sàng tiếp tục"}
-                </span>
-                <span className="accent-button px-5 py-3 text-sm">
-                  <Icons.PlayCircle className="h-[18px] w-[18px]" />
-                  Tiếp tục học
-                </span>
-              </div>
-            </button>
-          ) : (
-            <div className="surface-card-muted mt-5 flex min-h-[220px] flex-col items-start justify-center gap-4 p-5 sm:p-6">
-              <div className="flex h-12 w-12 items-center justify-center rounded-[1.1rem] bg-[rgba(23,25,29,0.08)]">
-                <Icons.BookDashed className="h-5 w-5 text-[#7E8692]" />
-              </div>
-              <div className="space-y-2">
-                <p className="text-lg font-semibold text-[#17191D]">
-                  Chưa có bài học gần nhất
-                </p>
-                <p className="max-w-2xl text-sm leading-7 text-[#5E6571]">
-                  Khi bạn mở một bài trong Learn, ECONVERSE sẽ lưu lại ở đây để
-                  bạn quay lại nhanh hơn.
-                </p>
-              </div>
-            </div>
-          )}
+                  <div className="flex items-start justify-between gap-3">
+                    <div
+                      className={`flex h-12 w-12 items-center justify-center rounded-[1.1rem] ${meta.chip}`}
+                    >
+                      <Icon className={`h-5 w-5 ${meta.accent}`} />
+                    </div>
+                    <span className={`text-xs font-semibold ${meta.accent}`}>
+                      {meta.label}
+                    </span>
+                  </div>
+                  <h4 className="mt-4 text-lg font-semibold text-[#17191D]">
+                    {course.title}
+                  </h4>
+                  <p className="mt-2 text-sm leading-6 text-[#5E6571]">
+                    {course.description}
+                  </p>
+                  <div className="mt-4 flex items-center justify-between text-xs text-[#7E8692]">
+                    <span>{course.lessonCount} bài học</span>
+                    <span className="font-semibold text-[#4C3C86]">
+                      +{course.totalXp} XP
+                    </span>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
         </div>
 
         <div className="surface-card-strong p-5 sm:p-6">
-          <div className="flex h-full min-h-[420px] flex-col justify-between">
+          <div className="mb-5 flex items-start justify-between gap-3">
             <div>
               <span className="section-label text-[#7E8692]">Nuôi pet học tập</span>
               <h3 className="mt-2 font-display text-2xl font-bold text-[#17191D]">
-                Sắp ra mắt
+                Mỗi bài xong là pet lại có thêm lý do để vui hơn.
               </h3>
             </div>
+            <button onClick={onOpenShop} className="secondary-button px-4 py-2.5 text-sm">
+              <Icons.ShoppingBag className="h-4 w-4" />
+              Xem shop
+            </button>
+          </div>
 
-            <div className="surface-card-muted flex flex-1 flex-col items-start justify-center gap-4 p-5 sm:p-6">
-              <div className="flex h-14 w-14 items-center justify-center rounded-[1.35rem] bg-[linear-gradient(135deg,rgba(182,239,85,0.22)_0%,rgba(157,132,246,0.16)_100%)]">
-                <Icons.Clock3 className="h-7 w-7 text-[#4C3C86]" />
+          <div className="grid gap-5 xl:grid-cols-[minmax(0,0.94fr)_minmax(0,1.06fr)] xl:items-start">
+            <PetDisplay petState={petState} showStats={false} />
+
+            <div className="space-y-4">
+              <div className="surface-card-muted p-4">
+                <div className="flex items-center justify-between gap-3">
+                  <div>
+                    <p className="text-sm font-semibold text-[#17191D]">
+                      {petState.name}
+                    </p>
+                    <p className="mt-1 text-sm text-[#5E6571]">
+                      Còn {xpToNextLevel} XP nữa là lên level tiếp theo.
+                    </p>
+                  </div>
+                  <span className="badge badge-purple">
+                    <Icons.Star className="h-4 w-4" />
+                    Level {petState.level}
+                  </span>
+                </div>
               </div>
 
-              <div className="space-y-3">
-                <p className="text-lg font-semibold text-[#17191D]">Sắp ra mắt</p>
-                <p className="max-w-xl text-sm leading-7 text-[#5E6571] sm:text-[0.98rem]">
-                  Tính năng nuôi pet học tập đang được phát triển và sẽ có trong
-                  bản cập nhật sắp tới.
+              <div className="surface-card-muted p-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#7E8692]">
+                  Vòng lặp học tập
                 </p>
+                <div className="mt-3 space-y-2 text-sm text-[#5E6571]">
+                  <p>1. Đọc bài ngắn và nắm ý chính.</p>
+                  <p>2. Trả lời quiz để nhận XP ngay.</p>
+                  <p>3. Dùng XP để mở thêm đồ cho pet.</p>
+                </div>
               </div>
+
+              <button onClick={onOpenPet} className="accent-button w-full">
+                <Icons.PawPrint className="h-[18px] w-[18px]" />
+                Mở trang pet học tập
+              </button>
             </div>
           </div>
         </div>
