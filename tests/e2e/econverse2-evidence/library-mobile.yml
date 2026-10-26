@@ -1,0 +1,212 @@
+- generic [ref=f1e3]:
+  - link "Đến nội dung chính" [ref=f1e4] [cursor=pointer]:
+    - /url: "#main-content"
+  - complementary "Điều hướng chính" [ref=f1e5]:
+    - link "ECONVERSE LEARN. THINK. GROW." [ref=f1e6] [cursor=pointer]:
+      - /url: "#dashboard"
+      - generic [ref=f1e7]:
+        - text: ECONVERSE
+        - generic [ref=f1e8]: LEARN. THINK. GROW.
+    - button "Đóng menu" [ref=f1e194] [cursor=pointer]
+    - paragraph [ref=f1e9]: KHÔNG GIAN CỦA BẠN
+    - navigation [ref=f1e10]:
+      - link "Tổng quan" [ref=f1e11] [cursor=pointer]:
+        - /url: "#dashboard"
+      - link "Thư viện bài học" [active] [ref=f1e15] [cursor=pointer]:
+        - /url: "#library"
+      - link "Hồ sơ của tôi" [ref=f1e18] [cursor=pointer]:
+        - /url: "#profile"
+    - generic [ref=f1e22]:
+      - generic [ref=f1e23]:
+        - strong [ref=f1e27]: Mỗi bài học, một góc nhìn mới.
+        - paragraph [ref=f1e28]: Cùng Tũn khám phá kinh tế từ những điều gần gũi.
+        - button "Khám phá thư viện" [ref=f1e29] [cursor=pointer]
+      - generic [ref=f1e33]: ECONVERSE · Học để hiểu hơn
+  - generic [ref=f1e34]:
+    - banner [ref=f1e35]:
+      - generic [ref=f1e36]:
+        - button "Mở menu" [ref=f1e198] [cursor=pointer]
+        - generic [ref=f1e37]: ECONVERSE / Thư viện bài học
+      - button "Đăng nhập" [ref=f1e48] [cursor=pointer]
+    - main [ref=f1e40]:
+      - generic [ref=f1e201]:
+        - generic [ref=f1e202]:
+          - generic [ref=f1e203]:
+            - paragraph [ref=f1e204]: KIẾN THỨC TỪ NHỮNG ĐIỀU QUEN
+            - heading "Thư viện bài học" [level=1] [ref=f1e205]
+            - paragraph [ref=f1e206]: Chọn điều bạn tò mò. Học theo nhịp của riêng mình.
+          - button "Tiếp tục học" [ref=f1e207] [cursor=pointer]
+        - generic [ref=f1e210]:
+          - group "Danh mục khóa học" [ref=f1e211]:
+            - button "Tất cả" [pressed] [ref=f1e212] [cursor=pointer]
+            - button "Kinh tế" [ref=f1e213] [cursor=pointer]
+            - button "Tài chính" [ref=f1e214] [cursor=pointer]
+          - textbox "Tìm bài học" [ref=f1e219]:
+            - /placeholder: Tìm bài học, chủ đề…
+          - generic [ref=f1e220]:
+            - generic [ref=f1e221]: Trạng thái học tập
+            - combobox "Trạng thái học tập" [ref=f1e222]:
+              - option "Mọi tiến độ" [selected]
+              - option "Chưa bắt đầu"
+              - option "Đang học"
+              - option "Đã hoàn thành"
+        - status [ref=f1e223]: 15 bài học · 5 chương
+        - generic [ref=f1e224]:
+          - generic [ref=f1e225]:
+            - 'button "KINH TẾ Unit 1: Cung và Cầu Đi từ quy luật cầu, quy luật cung đến điểm cân bằng và các ngoại lệ để hiểu vì sao giá cả thị trường luôn biến động. 0/4 hoàn thành" [expanded] [ref=f1e226] [cursor=pointer]':
+              - generic [ref=f1e230]:
+                - text: KINH TẾ
+                - 'heading "Unit 1: Cung và Cầu" [level=2] [ref=f1e231]'
+                - paragraph [ref=f1e232]: Đi từ quy luật cầu, quy luật cung đến điểm cân bằng và các ngoại lệ để hiểu vì sao giá cả thị trường luôn biến động.
+              - generic [ref=f1e233]:
+                - strong [ref=f1e234]: 0/4
+                - generic [ref=f1e235]: hoàn thành
+            - generic [ref=f1e238]:
+              - 'button "1A Quy luật Cầu Càng đắt càng chê, càng rẻ càng mê: hiểu vì sao giá và lượng cầu luôn đi ngược chiều. 08 phút · 40 XP Chưa bắt đầu" [ref=f1e239] [cursor=pointer]':
+                - generic [ref=f1e240]: 1A
+                - generic [ref=f1e241]:
+                  - strong [ref=f1e242]: Quy luật Cầu
+                  - generic [ref=f1e243]: "Càng đắt càng chê, càng rẻ càng mê: hiểu vì sao giá và lượng cầu luôn đi ngược chiều."
+                  - generic [ref=f1e244]: 08 phút · 40 XP
+                - generic [ref=f1e245]: Chưa bắt đầu
+              - 'button "1B Quy luật Cung Được giá thì bán, rẻ mạt thì nghỉ: hiểu vì sao người bán phản ứng mạnh với mức giá thị trường. 08 phút · 40 XP Chưa bắt đầu" [ref=f1e248] [cursor=pointer]':
+                - generic [ref=f1e249]: 1B
+                - generic [ref=f1e250]:
+                  - strong [ref=f1e251]: Quy luật Cung
+                  - generic [ref=f1e252]: "Được giá thì bán, rẻ mạt thì nghỉ: hiểu vì sao người bán phản ứng mạnh với mức giá thị trường."
+                  - generic [ref=f1e253]: 08 phút · 40 XP
+                - generic [ref=f1e254]: Chưa bắt đầu
+              - button "1C Cung và Cầu đại chiến – Điểm cân bằng Khi cung gặp cầu, thị trường tự tìm về một mức giá cân bằng để hàng hóa bán hết và người mua chấp nhận trả. 09 phút · 45 XP Chưa bắt đầu" [ref=f1e257] [cursor=pointer]:
+                - generic [ref=f1e258]: 1C
+                - generic [ref=f1e259]:
+                  - strong [ref=f1e260]: Cung và Cầu đại chiến – Điểm cân bằng
+                  - generic [ref=f1e261]: Khi cung gặp cầu, thị trường tự tìm về một mức giá cân bằng để hàng hóa bán hết và người mua chấp nhận trả.
+                  - generic [ref=f1e262]: 09 phút · 45 XP
+                - generic [ref=f1e263]: Chưa bắt đầu
+              - 'button "1D Ngoại lệ của Cung Cầu Không phải lúc nào giá tăng cũng làm người ta mua ít hơn: Veblen và Giffen là hai ngoại lệ rất nổi tiếng. 02 phút · 45 XP Chưa bắt đầu" [ref=f1e266] [cursor=pointer]':
+                - generic [ref=f1e267]: 1D
+                - generic [ref=f1e268]:
+                  - strong [ref=f1e269]: Ngoại lệ của Cung Cầu
+                  - generic [ref=f1e270]: "Không phải lúc nào giá tăng cũng làm người ta mua ít hơn: Veblen và Giffen là hai ngoại lệ rất nổi tiếng."
+                  - generic [ref=f1e271]: 02 phút · 45 XP
+                - generic [ref=f1e272]: Chưa bắt đầu
+          - generic [ref=f1e275]:
+            - 'button "KINH TẾ Unit 2: Độ co giãn Hiểu cách cầu và cung phản ứng mạnh hay yếu trước thay đổi về giá, thu nhập và mối quan hệ giữa các hàng hóa. 0/5 hoàn thành" [expanded] [ref=f1e276] [cursor=pointer]':
+              - generic [ref=f1e280]:
+                - text: KINH TẾ
+                - 'heading "Unit 2: Độ co giãn" [level=2] [ref=f1e281]'
+                - paragraph [ref=f1e282]: Hiểu cách cầu và cung phản ứng mạnh hay yếu trước thay đổi về giá, thu nhập và mối quan hệ giữa các hàng hóa.
+              - generic [ref=f1e283]:
+                - strong [ref=f1e284]: 0/5
+                - generic [ref=f1e285]: hoàn thành
+            - generic [ref=f1e288]:
+              - 'button "2A Độ co giãn của cầu theo giá (PED) Sợi dây thun hay thanh sắt: hiểu vì sao có món chỉ đổi giá một chút là lượng cầu đổi rất mạnh, còn có món gần như không nhúc nhích. 08 phút · 45 XP Chưa bắt đầu" [ref=f1e289] [cursor=pointer]':
+                - generic [ref=f1e290]: 2A
+                - generic [ref=f1e291]:
+                  - strong [ref=f1e292]: Độ co giãn của cầu theo giá (PED)
+                  - generic [ref=f1e293]: "Sợi dây thun hay thanh sắt: hiểu vì sao có món chỉ đổi giá một chút là lượng cầu đổi rất mạnh, còn có món gần như không nhúc nhích."
+                  - generic [ref=f1e294]: 08 phút · 45 XP
+                - generic [ref=f1e295]: Chưa bắt đầu
+              - 'button "2B Các yếu tố ảnh hưởng PED Tại sao xăng tăng bạn vẫn phải đổ: phân tích 3 yếu tố quyết định độ nhạy của cầu gồm hàng thay thế, hàng thiết yếu và thời gian. 08 phút · 45 XP Chưa bắt đầu" [ref=f1e298] [cursor=pointer]':
+                - generic [ref=f1e299]: 2B
+                - generic [ref=f1e300]:
+                  - strong [ref=f1e301]: Các yếu tố ảnh hưởng PED
+                  - generic [ref=f1e302]: "Tại sao xăng tăng bạn vẫn phải đổ: phân tích 3 yếu tố quyết định độ nhạy của cầu gồm hàng thay thế, hàng thiết yếu và thời gian."
+                  - generic [ref=f1e303]: 08 phút · 45 XP
+                - generic [ref=f1e304]: Chưa bắt đầu
+              - 'button "2C Độ co giãn theo thu nhập (YED) Giàu rồi thì ăn gì: phân biệt Normal Goods và Inferior Goods qua cách lượng cầu phản ứng khi thu nhập thay đổi. 08 phút · 45 XP Chưa bắt đầu" [ref=f1e307] [cursor=pointer]':
+                - generic [ref=f1e308]: 2C
+                - generic [ref=f1e309]:
+                  - strong [ref=f1e310]: Độ co giãn theo thu nhập (YED)
+                  - generic [ref=f1e311]: "Giàu rồi thì ăn gì: phân biệt Normal Goods và Inferior Goods qua cách lượng cầu phản ứng khi thu nhập thay đổi."
+                  - generic [ref=f1e312]: 08 phút · 45 XP
+                - generic [ref=f1e313]: Chưa bắt đầu
+              - 'button "2D Độ co giãn chéo (XED) Trâu bò húc nhau, ruồi muỗi có chết: phân biệt hàng thay thế và hàng bổ sung qua chỉ số XED. 08 phút · 45 XP Chưa bắt đầu" [ref=f1e316] [cursor=pointer]':
+                - generic [ref=f1e317]: 2D
+                - generic [ref=f1e318]:
+                  - strong [ref=f1e319]: Độ co giãn chéo (XED)
+                  - generic [ref=f1e320]: "Trâu bò húc nhau, ruồi muỗi có chết: phân biệt hàng thay thế và hàng bổ sung qua chỉ số XED."
+                  - generic [ref=f1e321]: 08 phút · 45 XP
+                - generic [ref=f1e322]: Chưa bắt đầu
+              - 'button "2E Độ co giãn của cung (PES) Nhà máy có biến hình kịp không: tìm hiểu khả năng và tốc độ phản ứng của người bán trước tín hiệu giá thị trường. 08 phút · 45 XP Chưa bắt đầu" [ref=f1e325] [cursor=pointer]':
+                - generic [ref=f1e326]: 2E
+                - generic [ref=f1e327]:
+                  - strong [ref=f1e328]: Độ co giãn của cung (PES)
+                  - generic [ref=f1e329]: "Nhà máy có biến hình kịp không: tìm hiểu khả năng và tốc độ phản ứng của người bán trước tín hiệu giá thị trường."
+                  - generic [ref=f1e330]: 08 phút · 45 XP
+                - generic [ref=f1e331]: Chưa bắt đầu
+          - generic [ref=f1e334]:
+            - button "TÀI CHÍNH CHUYÊN ĐỀ 3 - TÀI CHÍNH CÁ NHÂN Thiết lập nền tảng quản lý tiền cá nhân để chi tiêu rõ ràng và bớt căng thẳng cuối tháng. 0/2 hoàn thành" [expanded] [ref=f1e335] [cursor=pointer]:
+              - generic [ref=f1e339]:
+                - text: TÀI CHÍNH
+                - heading "CHUYÊN ĐỀ 3 - TÀI CHÍNH CÁ NHÂN" [level=2] [ref=f1e340]
+                - paragraph [ref=f1e341]: Thiết lập nền tảng quản lý tiền cá nhân để chi tiêu rõ ràng và bớt căng thẳng cuối tháng.
+              - generic [ref=f1e342]:
+                - strong [ref=f1e343]: 0/2
+                - generic [ref=f1e344]: hoàn thành
+            - generic [ref=f1e347]:
+              - button "5 Lập ngân sách 50/30/20 Chia tiền thành ba nhóm rõ ràng để vừa đáp ứng nhu cầu, vừa còn chỗ cho tiết kiệm. 11 phút · 50 XP Chưa bắt đầu" [ref=f1e348] [cursor=pointer]:
+                - generic [ref=f1e349]: "5"
+                - generic [ref=f1e350]:
+                  - strong [ref=f1e351]: Lập ngân sách 50/30/20
+                  - generic [ref=f1e352]: Chia tiền thành ba nhóm rõ ràng để vừa đáp ứng nhu cầu, vừa còn chỗ cho tiết kiệm.
+                  - generic [ref=f1e353]: 11 phút · 50 XP
+                - generic [ref=f1e354]: Chưa bắt đầu
+              - button "6 Quỹ dự phòng để làm gì? Chuẩn bị một khoản tiền nhỏ nhưng sẵn sàng dùng khi có việc đột xuất. 08 phút · 45 XP Chưa bắt đầu" [ref=f1e357] [cursor=pointer]:
+                - generic [ref=f1e358]: "6"
+                - generic [ref=f1e359]:
+                  - strong [ref=f1e360]: Quỹ dự phòng để làm gì?
+                  - generic [ref=f1e361]: Chuẩn bị một khoản tiền nhỏ nhưng sẵn sàng dùng khi có việc đột xuất.
+                  - generic [ref=f1e362]: 08 phút · 45 XP
+                - generic [ref=f1e363]: Chưa bắt đầu
+          - generic [ref=f1e366]:
+            - button "TÀI CHÍNH CHUYÊN ĐỀ 4 - TÍCH LŨY VÀ MỤC TIÊU Đi xa hơn một bước với lãi kép và cách đặt mục tiêu tài chính ngắn hạn, dài hạn. 0/2 hoàn thành" [expanded] [ref=f1e367] [cursor=pointer]:
+              - generic [ref=f1e371]:
+                - text: TÀI CHÍNH
+                - heading "CHUYÊN ĐỀ 4 - TÍCH LŨY VÀ MỤC TIÊU" [level=2] [ref=f1e372]
+                - paragraph [ref=f1e373]: Đi xa hơn một bước với lãi kép và cách đặt mục tiêu tài chính ngắn hạn, dài hạn.
+              - generic [ref=f1e374]:
+                - strong [ref=f1e375]: 0/2
+                - generic [ref=f1e376]: hoàn thành
+            - generic [ref=f1e379]:
+              - button "7 Lãi kép hoạt động ra sao? Hiểu vì sao bắt đầu sớm và đều đặn thường quan trọng hơn bắt đầu thật lớn. 09 phút · 55 XP Chưa bắt đầu" [ref=f1e380] [cursor=pointer]:
+                - generic [ref=f1e381]: "7"
+                - generic [ref=f1e382]:
+                  - strong [ref=f1e383]: Lãi kép hoạt động ra sao?
+                  - generic [ref=f1e384]: Hiểu vì sao bắt đầu sớm và đều đặn thường quan trọng hơn bắt đầu thật lớn.
+                  - generic [ref=f1e385]: 09 phút · 55 XP
+                - generic [ref=f1e386]: Chưa bắt đầu
+              - button "8 Mục tiêu tài chính ngắn và dài hạn Biến mong muốn mơ hồ thành mục tiêu có số tiền, thời gian và kế hoạch rõ ràng. 07 phút · 45 XP Chưa bắt đầu" [ref=f1e389] [cursor=pointer]:
+                - generic [ref=f1e390]: "8"
+                - generic [ref=f1e391]:
+                  - strong [ref=f1e392]: Mục tiêu tài chính ngắn và dài hạn
+                  - generic [ref=f1e393]: Biến mong muốn mơ hồ thành mục tiêu có số tiền, thời gian và kế hoạch rõ ràng.
+                  - generic [ref=f1e394]: 07 phút · 45 XP
+                - generic [ref=f1e395]: Chưa bắt đầu
+          - generic [ref=f1e398]:
+            - button "KINH TẾ Local review course Isolated integration fixture 0/2 hoàn thành" [expanded] [ref=f1e399] [cursor=pointer]:
+              - generic [ref=f1e403]:
+                - text: KINH TẾ
+                - heading "Local review course" [level=2] [ref=f1e404]
+                - paragraph [ref=f1e405]: Isolated integration fixture
+              - generic [ref=f1e406]:
+                - strong [ref=f1e407]: 0/2
+                - generic [ref=f1e408]: hoàn thành
+            - generic [ref=f1e411]:
+              - button "R1 Local review lesson A An isolated integration rehearsal. 02 phút · 45 XP Chưa bắt đầu" [ref=f1e412] [cursor=pointer]:
+                - generic [ref=f1e413]: R1
+                - generic [ref=f1e414]:
+                  - strong [ref=f1e415]: Local review lesson A
+                  - generic [ref=f1e416]: An isolated integration rehearsal.
+                  - generic [ref=f1e417]: 02 phút · 45 XP
+                - generic [ref=f1e418]: Chưa bắt đầu
+              - button "R1 Local review lesson A An isolated integration rehearsal. 02 phút · 45 XP Chưa bắt đầu" [ref=f1e421] [cursor=pointer]:
+                - generic [ref=f1e422]: R1
+                - generic [ref=f1e423]:
+                  - strong [ref=f1e424]: Local review lesson A
+                  - generic [ref=f1e425]: An isolated integration rehearsal.
+                  - generic [ref=f1e426]: 02 phút · 45 XP
+                - generic [ref=f1e427]: Chưa bắt đầu
+    - contentinfo [ref=f1e45]:
+      - generic [ref=f1e46]: ECONVERSE
+      - generic [ref=f1e47]: Kiến thức nhỏ. Thay đổi lớn.

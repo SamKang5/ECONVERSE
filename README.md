@@ -1,115 +1,21 @@
-# ECONVERSE
+# ECONVERSE 2.0
 
-ECONVERSE là một dự án học tập cá nhân được xây bằng React + TypeScript + Vite. Ứng dụng hướng tới học sinh THCS và THPT Việt Nam, giúp việc học Kinh tế học cơ bản và Tài chính cá nhân trở nên nhẹ hơn thông qua bài học ngắn, quiz nhận XP, theo dõi tiến độ và một thú cưng ảo có thể tùy biến.
+React 19 / TypeScript / Vite educational platform with Cloudflare Pages Functions and D1. The 2.0 implementation provides a redesigned learner dashboard/library/player/quiz/profile, server-enforced Learner/Editor/Admin roles, versioned content drafts and review/publication, and functional staff management interfaces.
 
-## Ứng dụng này có gì
+The frontend and backend changes are intentionally uncommitted on separate worktrees. Run and review the combined application from `.worktrees/integration`.
 
-- Hai tuyến học chính: `Economics` và `Finance`
-- Bài học ngắn theo dạng script, dễ đọc và dễ theo dõi
-- Quiz thử thách với cơ chế sai thì làm lại, đúng thì nhận XP một lần
-- Theo dõi tiến độ học và chuỗi ngày học
-- Pet học tập có level, XP, tên riêng và khả năng đổi loài
-- Shop phụ kiện dùng XP kiếm được từ việc học
-- Góc `Tips` có mẹo nhớ bài, meme vui và media mockup
-- Dữ liệu được lưu cục bộ bằng `localStorage`
+- [Local setup, worktree paths, review accounts, and owner handoff](docs/LOCAL_REVIEW.md)
+- [API contract](docs/ECONVERSE2_API.md)
+- [Architecture, migrations and security review](docs/ARCHITECTURE_AND_SECURITY.md)
+- [Learner design QA](docs/DESIGN_QA.md)
+- [Acceptance report](docs/IMPLEMENTATION_REPORT.md)
+- [Final independent integration review](FINAL_INTEGRATION_REVIEW.md)
+- [Exact changed-file lists](docs/CHANGED_FILES.md)
 
-## Tech stack
+From the integrated checkout, use Node.js 24, then `npm ci`, `npm run db:local`, `npm run build`, and `npm run preview:full`. Open http://127.0.0.1:8788. `npm run dev` is a Vite UI server with `/api` proxied to Pages on port 8788.
 
-- React 19
-- TypeScript
-- Vite
-- Tailwind CSS v4
-- Lucide React
-- LocalStorage
+Verification: `npm run typecheck`, `npm run build`, `npm test`, `npm run test:learner`, `npm run test:http`, `npm run test:e2e`, `npm run test:motion`, `npm run test:final-ui`, and `npm audit`. HTTP/browser acceptance requires the local Pages server and disposable staff fixtures; see the local review guide. Run browser suites sequentially against isolated local data.
 
-## How to run local demo
+All 13 historical lesson IDs and 42 quiz IDs are retained. D1 is canonical for published learner content; frontend lesson source files remain migration input only. Quiz scoring and XP are authoritative on the server. Five historical lessons have genuine video sources; missing historical sources are explicit.
 
-Requirements: Node.js 20+ and npm 10+.
-
-1. Install dependencies
-
-   ```bash
-   npm install
-   ```
-
-2. Start the local demo
-
-   ```bash
-   npm run dev
-   ```
-
-3. Open the demo
-
-   ```text
-   http://127.0.0.1:3000/
-   ```
-
-4. Optional verification
-
-   ```bash
-   npm run typecheck
-   npm run build
-   ```
-
-Notes:
-- No `.env` file is required for the current frontend demo.
-- The Vite dev server is pinned to port `3000`. If that port is already in use, free it first and rerun `npm run dev`.
-- The npm scripts intentionally call `vite` and `tsc` through `node ./node_modules/...` because plain `.bin` resolution can fail on Windows when the project folder path contains Unicode or special characters.
-
-## Chạy local
-
-Yêu cầu: Node.js 20+ và npm 10+
-
-1. Cài dependencies
-
-   ```bash
-   npm install
-   ```
-
-2. Chạy môi trường local
-
-   ```bash
-   npm run dev
-   ```
-
-3. Kiểm tra TypeScript
-
-   ```bash
-   npm run typecheck
-   ```
-
-4. Build production
-
-   ```bash
-   npm run build
-   ```
-
-Phiên bản hiện tại không cần biến môi trường.
-
-## Cấu trúc đáng chú ý
-
-- `src/App.tsx`: điều phối state, route tab-level, lưu localStorage
-- `src/components/Header.tsx`: điều hướng chính desktop/mobile
-- `src/components/Dashboard.tsx`: landing screen, CTA, tiến độ, streak, pet status
-- `src/components/LearnPage.tsx`: flow học gồm chọn chủ đề, xem bài, tóm tắt, quiz
-- `src/components/QuizCard.tsx`: card câu hỏi với feedback và retry logic
-- `src/components/PetPage.tsx`: trang pet, cá nhân hóa pet, kết nối với tiến độ học
-- `src/components/ShopPage.tsx`: trang shop riêng cho việc mua/trang bị item
-- `src/components/ShopItemCard.tsx`: hiển thị trạng thái item như sở hữu, khóa, đủ XP
-- `src/components/MediaPage.tsx`: mẹo nhớ bài, meme builder và media mockup
-- `src/components/PetDisplay.tsx`: render pet chính
-
-## Hạn chế hiện tại
-
-- Frontend-only, chưa có backend
-- Tiến độ học và pet chỉ lưu bằng `localStorage`
-- Chưa có đăng nhập hoặc đồng bộ đa thiết bị
-- Phần “video lesson” hiện là mô phỏng bằng script, chưa có video/audio thật
-- Nội dung bài học và media feed hiện vẫn đang hard-code trong frontend
-
-## Hướng cải thiện tiếp theo
-
-- Thêm nhiều bài học hơn cho từng tuyến
-- Mở rộng hệ thống pet progression và shop economy
-- Bổ sung thêm mẹo học ngắn, progress insights và content đa dạng hơn
-- Tiếp tục polish responsive, spacing và motion cho trải nghiệm học tập mượt hơn
+No production migration, credentials/configuration change, deployment, commit, push, or merge was performed. Owner review and GitHub Desktop commit workflow are preserved.

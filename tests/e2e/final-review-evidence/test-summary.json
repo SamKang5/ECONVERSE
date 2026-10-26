@@ -1,0 +1,134 @@
+{
+  "reviewDate": "2026-10-24",
+  "timezone": "Asia/Saigon",
+  "applicationBaseline": "19d3f0cc9fc89122ece5b4cd4b0cf0bcb2acd006",
+  "runs": [
+    {
+      "engine": "chrome",
+      "scenario": "motion",
+      "passed": true,
+      "checks": 53,
+      "axeScans": 12,
+      "evidence": "chrome/motion-results.json"
+    },
+    {
+      "engine": "chrome",
+      "scenario": "final-integration",
+      "passed": true,
+      "checks": 41,
+      "axeScans": 4,
+      "evidence": "chrome/final-integration-results.json"
+    },
+    {
+      "engine": "firefox",
+      "scenario": "motion",
+      "passed": true,
+      "checks": 53,
+      "axeScans": 12,
+      "evidence": "firefox/motion-results.json"
+    },
+    {
+      "engine": "firefox",
+      "scenario": "final-integration",
+      "passed": true,
+      "checks": 41,
+      "axeScans": 4,
+      "evidence": "firefox/final-integration-results.json"
+    },
+    {
+      "engine": "webkit",
+      "scenario": "motion",
+      "passed": true,
+      "checks": 53,
+      "axeScans": 12,
+      "evidence": "webkit/motion-results.json"
+    },
+    {
+      "engine": "webkit",
+      "scenario": "final-integration",
+      "passed": true,
+      "checks": 41,
+      "axeScans": 4,
+      "evidence": "webkit/final-integration-results.json"
+    },
+    {
+      "engine": "chrome",
+      "scenario": "core",
+      "passed": true,
+      "checks": 42,
+      "axeScans": 15,
+      "evidence": "core-results.json"
+    },
+    {
+      "engine": "chrome",
+      "scenario": "standalone final UI",
+      "passed": true,
+      "checks": 41,
+      "axeScans": 4,
+      "evidence": "standalone-ui-results.json"
+    }
+  ],
+  "totalRetainedCleanAxeScans": 67,
+  "foundationAssertions": 67,
+  "securityWorkflowAssertions": 72,
+  "learnerModelAssertions": 13,
+  "httpAssertions": 52,
+  "standaloneHttpAssertions": 52,
+  "touchAssertions": 4,
+  "realVideoPlayback": [
+    {
+      "verified": true,
+      "state": {
+        "paused": false,
+        "readyState": 4,
+        "currentTime": 0.270478
+      }
+    },
+    {
+      "verified": true,
+      "state": {
+        "paused": false,
+        "currentTime": 0.552432,
+        "readyState": 4
+      },
+      "after": "session refresh"
+    },
+    {
+      "verified": true,
+      "state": {
+        "paused": false,
+        "currentTime": 1.787179,
+        "readyState": 4
+      },
+      "after": "quiz selection and validation"
+    }
+  ],
+  "performance": {
+    "cls": 0,
+    "longTasks": [],
+    "frameMedian": 7,
+    "framesOver34ms": 2,
+    "layoutCount": 48,
+    "styleCount": 107,
+    "taskDurationMs": 580.97
+  },
+  "lifecycle": {
+    "cycles": 10,
+    "before": {
+      "documents": 1,
+      "nodes": 391,
+      "jsEventListeners": 188
+    },
+    "after": {
+      "documents": 1,
+      "nodes": 391,
+      "jsEventListeners": 188
+    },
+    "activeAnimations": 0
+  },
+  "limitations": [
+    "Actual Git merge prohibited and not executed",
+    "No manual screen-reader speech or physical-device certification",
+    "Actual YouTube playback tested in Chromium; iframe retention tested in all three engines"
+  ]
+}

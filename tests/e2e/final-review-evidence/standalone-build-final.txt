@@ -1,0 +1,15 @@
+
+> econverse@0.1.0 build
+> node ./node_modules/vite/bin/vite.js build --configLoader runner
+
+vite v6.4.5 building for production...
+transforming...
+✓ 1688 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                             0.77 kB │ gzip:  0.51 kB
+dist/assets/econverse-logo-Be0A0b_H.webp   12.39 kB
+dist/assets/tun-mascot-BdvjS-Z6.webp       32.99 kB
+dist/assets/index-b95i1IQb.css             95.35 kB │ gzip: 19.40 kB
+dist/assets/index-QfrWgQg6.js             280.99 kB │ gzip: 84.91 kB
+✓ built in 6.21s

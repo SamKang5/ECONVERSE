@@ -24,6 +24,7 @@ export interface PublicUser {
   id: string;
   email: string;
   displayName: string;
+  role: 'learner' | 'editor' | 'admin';
   createdAt?: string;
   lastLoginAt?: string | null;
 }
@@ -37,6 +38,7 @@ export interface LessonProgressItem {
   lessonId: string;
   status: 'not_started' | 'in_progress' | 'completed';
   completedAt: string | null;
+  updatedAt?: string;
 }
 
 export interface GamificationSnapshot {
@@ -61,12 +63,14 @@ export interface SanitizedQuestion {
 
 export interface QuizQuestionsResponse {
   lessonId: string;
+  revisionId?: string;
   questions: SanitizedQuestion[];
 }
 
 export interface QuizSubmitPayload {
   answers: Record<string, number | string>;
   idempotencyKey: string;
+  revisionId?: string;
 }
 
 export interface QuizSubmitResponse {
@@ -76,6 +80,7 @@ export interface QuizSubmitResponse {
   correctCount: number;
   xpAwarded: number;
   lessonCompleted: boolean;
+  feedback?: { id: string; correctAnswer: number; explanation: string }[];
 }
 
 export interface QuizAttemptRecord {
@@ -197,6 +202,7 @@ export const apiClient = {
 
   me: {
     get: () => request<{ user: PublicUser }>('/api/me', { method: 'GET' }),
+    update: (displayName: string) => request<{ user: PublicUser }>('/api/me', { method: 'PATCH', body: JSON.stringify({ displayName }) }),
   },
 
   progress: {

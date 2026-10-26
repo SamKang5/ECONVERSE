@@ -8,9 +8,19 @@
     "build": "node ./node_modules/vite/bin/vite.js build --configLoader runner",
     "preview": "node ./node_modules/vite/bin/vite.js preview --configLoader runner",
     "typecheck": "node ./node_modules/typescript/bin/tsc --noEmit",
-    "test": "node tests/backend_foundation.test.mjs",
+    "test": "node tests/backend_foundation.test.mjs && node tests/cms_security.test.mjs && node tests/migration_rehearsal.test.mjs && node tests/integration_sync.test.mjs",
+    "test:security": "node tests/cms_security.test.mjs",
+    "test:migrations": "node tests/migration_rehearsal.test.mjs",
+    "test:http": "node tests/local_http.integration.test.mjs",
+    "test:learner": "node tests/learner_model.test.mjs",
+    "db:local": "node scripts/local-wrangler.mjs migrate",
+    "preview:full": "node scripts/local-wrangler.mjs preview",
+    "review:accounts": "node scripts/prepare-local-review.mjs",
+    "review:tidy": "node scripts/tidy-local-review.mjs",
     "test:prod": "node tests/production_smoke_test.mjs",
-    "test:e2e": "node tests/e2e/lessons/critical_lesson_2a_journey.test.mjs"
+    "test:e2e": "node scripts/run-browser-review.mjs",
+    "test:motion": "node tests/e2e/run_motion_review.mjs",
+    "test:final-ui": "node tests/e2e/run_motion_review.mjs --scenario=final_integration.js"
   },
   "dependencies": {
     "lucide-react": "^0.546.0",
@@ -23,6 +33,7 @@
     "@types/react": "^19.0.12",
     "@types/react-dom": "^19.0.5",
     "@vitejs/plugin-react": "^5.0.4",
+    "axe-core": "^4.11.1",
     "tailwindcss": "^4.1.14",
     "typescript": "~5.8.2",
     "vite": "^6.2.3"

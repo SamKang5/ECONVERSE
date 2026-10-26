@@ -1,0 +1,1153 @@
+{
+  "reviewDate": "2026-10-24",
+  "timezone": "Asia/Saigon",
+  "finalVerdict": "READY TO COMMIT",
+  "baseline": "19d3f0cc9fc89122ece5b4cd4b0cf0bcb2acd006",
+  "independentReviewSha256": "e90784e084b38a636c18c8e7b927c5aee44550c5e5ab06039a8f46f3241ab172",
+  "previousReviewIntegrity": {
+    "ownedSourceHashes": 75,
+    "sourceDrift": [],
+    "evidenceHashes": 139,
+    "evidenceDrift": []
+  },
+  "integrationMethod": "Export common Git baseline and apply every non-ignored pending source-worktree file; equal edits coalesce, one-sided edits survive unchanged; no commits/index/ref changes.",
+  "actualCommittedHistoryMergeExecuted": false,
+  "productionAccessed": false,
+  "sourceApplicationChangesThisTask": [],
+  "newDocumentsThisTask": [
+    "docs/POST_REVIEW_MERGE_PLAN.md",
+    "docs/verification/POST_REVIEW_SOURCE_INVENTORY.json",
+    "docs/verification/POST_REVIEW_VERIFICATION.json"
+  ],
+  "rootsAtStart": {
+    "frontend": {
+      "branch": "feat/econverse2-frontend",
+      "head": "19d3f0cc9fc89122ece5b4cd4b0cf0bcb2acd006",
+      "staged": []
+    },
+    "backend": {
+      "branch": "feat/econverse2-backend",
+      "head": "19d3f0cc9fc89122ece5b4cd4b0cf0bcb2acd006",
+      "staged": []
+    },
+    "parent": {
+      "branch": "main",
+      "head": "19d3f0cc9fc89122ece5b4cd4b0cf0bcb2acd006",
+      "staged": []
+    }
+  },
+  "threeWayRehearsal": {
+    "method": "git merge-file -p on LF-normalized ours/base/theirs; no commits, refs or source indexes changed",
+    "results": [
+      {
+        "file": "package.json",
+        "exitCode": 0,
+        "conflictMarkers": false,
+        "mergedExactlyBackend": true
+      },
+      {
+        "file": "package-lock.json",
+        "exitCode": 0,
+        "conflictMarkers": false,
+        "mergedExactlyBackend": true
+      },
+      {
+        "file": ".gitignore",
+        "exitCode": 0,
+        "conflictMarkers": false,
+        "mergedExactlyBackend": true
+      }
+    ],
+    "actualCommittedHistoryMergeExecuted": false
+  },
+  "manifest": {
+    "frontendEquivalentToBaseline": true,
+    "combinedEqualsBackend": true,
+    "lockRootMatchesManifest": true,
+    "axeCore": "^4.11.1",
+    "scripts": [
+      {
+        "name": "dev",
+        "command": "node ./node_modules/vite/bin/vite.js --configLoader runner"
+      },
+      {
+        "name": "build",
+        "command": "node ./node_modules/vite/bin/vite.js build --configLoader runner"
+      },
+      {
+        "name": "preview",
+        "command": "node ./node_modules/vite/bin/vite.js preview --configLoader runner"
+      },
+      {
+        "name": "typecheck",
+        "command": "node ./node_modules/typescript/bin/tsc --noEmit"
+      },
+      {
+        "name": "test",
+        "command": "node tests/backend_foundation.test.mjs && node tests/cms_security.test.mjs && node tests/migration_rehearsal.test.mjs && node tests/integration_sync.test.mjs"
+      },
+      {
+        "name": "test:security",
+        "command": "node tests/cms_security.test.mjs"
+      },
+      {
+        "name": "test:migrations",
+        "command": "node tests/migration_rehearsal.test.mjs"
+      },
+      {
+        "name": "test:http",
+        "command": "node tests/local_http.integration.test.mjs"
+      },
+      {
+        "name": "test:learner",
+        "command": "node tests/learner_model.test.mjs"
+      },
+      {
+        "name": "db:local",
+        "command": "node scripts/local-wrangler.mjs migrate"
+      },
+      {
+        "name": "preview:full",
+        "command": "node scripts/local-wrangler.mjs preview"
+      },
+      {
+        "name": "review:accounts",
+        "command": "node scripts/prepare-local-review.mjs"
+      },
+      {
+        "name": "review:tidy",
+        "command": "node scripts/tidy-local-review.mjs"
+      },
+      {
+        "name": "test:prod",
+        "command": "node tests/production_smoke_test.mjs"
+      },
+      {
+        "name": "test:e2e",
+        "command": "node scripts/run-browser-review.mjs"
+      },
+      {
+        "name": "test:motion",
+        "command": "node tests/e2e/run_motion_review.mjs"
+      },
+      {
+        "name": "test:final-ui",
+        "command": "node tests/e2e/run_motion_review.mjs --scenario=final_integration.js"
+      }
+    ]
+  },
+  "tests": {
+    "install": {
+      "passed": true,
+      "ignoreScripts": true
+    },
+    "typecheck": {
+      "passed": true
+    },
+    "build": {
+      "passed": true,
+      "standardBuildPassed": true,
+      "previousProductionFilesEqual": true,
+      "files": [
+        {
+          "file": "_headers",
+          "bytes": 471,
+          "sha256": "8684a4fb0c1b89e09ea4feee240f67f1f8fd27e6558a707c62065b5cb25b603d"
+        },
+        {
+          "file": "assets/econverse-logo-Be0A0b_H.webp",
+          "bytes": 12392,
+          "sha256": "6cce84248a351a604bccd27006390a793e625c66ee564ecfdbfb627672e2ae6e"
+        },
+        {
+          "file": "assets/index-b95i1IQb.css",
+          "bytes": 95351,
+          "sha256": "5c550a7ba1407dbc5262607c5b80ebd45477ee4bc24243b913e59ae38c83b1a8"
+        },
+        {
+          "file": "assets/index-QfrWgQg6.js",
+          "bytes": 280990,
+          "sha256": "0b26fc9e7d315bffe2b9193faafbd39f597fa13acfe9032eb40249e62bfd2808"
+        },
+        {
+          "file": "assets/tun-mascot-BdvjS-Z6.webp",
+          "bytes": 32994,
+          "sha256": "3e041f85f7e1618278f7756081bb9be0da52ed5405b6c85a45c57445ce924916"
+        },
+        {
+          "file": "index.html",
+          "bytes": 772,
+          "sha256": "9ca942f04c576deea34992960940b23e1baf84533847c0f3c58e57f0bd5e2b0a"
+        }
+      ]
+    },
+    "foundation": {
+      "passed": true,
+      "assertions": 67
+    },
+    "cmsSecurity": {
+      "passed": true,
+      "assertions": 72
+    },
+    "migrationRehearsal": {
+      "passed": true
+    },
+    "syncHelpers": {
+      "passed": true
+    },
+    "learner": {
+      "passed": true,
+      "assertions": 13
+    },
+    "http": {
+      "checks": 52,
+      "passed": true,
+      "base": "http://127.0.0.1:8797",
+      "at": "2026-10-24T10:06:26.028Z"
+    },
+    "core": {
+      "passed": true,
+      "checks": [
+        "guest dashboard: zero WCAG A/AA violations",
+        "Registration creates visible learner account",
+        "Registered learner can log out and log in through UI",
+        "Finance category and keyword search filter canonical lessons",
+        "course library: zero WCAG A/AA violations",
+        "Historical YouTube video ID retained in responsive player",
+        "lesson player: zero WCAG A/AA violations",
+        "Actual playing video survives unrelated session refresh without iframe remount",
+        "Incomplete quiz is validated before submission",
+        "quiz: zero WCAG A/AA violations",
+        "Real playing iframe remains mounted through quiz selection and validation",
+        "Actual YouTube playback continues after unrelated quiz interactions",
+        "Server grading returns perfect score and 45 XP",
+        "Explanations become available after grading",
+        "Lesson completion persists after reload",
+        "XP ledger appears in profile after reload",
+        "profile: zero WCAG A/AA violations",
+        "Profile settings persist in D1",
+        "768px dashboard has no page overflow",
+        "768px dashboard: zero WCAG A/AA violations",
+        "390px dashboard has no page overflow",
+        "390px dashboard: zero WCAG A/AA violations",
+        "Mobile library navigation and layout work",
+        "mobile library: zero WCAG A/AA violations",
+        "Continue Learning resumes most recently viewed unfinished lesson",
+        "Recent lessons list uses persistent view order",
+        "Editor UI excludes privileged admin controls",
+        "editor draft preview: zero WCAG A/AA violations",
+        "Editor creates draft, edits quiz, previews and submits through real UI",
+        "Admin reviews and publishes submitted content through real UI",
+        "admin review: zero WCAG A/AA violations",
+        "Newly published lesson is visible to learner",
+        "Admin role assignment updates learner existing session UI",
+        "Admin reviews persisted audit entries after changing user role",
+        "admin audit: zero WCAG A/AA violations",
+        "admin analytics: zero WCAG A/AA violations",
+        "768px Admin Console has no page overflow",
+        "768px admin analytics: zero WCAG A/AA violations",
+        "390px Admin Console has no page overflow",
+        "390px admin analytics: zero WCAG A/AA violations",
+        "Mobile Content Studio has no page overflow",
+        "mobile editor studio: zero WCAG A/AA violations"
+      ],
+      "accessibility": [
+        {
+          "screen": "guest dashboard",
+          "violations": []
+        },
+        {
+          "screen": "course library",
+          "violations": []
+        },
+        {
+          "screen": "lesson player",
+          "violations": []
+        },
+        {
+          "screen": "quiz",
+          "violations": []
+        },
+        {
+          "screen": "profile",
+          "violations": []
+        },
+        {
+          "screen": "768px dashboard",
+          "violations": []
+        },
+        {
+          "screen": "390px dashboard",
+          "violations": []
+        },
+        {
+          "screen": "mobile library",
+          "violations": []
+        },
+        {
+          "screen": "editor draft preview",
+          "violations": []
+        },
+        {
+          "screen": "admin review",
+          "violations": []
+        },
+        {
+          "screen": "admin audit",
+          "violations": []
+        },
+        {
+          "screen": "admin analytics",
+          "violations": []
+        },
+        {
+          "screen": "768px admin analytics",
+          "violations": []
+        },
+        {
+          "screen": "390px admin analytics",
+          "violations": []
+        },
+        {
+          "screen": "mobile editor studio",
+          "violations": []
+        }
+      ],
+      "playback": [
+        {
+          "verified": true,
+          "state": {
+            "paused": false,
+            "readyState": 4,
+            "currentTime": 0.318513
+          }
+        },
+        {
+          "verified": true,
+          "state": {
+            "paused": false,
+            "currentTime": 0.52527,
+            "readyState": 4
+          },
+          "after": "session refresh"
+        },
+        {
+          "verified": true,
+          "state": {
+            "paused": false,
+            "currentTime": 1.816212,
+            "readyState": 4
+          },
+          "after": "quiz selection and validation"
+        }
+      ]
+    },
+    "motion": {
+      "passed": true,
+      "checks": [
+        "dashboard: zero axe WCAG A/AA violations",
+        "auth dialog: zero axe WCAG A/AA violations",
+        "Auth focus stays in native modal",
+        "Auth focus wraps backwards",
+        "Escape restores auth opener focus",
+        "Navigation focuses the main region",
+        "Course collapse exposes expanded state",
+        "Collapsed course lessons leave keyboard navigation",
+        "Category and search still filter lessons",
+        "filtered library: zero axe WCAG A/AA violations",
+        "lesson: zero axe WCAG A/AA violations",
+        "Lesson iframe survives quiz entry",
+        "Returning from quiz retains original iframe",
+        "Incomplete quiz focuses the first unanswered question",
+        "answered quiz: zero axe WCAG A/AA violations",
+        "Pending submission disables duplicate submit",
+        "No reward or result before backend response",
+        "Failed submission never celebrates XP",
+        "Network retry preserves quiz idempotency key",
+        "Incorrect backend grade never celebrates XP",
+        "Wrong answers receive explicit feedback",
+        "Confirmed success reveals exactly the backend XP award",
+        "Quiz result receives keyboard focus",
+        "confirmed quiz result: zero axe WCAG A/AA violations",
+        "Revisiting result does not replay celebration",
+        "Repeated perfect completion awards no duplicate XP celebration",
+        "Confirmed XP persists in learner ledger",
+        "profile: zero axe WCAG A/AA violations",
+        "320px dashboard has no horizontal overflow",
+        "390px dashboard has no horizontal overflow",
+        "Mobile drawer makes workspace inert",
+        "mobile navigation: zero axe WCAG A/AA violations",
+        "Escape returns mobile navigation focus",
+        "Resizing an open drawer to desktop retains useful focus",
+        "mobile library: zero axe WCAG A/AA violations",
+        "768px dashboard has no horizontal overflow",
+        "1440px dashboard has no horizontal overflow",
+        "Reduced motion disables page animation",
+        "Reduced-motion navigation remains immediate",
+        "Reduced-motion dialog closes with no running animations",
+        "Editor sections collapse accessibly",
+        "Editor status reports unsaved edits truthfully",
+        "Question removal restores a useful focus target",
+        "editor form: zero axe WCAG A/AA violations",
+        "Saved status follows confirmed draft persistence",
+        "unpublish confirmation: zero axe WCAG A/AA violations",
+        "Cancelling confirmation makes no publication request",
+        "Confirmation cancellation restores original focus",
+        "Failed confirmation exposes its error inside the modal",
+        "Confirmed unpublish follows real backend success",
+        "Only the failed and explicitly retried unpublish requests were sent",
+        "admin analytics: zero axe WCAG A/AA violations",
+        "No application page errors"
+      ],
+      "accessibility": [
+        {
+          "screen": "dashboard",
+          "violations": []
+        },
+        {
+          "screen": "auth dialog",
+          "violations": []
+        },
+        {
+          "screen": "filtered library",
+          "violations": []
+        },
+        {
+          "screen": "lesson",
+          "violations": []
+        },
+        {
+          "screen": "answered quiz",
+          "violations": []
+        },
+        {
+          "screen": "confirmed quiz result",
+          "violations": []
+        },
+        {
+          "screen": "profile",
+          "violations": []
+        },
+        {
+          "screen": "mobile navigation",
+          "violations": []
+        },
+        {
+          "screen": "mobile library",
+          "violations": []
+        },
+        {
+          "screen": "editor form",
+          "violations": []
+        },
+        {
+          "screen": "unpublish confirmation",
+          "violations": []
+        },
+        {
+          "screen": "admin analytics",
+          "violations": []
+        }
+      ],
+      "errors": [],
+      "errorDetails": [],
+      "networkFailures": []
+    },
+    "browserRuns": [
+      {
+        "engine": "chrome",
+        "passed": true,
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+        "checks": [
+          "guest dashboard: clean WCAG A/AA scan",
+          "Local learner-a account created",
+          "Keyboard quiz entry focuses its heading",
+          "Quiz entry retains original iframe",
+          "Confirmed learner-a response shows backend reward",
+          "quiz result: clean WCAG A/AA scan",
+          "Keyboard retry restores quiz heading focus",
+          "Repeat perfect completion shows no repeated XP award",
+          "Local learner-b account created",
+          "Account switch clears previous learner result and reward",
+          "Account switch clears previous learner answers",
+          "Account switch preserves video iframe",
+          "Local learner-c account created",
+          "Late result from previous account cannot appear or celebrate",
+          "New account can submit after stale request resolves",
+          "New account has exactly one persistent XP transaction",
+          "Changing reduced motion never resurrects a reward celebration",
+          "Local learner-d account created",
+          "Profile never shows previous account history while new history is pending",
+          "Local learner-e account created",
+          "Late profile save cannot restore the previous account identity",
+          "Same-account profile save finishing during logout cannot cancel logout",
+          "Late authenticated session response cannot undo logout",
+          "Hidden invalid required field reopens section and receives focus",
+          "Runtime reduced motion stops an active removal animation",
+          "Isolated administrator fixture authenticated",
+          "Local editor-b account created",
+          "Local second-editor fixture assigned through authorized API",
+          "Other editor still cannot fetch previous account private revision",
+          "Same-role account switch clears previous editor private draft",
+          "mobile editor: clean WCAG A/AA scan",
+          "1440px confirmation stays inside viewport",
+          "1440px confirmation action remains reachable",
+          "768px confirmation stays inside viewport",
+          "768px confirmation action remains reachable",
+          "390px confirmation stays inside viewport",
+          "390px confirmation action remains reachable",
+          "320px confirmation stays inside viewport",
+          "320px confirmation action remains reachable",
+          "mobile confirmation: clean WCAG A/AA scan",
+          "No application page errors"
+        ],
+        "accessibility": [
+          {
+            "screen": "guest dashboard",
+            "violations": []
+          },
+          {
+            "screen": "quiz result",
+            "violations": []
+          },
+          {
+            "screen": "mobile editor",
+            "violations": []
+          },
+          {
+            "screen": "mobile confirmation",
+            "violations": []
+          }
+        ],
+        "errors": []
+      },
+      {
+        "engine": "firefox",
+        "passed": true,
+        "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:155.0) Gecko/20100101 Firefox/155.0",
+        "checks": [
+          "guest dashboard: clean WCAG A/AA scan",
+          "Local learner-a account created",
+          "Keyboard quiz entry focuses its heading",
+          "Quiz entry retains original iframe",
+          "Confirmed learner-a response shows backend reward",
+          "quiz result: clean WCAG A/AA scan",
+          "Keyboard retry restores quiz heading focus",
+          "Repeat perfect completion shows no repeated XP award",
+          "Local learner-b account created",
+          "Account switch clears previous learner result and reward",
+          "Account switch clears previous learner answers",
+          "Account switch preserves video iframe",
+          "Local learner-c account created",
+          "Late result from previous account cannot appear or celebrate",
+          "New account can submit after stale request resolves",
+          "New account has exactly one persistent XP transaction",
+          "Changing reduced motion never resurrects a reward celebration",
+          "Local learner-d account created",
+          "Profile never shows previous account history while new history is pending",
+          "Local learner-e account created",
+          "Late profile save cannot restore the previous account identity",
+          "Same-account profile save finishing during logout cannot cancel logout",
+          "Late authenticated session response cannot undo logout",
+          "Hidden invalid required field reopens section and receives focus",
+          "Runtime reduced motion stops an active removal animation",
+          "Isolated administrator fixture authenticated",
+          "Local editor-b account created",
+          "Local second-editor fixture assigned through authorized API",
+          "Other editor still cannot fetch previous account private revision",
+          "Same-role account switch clears previous editor private draft",
+          "mobile editor: clean WCAG A/AA scan",
+          "1440px confirmation stays inside viewport",
+          "1440px confirmation action remains reachable",
+          "768px confirmation stays inside viewport",
+          "768px confirmation action remains reachable",
+          "390px confirmation stays inside viewport",
+          "390px confirmation action remains reachable",
+          "320px confirmation stays inside viewport",
+          "320px confirmation action remains reachable",
+          "mobile confirmation: clean WCAG A/AA scan",
+          "No application page errors"
+        ],
+        "accessibility": [
+          {
+            "screen": "guest dashboard",
+            "violations": []
+          },
+          {
+            "screen": "quiz result",
+            "violations": []
+          },
+          {
+            "screen": "mobile editor",
+            "violations": []
+          },
+          {
+            "screen": "mobile confirmation",
+            "violations": []
+          }
+        ],
+        "errors": []
+      },
+      {
+        "engine": "webkit",
+        "passed": true,
+        "browser": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.5 Safari/605.1.15",
+        "checks": [
+          "guest dashboard: clean WCAG A/AA scan",
+          "Local learner-a account created",
+          "Keyboard quiz entry focuses its heading",
+          "Quiz entry retains original iframe",
+          "Confirmed learner-a response shows backend reward",
+          "quiz result: clean WCAG A/AA scan",
+          "Keyboard retry restores quiz heading focus",
+          "Repeat perfect completion shows no repeated XP award",
+          "Local learner-b account created",
+          "Account switch clears previous learner result and reward",
+          "Account switch clears previous learner answers",
+          "Account switch preserves video iframe",
+          "Local learner-c account created",
+          "Late result from previous account cannot appear or celebrate",
+          "New account can submit after stale request resolves",
+          "New account has exactly one persistent XP transaction",
+          "Changing reduced motion never resurrects a reward celebration",
+          "Local learner-d account created",
+          "Profile never shows previous account history while new history is pending",
+          "Local learner-e account created",
+          "Late profile save cannot restore the previous account identity",
+          "Same-account profile save finishing during logout cannot cancel logout",
+          "Late authenticated session response cannot undo logout",
+          "Hidden invalid required field reopens section and receives focus",
+          "Runtime reduced motion stops an active removal animation",
+          "Isolated administrator fixture authenticated",
+          "Local editor-b account created",
+          "Local second-editor fixture assigned through authorized API",
+          "Other editor still cannot fetch previous account private revision",
+          "Same-role account switch clears previous editor private draft",
+          "mobile editor: clean WCAG A/AA scan",
+          "1440px confirmation stays inside viewport",
+          "1440px confirmation action remains reachable",
+          "768px confirmation stays inside viewport",
+          "768px confirmation action remains reachable",
+          "390px confirmation stays inside viewport",
+          "390px confirmation action remains reachable",
+          "320px confirmation stays inside viewport",
+          "320px confirmation action remains reachable",
+          "mobile confirmation: clean WCAG A/AA scan",
+          "No application page errors"
+        ],
+        "accessibility": [
+          {
+            "screen": "guest dashboard",
+            "violations": []
+          },
+          {
+            "screen": "quiz result",
+            "violations": []
+          },
+          {
+            "screen": "mobile editor",
+            "violations": []
+          },
+          {
+            "screen": "mobile confirmation",
+            "violations": []
+          }
+        ],
+        "errors": []
+      }
+    ],
+    "totalCleanAxeScans": 39,
+    "audit": {
+      "vulnerabilities": {
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "high": 0,
+        "critical": 0,
+        "total": 0
+      },
+      "dependencies": {
+        "prod": 5,
+        "dev": 158,
+        "optional": 81,
+        "peer": 0,
+        "peerOptional": 0,
+        "total": 162
+      }
+    },
+    "supplementary": {
+      "passed": true,
+      "checks": [
+        "lesson-1: no invalid or invented video iframe",
+        "lesson-1: original written material remains available",
+        "lesson-1: fallback lesson still has usable quiz",
+        "lesson-2: no invalid or invented video iframe",
+        "lesson-2: original written material remains available",
+        "lesson-2: fallback lesson still has usable quiz",
+        "lesson-2d: no invalid or invented video iframe",
+        "lesson-2d: original written material remains available",
+        "lesson-2d: fallback lesson still has usable quiz",
+        "lesson-2e: no invalid or invented video iframe",
+        "lesson-2e: original written material remains available",
+        "lesson-2e: fallback lesson still has usable quiz",
+        "lesson-5: no invalid or invented video iframe",
+        "lesson-5: original written material remains available",
+        "lesson-5: fallback lesson still has usable quiz",
+        "lesson-6: no invalid or invented video iframe",
+        "lesson-6: original written material remains available",
+        "lesson-6: fallback lesson still has usable quiz",
+        "lesson-7: no invalid or invented video iframe",
+        "lesson-7: original written material remains available",
+        "lesson-7: fallback lesson still has usable quiz",
+        "lesson-8: no invalid or invented video iframe",
+        "lesson-8: original written material remains available",
+        "lesson-8: fallback lesson still has usable quiz",
+        "Native auth dialog opens with focus inside it",
+        "Auth close restores original opener",
+        "320px deliberate mascot crop creates no page overflow",
+        "No application page errors in eight-lesson fallback review"
+      ],
+      "fallbacks": [
+        {
+          "id": "lesson-1",
+          "fallback": true,
+          "iframe": false,
+          "writtenContent": true,
+          "quiz": true
+        },
+        {
+          "id": "lesson-2",
+          "fallback": true,
+          "iframe": false,
+          "writtenContent": true,
+          "quiz": true
+        },
+        {
+          "id": "lesson-2d",
+          "fallback": true,
+          "iframe": false,
+          "writtenContent": true,
+          "quiz": true
+        },
+        {
+          "id": "lesson-2e",
+          "fallback": true,
+          "iframe": false,
+          "writtenContent": true,
+          "quiz": true
+        },
+        {
+          "id": "lesson-5",
+          "fallback": true,
+          "iframe": false,
+          "writtenContent": true,
+          "quiz": true
+        },
+        {
+          "id": "lesson-6",
+          "fallback": true,
+          "iframe": false,
+          "writtenContent": true,
+          "quiz": true
+        },
+        {
+          "id": "lesson-7",
+          "fallback": true,
+          "iframe": false,
+          "writtenContent": true,
+          "quiz": true
+        },
+        {
+          "id": "lesson-8",
+          "fallback": true,
+          "iframe": false,
+          "writtenContent": true,
+          "quiz": true
+        }
+      ],
+      "touchTargets": {
+        "openMenu": {
+          "width": 38,
+          "height": 38
+        },
+        "login": {
+          "width": 79.40625,
+          "height": 40
+        },
+        "closeMenu": {
+          "width": 32,
+          "height": 32
+        }
+      },
+      "initialAuthFocus": {
+        "tag": "BUTTON",
+        "id": "",
+        "className": "icon-button auth-close"
+      },
+      "pageErrors": []
+    }
+  },
+  "sourceAnalysis": {
+    "entryRuntimeModules": [
+      "src/App.tsx",
+      "src/components/AuthModal.tsx",
+      "src/components/CourseLibrary.tsx",
+      "src/components/LearnerDashboard.tsx",
+      "src/components/LearnerProfile.tsx",
+      "src/components/LessonExperience.tsx",
+      "src/components/ManagementPage.tsx",
+      "src/components/Motion.tsx",
+      "src/learnerModel.ts",
+      "src/main.tsx",
+      "src/services/api.ts",
+      "src/services/content.ts",
+      "src/services/management.ts"
+    ],
+    "viteRuntimeSourceModules": [
+      "src/utils.js",
+      "src/assets/econverse-logo.webp",
+      "src/services/api.ts",
+      "src/components/Motion.tsx",
+      "src/components/AuthModal.tsx",
+      "src/assets/tun-mascot.webp",
+      "src/learnerModel.ts",
+      "src/components/LearnerDashboard.tsx",
+      "src/components/CourseLibrary.tsx",
+      "src/components/LessonExperience.tsx",
+      "src/components/LearnerProfile.tsx",
+      "src/services/management.ts",
+      "src/components/ManagementPage.tsx",
+      "src/services/content.ts",
+      "src/App.tsx",
+      "src/main.tsx"
+    ],
+    "components": {
+      "total": 23,
+      "runtimeReachable": 7,
+      "unreachable": [
+        {
+          "file": "src/components/ComingSoonModal.tsx",
+          "bytes": 1692,
+          "inTypecheck": true
+        },
+        {
+          "file": "src/components/Dashboard.tsx",
+          "bytes": 13224,
+          "inTypecheck": true
+        },
+        {
+          "file": "src/components/Footer.tsx",
+          "bytes": 1010,
+          "inTypecheck": true
+        },
+        {
+          "file": "src/components/Header.tsx",
+          "bytes": 13245,
+          "inTypecheck": true
+        },
+        {
+          "file": "src/components/learn/LessonNavigation.tsx",
+          "bytes": 2020,
+          "inTypecheck": true
+        },
+        {
+          "file": "src/components/learn/LessonPlayer.tsx",
+          "bytes": 7258,
+          "inTypecheck": true
+        },
+        {
+          "file": "src/components/learn/LessonQuiz.tsx",
+          "bytes": 6504,
+          "inTypecheck": true
+        },
+        {
+          "file": "src/components/learn/LessonRow.tsx",
+          "bytes": 1897,
+          "inTypecheck": true
+        },
+        {
+          "file": "src/components/learn/ModuleSection.tsx",
+          "bytes": 2628,
+          "inTypecheck": true
+        },
+        {
+          "file": "src/components/LearnPage.tsx",
+          "bytes": 16808,
+          "inTypecheck": true
+        },
+        {
+          "file": "src/components/MediaPage.tsx",
+          "bytes": 13649,
+          "inTypecheck": true
+        },
+        {
+          "file": "src/components/PetDisplay.tsx",
+          "bytes": 14468,
+          "inTypecheck": true
+        },
+        {
+          "file": "src/components/PetPage.tsx",
+          "bytes": 9693,
+          "inTypecheck": true
+        },
+        {
+          "file": "src/components/QuizCard.tsx",
+          "bytes": 4610,
+          "inTypecheck": true
+        },
+        {
+          "file": "src/components/ShopItemCard.tsx",
+          "bytes": 4122,
+          "inTypecheck": true
+        },
+        {
+          "file": "src/components/ShopPage.tsx",
+          "bytes": 5832,
+          "inTypecheck": true
+        }
+      ],
+      "unreachableBytes": 118660,
+      "antigravityNamedFiles": [
+        {
+          "file": "src/components/Dashboard.tsx",
+          "exists": true,
+          "runtimeReachable": false
+        },
+        {
+          "file": "src/components/LearnPage.tsx",
+          "exists": true,
+          "runtimeReachable": false
+        },
+        {
+          "file": "src/components/MediaPage.tsx",
+          "exists": true,
+          "runtimeReachable": false
+        },
+        {
+          "file": "src/components/PetDisplay.tsx",
+          "exists": true,
+          "runtimeReachable": false
+        },
+        {
+          "file": "src/components/PetPage.tsx",
+          "exists": true,
+          "runtimeReachable": false
+        },
+        {
+          "file": "src/components/ShopPage.tsx",
+          "exists": true,
+          "runtimeReachable": false
+        },
+        {
+          "file": "src/components/QuizCard.tsx",
+          "exists": true,
+          "runtimeReachable": false
+        },
+        {
+          "file": "src/components/FlashCard.tsx",
+          "exists": false,
+          "runtimeReachable": false
+        },
+        {
+          "file": "src/components/DictionaryPage.tsx",
+          "exists": false,
+          "runtimeReachable": false
+        },
+        {
+          "file": "src/components/CommunityPage.tsx",
+          "exists": false,
+          "runtimeReachable": false
+        },
+        {
+          "file": "src/components/DailyQuests.tsx",
+          "exists": false,
+          "runtimeReachable": false
+        },
+        {
+          "file": "src/components/StreakModal.tsx",
+          "exists": false,
+          "runtimeReachable": false
+        },
+        {
+          "file": "src/components/AuthModal.tsx",
+          "exists": true,
+          "runtimeReachable": true
+        }
+      ]
+    },
+    "legacyData": [
+      {
+        "file": "src/data.ts",
+        "runtimeReachable": false,
+        "bytes": 25951
+      },
+      {
+        "file": "src/learnData.ts",
+        "runtimeReachable": false,
+        "bytes": 63557
+      }
+    ],
+    "migrationNames": [
+      "0001_initial_schema.sql",
+      "0002_seed_data.sql",
+      "0003_user_roles.sql",
+      "0004_content_workflow.sql",
+      "0005_migrate_legacy_content.sql"
+    ],
+    "historical": {
+      "preservedLessons": 13,
+      "preservedQuestions": 42,
+      "sourceVideoMatch": true,
+      "missingVideoIds": [
+        "lesson-1",
+        "lesson-2",
+        "lesson-2d",
+        "lesson-2e",
+        "lesson-5",
+        "lesson-6",
+        "lesson-7",
+        "lesson-8"
+      ],
+      "presentVideoIds": [
+        "lesson-1c",
+        "lesson-1d",
+        "lesson-2a",
+        "lesson-2b",
+        "lesson-2c"
+      ]
+    },
+    "bootstrap": {
+      "antigravityExampleFailsMissingCreatedAt": true,
+      "generatorLocalApplicationPassed": true,
+      "auditRows": 1,
+      "secondApplicationRejected": true,
+      "productionAccessed": false
+    },
+    "contrastRatios": {
+      "inkOnPaper": 14.64,
+      "mutedOnSurface": 6.24,
+      "forestOnTint": 6.37,
+      "focusOnSurface": 3.84
+    }
+  },
+  "migrationAuthoring": {
+    "passed": true,
+    "normalization": "LF for textual comparison",
+    "output": "Authored migration for 13 historical lessons from 4 modules.",
+    "originalSha256": "f8070b3e88046e59ef71190bac97068f9828342ac9c9209b66c2972cfa0075a8",
+    "sourceWorktreesWritten": false
+  },
+  "finalPublicLibrary": {
+    "passed": true,
+    "count": 13,
+    "ids": [
+      "lesson-1",
+      "lesson-1c",
+      "lesson-1d",
+      "lesson-2",
+      "lesson-2a",
+      "lesson-2b",
+      "lesson-2c",
+      "lesson-2d",
+      "lesson-2e",
+      "lesson-5",
+      "lesson-6",
+      "lesson-7",
+      "lesson-8"
+    ]
+  },
+  "preservationAndScan": {
+    "originalPendingFilesPreserved": 302,
+    "parentTrackedBytesPreserved": 79,
+    "parentBranchPreserved": "main",
+    "parentHeadPreserved": "19d3f0cc9fc89122ece5b4cd4b0cf0bcb2acd006",
+    "parentDiffOnlyLineEndings": true,
+    "stagingEmpty": true,
+    "trackedDiffWhitespaceChecksPassed": true,
+    "privatePathsIgnoredInBothBranches": true,
+    "conflictMarkers": [],
+    "highConfidenceCredentialPatterns": [],
+    "accidentalPrivateFiles": [],
+    "largestPendingFileBytes": 1007932,
+    "scanLimit": "Pattern scan plus source review; not a forensic secret-history scan. Existing fixture passwords in source tests are local/in-memory test data."
+  },
+  "privateRawEvidence": [
+    {
+      "file": ".qa-review/post-review-20261024/install.log",
+      "bytes": 149,
+      "sha256": "1400ee20c60de18adbc0fd39a2469129e303b8b1659ef66a261d28a59c294a75"
+    },
+    {
+      "file": ".qa-review/post-review-20261024/typecheck.log",
+      "bytes": 84,
+      "sha256": "64084d3960c77c611191e78898f6f1c39b12275e4498adc2ddedc1b31fc76c10"
+    },
+    {
+      "file": ".qa-review/post-review-20261024/unit.log",
+      "bytes": 9389,
+      "sha256": "199140fcf495a5b1f2e2087020fab0ea1ada83d78cd68315a8020f97c4d45f66"
+    },
+    {
+      "file": ".qa-review/post-review-20261024/learner.log",
+      "bytes": 110,
+      "sha256": "9ae058bfb115bd5920537b822370a62fb0ee603d29a64cd741263a970da59535"
+    },
+    {
+      "file": ".qa-review/post-review-20261024/build.log",
+      "bytes": 607,
+      "sha256": "ee7dc248390614ece47684df26f6ad44fa295c366aa37e4fdd0be29c06575bfa"
+    },
+    {
+      "file": ".qa-review/post-review-20261024/build-final.log",
+      "bytes": 572,
+      "sha256": "08d3bce28e85283ea94822f6d6d2c47af68b839726be7ec33d9f0da73dd8c894"
+    },
+    {
+      "file": ".qa-review/post-review-20261024/http.log",
+      "bytes": 2515,
+      "sha256": "4f9079ba4a8e2dc8682c6e7b326abce13669cff6c7624f1c5b042ee28146418a"
+    },
+    {
+      "file": ".qa-review/post-review-20261024/core.log",
+      "bytes": 3922,
+      "sha256": "b435a8b0bb632988066e4d452dd0918ef2718b995632dd6323563b13c980402f"
+    },
+    {
+      "file": ".qa-review/post-review-20261024/motion.log",
+      "bytes": 3331,
+      "sha256": "9d4396ac8ae63c503ca18936dc32d54d840607023199fd31930f29470d6e909b"
+    },
+    {
+      "file": ".qa-review/post-review-20261024/final-ui-chrome.log",
+      "bytes": 2652,
+      "sha256": "0c8fcca194a649b111cef1092c8d6c9dfe743bc800fa56bab58a35ff4979a851"
+    },
+    {
+      "file": ".qa-review/post-review-20261024/final-ui-firefox.log",
+      "bytes": 2613,
+      "sha256": "e5b06a66a445a1cb1ada9be41e28972dfaf138e699fc092a2cfce8d4b26145c8"
+    },
+    {
+      "file": ".qa-review/post-review-20261024/final-ui-webkit.log",
+      "bytes": 2650,
+      "sha256": "c3e25affd8ddc214a4195861ef7b11dc29d86d91db9bd83572707cdaa5cd5812"
+    },
+    {
+      "file": ".qa-review/post-review-20261024/migrations.log",
+      "bytes": 8903,
+      "sha256": "8542c809975cd4f3987a51c9e095553536ae8838106498683e87aab4b8ed0da1"
+    },
+    {
+      "file": ".qa-review/post-review-20261024/tidy.log",
+      "bytes": 229,
+      "sha256": "09bade404104ccd2c18d6c91115a1dc51438ff9e54383ccc90a5a18e716b80e0"
+    }
+  ],
+  "limitations": [
+    "No production or remote Git state attestation",
+    "No real committed-history merge; owner must commit then verify clean integration",
+    "No physical devices, battery-saving media certification or manual screen-reader speech",
+    "Earlier Lighthouse JSON lacks a Performance category; no new Lighthouse performance scores claimed",
+    "Private full logs and new screenshots stay in ignored QA directory"
+  ]
+}

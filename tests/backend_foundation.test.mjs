@@ -175,11 +175,9 @@ async function runTests() {
   const env = { DB: db, ENVIRONMENT: 'test' };
 
   console.log('[1/12] Initializing D1 Database & Migrations...');
-  const schemaSql = fs.readFileSync(path.join(projectRoot, 'migrations', '0001_initial_schema.sql'), 'utf8');
-  const seedSql = fs.readFileSync(path.join(projectRoot, 'migrations', '0002_seed_data.sql'), 'utf8');
-
-  await db.exec(schemaSql);
-  await db.exec(seedSql);
+  for (const file of fs.readdirSync(path.join(projectRoot, 'migrations')).filter(name => name.endsWith('.sql')).sort()) {
+    await db.exec(fs.readFileSync(path.join(projectRoot, 'migrations', file), 'utf8'));
+  }
 
   // Check tables
   const lessons = await db.prepare('SELECT count(*) as count FROM lessons').first('count');

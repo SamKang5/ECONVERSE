@@ -36,6 +36,7 @@ export function jsonError(
       status,
       headers: {
         'Content-Type': 'application/json',
+        'Cache-Control': 'no-store',
         ...headers,
       },
     }
@@ -51,6 +52,7 @@ export function jsonResponse<T>(
     status,
     headers: {
       'Content-Type': 'application/json',
+      'Cache-Control': 'no-store',
       ...headers,
     },
   });

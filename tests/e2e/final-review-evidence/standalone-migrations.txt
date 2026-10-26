@@ -1,0 +1,104 @@
+
+ ⛅️ wrangler 4.127.1 (update available 4.152.0)
+───────────────────────────────────────────────
+Resource location: local 
+
+Use --remote if you want to access the remote instance.
+
+Migrations to be applied:
+┌─────────────────────────────────┐
+│ name                            │
+├─────────────────────────────────┤
+│ 0001_initial_schema.sql         │
+├─────────────────────────────────┤
+│ 0002_seed_data.sql              │
+├─────────────────────────────────┤
+│ 0003_user_roles.sql             │
+├─────────────────────────────────┤
+│ 0004_content_workflow.sql       │
+├─────────────────────────────────┤
+│ 0005_migrate_legacy_content.sql │
+└─────────────────────────────────┘
+? About to apply 5 migration(s)
+Your database may not be available to serve requests during the migration, continue?
+🤖 Using fallback value in non-interactive context: yes
+🌀 Executing on local database econverse-db (5b7b26ca-78f9-4423-9b4b-356690e21475) from .local-review\d1\v3\d1:
+🌀 To execute on your remote database, add a --remote flag to your wrangler command.
+🚣 29 commands executed successfully.
+┌─────────────────────────────────┬────────┐
+│ name                            │ status │
+├─────────────────────────────────┼────────┤
+│ 0001_initial_schema.sql         │ ✅     │
+├─────────────────────────────────┼────────┤
+│ 0002_seed_data.sql              │ 🕒️    │
+├─────────────────────────────────┼────────┤
+│ 0003_user_roles.sql             │ 🕒️    │
+├─────────────────────────────────┼────────┤
+│ 0004_content_workflow.sql       │ 🕒️    │
+├─────────────────────────────────┼────────┤
+│ 0005_migrate_legacy_content.sql │ 🕒️    │
+└─────────────────────────────────┴────────┘
+🌀 Executing on local database econverse-db (5b7b26ca-78f9-4423-9b4b-356690e21475) from .local-review\d1\v3\d1:
+🌀 To execute on your remote database, add a --remote flag to your wrangler command.
+🚣 17 commands executed successfully.
+┌─────────────────────────────────┬────────┐
+│ name                            │ status │
+├─────────────────────────────────┼────────┤
+│ 0001_initial_schema.sql         │ ✅     │
+├─────────────────────────────────┼────────┤
+│ 0002_seed_data.sql              │ ✅     │
+├─────────────────────────────────┼────────┤
+│ 0003_user_roles.sql             │ 🕒️    │
+├─────────────────────────────────┼────────┤
+│ 0004_content_workflow.sql       │ 🕒️    │
+├─────────────────────────────────┼────────┤
+│ 0005_migrate_legacy_content.sql │ 🕒️    │
+└─────────────────────────────────┴────────┘
+🌀 Executing on local database econverse-db (5b7b26ca-78f9-4423-9b4b-356690e21475) from .local-review\d1\v3\d1:
+🌀 To execute on your remote database, add a --remote flag to your wrangler command.
+🚣 15 commands executed successfully.
+┌─────────────────────────────────┬────────┐
+│ name                            │ status │
+├─────────────────────────────────┼────────┤
+│ 0001_initial_schema.sql         │ ✅     │
+├─────────────────────────────────┼────────┤
+│ 0002_seed_data.sql              │ ✅     │
+├─────────────────────────────────┼────────┤
+│ 0003_user_roles.sql             │ ✅     │
+├─────────────────────────────────┼────────┤
+│ 0004_content_workflow.sql       │ 🕒️    │
+├─────────────────────────────────┼────────┤
+│ 0005_migrate_legacy_content.sql │ 🕒️    │
+└─────────────────────────────────┴────────┘
+🌀 Executing on local database econverse-db (5b7b26ca-78f9-4423-9b4b-356690e21475) from .local-review\d1\v3\d1:
+🌀 To execute on your remote database, add a --remote flag to your wrangler command.
+🚣 13 commands executed successfully.
+┌─────────────────────────────────┬────────┐
+│ name                            │ status │
+├─────────────────────────────────┼────────┤
+│ 0001_initial_schema.sql         │ ✅     │
+├─────────────────────────────────┼────────┤
+│ 0002_seed_data.sql              │ ✅     │
+├─────────────────────────────────┼────────┤
+│ 0003_user_roles.sql             │ ✅     │
+├─────────────────────────────────┼────────┤
+│ 0004_content_workflow.sql       │ ✅     │
+├─────────────────────────────────┼────────┤
+│ 0005_migrate_legacy_content.sql │ 🕒️    │
+└─────────────────────────────────┴────────┘
+🌀 Executing on local database econverse-db (5b7b26ca-78f9-4423-9b4b-356690e21475) from .local-review\d1\v3\d1:
+🌀 To execute on your remote database, add a --remote flag to your wrangler command.
+🚣 27 commands executed successfully.
+┌─────────────────────────────────┬────────┐
+│ name                            │ status │
+├─────────────────────────────────┼────────┤
+│ 0001_initial_schema.sql         │ ✅     │
+├─────────────────────────────────┼────────┤
+│ 0002_seed_data.sql              │ ✅     │
+├─────────────────────────────────┼────────┤
+│ 0003_user_roles.sql             │ ✅     │
+├─────────────────────────────────┼────────┤
+│ 0004_content_workflow.sql       │ ✅     │
+├─────────────────────────────────┼────────┤
+│ 0005_migrate_legacy_content.sql │ ✅     │
+└─────────────────────────────────┴────────┘

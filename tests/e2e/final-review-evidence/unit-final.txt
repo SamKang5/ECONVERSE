@@ -1,0 +1,185 @@
+
+> econverse@0.1.0 test
+> node tests/backend_foundation.test.mjs && node tests/cms_security.test.mjs && node tests/migration_rehearsal.test.mjs && node tests/integration_sync.test.mjs
+
+(node:8616) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+==================================================
+ECONVERSE BACKEND FOUNDATION AUTOMATED TEST SUITE
+==================================================
+
+[1/12] Initializing D1 Database & Migrations...
+  ✓ PASS: Seeded 13 lessons into D1 (actual: 13)
+  ✓ PASS: Seeded 42 quiz questions with backend answer keys (actual: 42)
+  ✓ PASS: Seeded 3 companion pets (actual: 3)
+  ✓ PASS: Seeded 10 shop accessories (actual: 10)
+
+[2/12] Testing User Registration (POST /api/auth/register)...
+  ✓ PASS: Registration returns HTTP 201 Created
+  ✓ PASS: Email normalized to lowercase
+  ✓ PASS: Display name correctly saved
+  ✓ PASS: Secure random user ID generated
+  ✓ PASS: password_hash is NEVER returned in response
+  ✓ PASS: HttpOnly session cookie generated upon registration
+  ✓ PASS: Duplicate registration returns HTTP 409 Conflict
+  ✓ PASS: Returns EMAIL_ALREADY_EXISTS error code
+  ✓ PASS: User B (Bob) registered successfully with own session
+
+[3/12] Testing User Login (POST /api/auth/login)...
+  ✓ PASS: Wrong password rejected with HTTP 401
+  ✓ PASS: Returns INVALID_CREDENTIALS error code
+  ✓ PASS: Valid login returns HTTP 200 OK
+  ✓ PASS: Returns authenticated user object
+  ✓ PASS: New session cookie issued on login
+
+[4/12] Testing Session Verification (GET /api/auth/session & GET /api/me)...
+  ✓ PASS: GET /api/auth/session returns authenticated: true
+  ✓ PASS: Returns matching authenticated user profile
+  ✓ PASS: Unauthenticated session returns authenticated: false
+  ✓ PASS: GET /api/me returns HTTP 200
+  ✓ PASS: GET /api/me returns user display name
+
+[5/12] Testing User Logout & Session Revocation (POST /api/auth/logout)...
+  ✓ PASS: Logout returns HTTP 200 OK
+  ✓ PASS: Returns { success: true }
+  ✓ PASS: Set-Cookie clears session on logout
+  ✓ PASS: Revoked session is rejected on protected routes (HTTP 401)
+  ✓ PASS: Re-login active session cookie acquired
+
+[6/12] Testing Quiz Questions API & Security (GET /api/quizzes/:lessonId)...
+  ✓ PASS: GET /api/quizzes/lesson-2a returns HTTP 200
+  ✓ PASS: Returns 4 questions for Lesson 2A
+  ✓ PASS: Options formatted as array
+  ✓ PASS: CRITICAL SECURITY: correct_option and explanation are NOT leaked to client
+  ✓ PASS: Non-existent lesson quiz returns HTTP 404
+
+[7/12] Testing Server-Side Quiz Evaluation & XP Award (POST /api/quizzes/:lessonId/submit)...
+  ✓ PASS: Quiz submission returns HTTP 200
+  ✓ PASS: Server correctly evaluated 4/4 correct answers
+  ✓ PASS: Calculated score is 100
+  ✓ PASS: Awarded 45 XP for Lesson 2A
+  ✓ PASS: Lesson marked completed
+  ✓ PASS: Quiz attempt ID created
+  ✓ PASS: XP ledger has 1 transaction recorded
+  ✓ PASS: XP transaction amount is +45
+  ✓ PASS: Transaction reference type is quiz_completion
+  ✓ PASS: Server-side totalXp is updated to 45
+  ✓ PASS: Current level is 1
+
+[8/12] Testing Idempotency & Duplicate Prevention...
+  ✓ PASS: Duplicate request returns HTTP 200
+  ✓ PASS: Returns existing attemptId for idempotency key
+  ✓ PASS: Returns original attempt xpAwarded
+  ✓ PASS: IDEMPOTENCY VERIFIED: totalXp is still 45 (not double awarded)
+  ✓ PASS: Ledger transactions count is still 1
+
+[9/12] Testing Quiz Retry Behavior (No Double XP on Re-Take)...
+  ✓ PASS: Retry scored 4/4
+  ✓ PASS: ZERO additional XP awarded because lesson was already completed
+  ✓ PASS: Quiz history contains both attempts
+  ✓ PASS: History accurately reflects XP awards per attempt
+
+[10/12] Testing Progress API (GET /api/progress & PUT /api/progress/:lessonId)...
+  ✓ PASS: Progress lists lesson-2a as completed
+  ✓ PASS: PUT /api/progress/lesson-1c returns HTTP 200
+  ✓ PASS: Progress shows lesson-1c in_progress
+
+[11/12] Testing Pets & Inventory Endpoints...
+  ✓ PASS: GET /api/pets returns 3 companion pets
+  ✓ PASS: GET /api/pets/me returns active companion pet
+  ✓ PASS: Default active pet is pet-bear (Gấu)
+  ✓ PASS: GET /api/inventory returns 10 catalog items
+
+[12/12] MANDATORY USER ISOLATION TEST (Alice vs Bob)...
+  ✓ PASS: Bob profile isolated from Alice
+  ✓ PASS: USER ISOLATION: Bob has 0 completed lessons (Alice's progress is not shared)
+  ✓ PASS: USER ISOLATION: Bob has 0 XP (Alice's XP is not shared)
+  ✓ PASS: USER ISOLATION: Bob has 0 quiz attempts for Lesson 2A
+  ✓ PASS: Bob completed Lesson 1D and earned 45 XP
+  ✓ PASS: USER ISOLATION: Alice does NOT have Bob's Lesson 1D completion
+  ✓ PASS: USER ISOLATION: Alice totalXp remains unchanged at 45
+
+==================================================
+TEST RESULTS: 67/67 PASSED (0 FAILED)
+==================================================
+
+(node:12716) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+PASS: Anonymous cannot access Studio
+PASS: Learner cannot access Studio
+PASS: Editor cannot view users
+PASS: Editor cannot view analytics
+PASS: Editor cannot view audit
+PASS: Last active Admin cannot be demoted
+PASS: Last active Admin cannot be deactivated
+PASS: Rejected last-admin mutations leave no successful-change audit records
+PASS: CSRF origin rejected
+PASS: D1 catalog preserves all 13 historical lessons
+PASS: Catalog never exposes answer keys
+PASS: Catalog never exposes quiz explanations
+PASS: Catalog omits private quiz arrays
+PASS: Encoded historical revision identifiers can be previewed
+PASS: Published quiz retains historical questions
+PASS: Quiz GET never exposes answer keys
+PASS: Editor can persist an incomplete draft
+PASS: Empty All statuses filter includes owned drafts
+PASS: Empty status filter still excludes another editor private draft
+PASS: Editors cannot read another editor’s private draft
+PASS: Editors cannot clone another editor’s unpublished content
+PASS: Editor listing excludes another editor’s private draft
+PASS: Draft quiz is not publicly visible
+PASS: Editor cannot publish
+PASS: Editor cannot change roles
+PASS: Incomplete draft cannot be submitted
+PASS: Editor can save complete lesson and quiz
+PASS: Stale simultaneous draft edits are rejected
+PASS: Learner cannot preview a private draft
+PASS: Authorized preview includes draft quiz
+PASS: Editor submits draft for review
+PASS: Submitted revision is frozen during review
+PASS: Admin can reject with feedback
+PASS: Rejection feedback is persisted
+PASS: Admin publishes reviewed revision
+PASS: Published lesson becomes learner-visible
+PASS: Published content cannot be edited in place
+PASS: Editor creates a separate revision of published content
+PASS: Draft changes do not alter live lesson
+PASS: Learner submits server-scored quiz
+PASS: First perfect completion awards authoritative XP
+PASS: Answer explanations appear only after submission
+PASS: Idempotency key reuse with changed answers is rejected
+PASS: Submission rejects stale quiz revision
+PASS: Progress update remains compatible
+PASS: Completed progress cannot be regressed
+PASS: Browser cannot forge completion
+PASS: Simultaneous perfect submissions both produce valid attempts
+PASS: Simultaneous submissions award XP exactly once
+PASS: XP total equals one reward per completed lesson
+PASS: Admin audit records publication
+PASS: Admin can unpublish content
+PASS: Unpublished lesson quiz is hidden
+PASS: Demotion takes effect immediately on an existing session
+PASS: Deactivated account loses existing session access
+PASS: Admin can reactivate account
+PASS: Concurrent independent account patches both succeed
+PASS: Concurrent role-only and deactivation-only patches preserve both changes
+PASS: Concurrent account changes each retain an atomic audit record
+PASS: Account audit reads the previous role inside its own transaction
+PASS: Account patch response returns the persisted current role
+PASS: Account patch response returns the persisted activation state
+PASS: Reverse-order independent account patches both succeed
+PASS: Role patch cannot reactivate an account concurrently deactivated
+PASS: Role-only response reports the persisted inactive state
+PASS: Atomic role audit observes the preceding deactivation
+PASS: Public registration succeeds
+PASS: Registration cannot assign browser-supplied privileges
+PASS: Oversized request returns promptly without tee cancellation deadlock
+PASS: Offline bootstrap promotes explicit existing owner
+PASS: Bootstrap grant is audited atomically
+PASS: Admin bootstrap cannot run twice
+72 security and workflow checks passed
+(node:26696) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+Migration rehearsal PASS: 13 lessons, 42 quiz keys, owner corrections, sessions, progress, attempts and XP preserved; foreign keys valid; content import retry safe.
+Integration sync ownership/path checks PASS; no worktree or D1 files were written.

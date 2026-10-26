@@ -1,0 +1,125 @@
+- generic [ref=f1e3]:
+  - link "Đến nội dung chính" [ref=f1e4] [cursor=pointer]:
+    - /url: "#main-content"
+  - complementary "Điều hướng chính" [ref=f1e5]:
+    - link "ECONVERSE LEARN. THINK. GROW." [ref=f1e6] [cursor=pointer]:
+      - /url: "#dashboard"
+      - generic [ref=f1e7]:
+        - text: ECONVERSE
+        - generic [ref=f1e8]: LEARN. THINK. GROW.
+    - button "Đóng menu" [ref=f1e194] [cursor=pointer]
+    - paragraph [ref=f1e9]: KHÔNG GIAN CỦA BẠN
+    - navigation [ref=f1e10]:
+      - link "Tổng quan" [ref=f1e11] [cursor=pointer]:
+        - /url: "#dashboard"
+      - link "Thư viện bài học" [ref=f1e15] [cursor=pointer]:
+        - /url: "#library"
+      - link "Hồ sơ của tôi" [ref=f1e18] [cursor=pointer]:
+        - /url: "#profile"
+    - generic [ref=f1e22]:
+      - generic [ref=f1e23]:
+        - strong [ref=f1e27]: Mỗi bài học, một góc nhìn mới.
+        - paragraph [ref=f1e28]: Cùng Tũn khám phá kinh tế từ những điều gần gũi.
+        - button "Khám phá thư viện" [ref=f1e29] [cursor=pointer]
+      - generic [ref=f1e33]: ECONVERSE · Học để hiểu hơn
+  - generic [ref=f1e34]:
+    - banner [ref=f1e35]:
+      - generic [ref=f1e36]:
+        - button "Mở menu" [ref=f1e198] [cursor=pointer]
+        - generic [ref=f1e37]: ECONVERSE / Không gian học tập
+      - button "Đăng nhập" [ref=f1e48] [cursor=pointer]
+    - main [ref=f1e40]:
+      - generic [ref=f1e430]:
+        - button "Thư viện bài học" [ref=f1e431] [cursor=pointer]
+        - generic [ref=f1e435]:
+          - paragraph [ref=f1e436]: "Unit 2: Độ co giãn TẬP 2A"
+          - heading "Độ co giãn của cầu theo giá (PED)" [level=1] [ref=f1e439]
+          - paragraph [ref=f1e440]: "Sợi dây thun hay thanh sắt: hiểu vì sao có món chỉ đổi giá một chút là lượng cầu đổi rất mạnh, còn có món gần như không nhúc nhích."
+          - generic [ref=f1e441]:
+            - generic [ref=f1e442]: 08 phút
+            - generic [ref=f1e446]: 45 XP khi hoàn thành
+        - generic [ref=f1e450]:
+          - generic [ref=f1e451]:
+            - group "Nội dung bài học" [ref=f1e452]:
+              - button "Bài học" [pressed] [ref=f1e453] [cursor=pointer]
+              - button "Kiểm tra kiến thức" [ref=f1e457] [cursor=pointer]
+            - iframe [ref=f1e462]:
+              - generic [ref=f2e1]:
+                - generic "YouTube Video Player" [ref=f2e3]
+                - generic [ref=f2e5]:
+                  - generic:
+                    - generic:
+                      - generic [ref=f2e6] [cursor=pointer]
+                      - button "Play video" [ref=f2e10] [cursor=pointer]
+                      - button "Hide player controls" [ref=f2e12] [cursor=pointer]
+                      - generic [ref=f2e14]:
+                        - generic [ref=f2e21]:
+                          - generic [ref=f2e22]:
+                            - 'link "📌Episode 1: ĐỘ CO GIÃN CỦA CẦU THEO GIÁ (PED) – SỢI DÂY THUN HAY THANH SẮT (UNIT 2)" [ref=f2e23] [cursor=pointer]':
+                              - /url: https://www.youtube.com/watch?v=fO4tKHj3_lA
+                            - link "ECONVERSE" [ref=f2e24] [cursor=pointer]:
+                              - /url: /channel/UChG61qX67f7urHCAuCZ5x0A
+                          - generic [ref=f2e26]:
+                            - button [ref=f2e27] [cursor=pointer]
+                            - generic [ref=f2e29]:
+                              - generic: ECONVERSE
+                              - generic: 5 subscribers
+                        - generic [ref=f2e30]:
+                          - button "Copy link" [ref=f2e33] [cursor=pointer]
+                          - link "Watch on YouTube" [ref=f2e44] [cursor=pointer]:
+                            - /url: https://www.youtube.com/watch?v=fO4tKHj3_lA
+                            - generic [ref=f2e45]: Watch on
+            - article [ref=f1e463]:
+              - generic [ref=f1e464]: HIỂU THẬT DỄ, NHỚ THẬT LÂU
+              - heading "PED là gì và đường cầu phản ứng ra sao?" [level=2] [ref=f1e465]
+              - paragraph [ref=f1e466]: Tập 2A giải thích Độ co giãn của Cầu theo Giá (PED) - thước đo sự nhạy cảm của người mua trước các biến động giá cả trên thị trường.
+              - paragraph [ref=f1e467]: Độ co giãn của cầu theo giá (Price Elasticity of Demand - PED) đo lường mức độ thay đổi của lượng cầu khi giá của chính hàng hóa đó thay đổi. Đây là công cụ đo lường mức độ nhạy cảm của người tiêu dùng trước các biến động giá cả.
+              - paragraph [ref=f1e468]: "Cầu co giãn (Elastic Demand) được ví như sợi dây thun đàn hồi: giá chỉ thay đổi một chút nhưng lượng cầu có thể phản ứng rất mạnh (tỷ lệ % thay đổi của lượng cầu lớn hơn tỷ lệ % thay đổi của giá). Những món có nhiều hàng thay thế thường có cầu co giãn."
+              - paragraph [ref=f1e469]: "Cầu kém co giãn (Inelastic Demand) giống như thanh sắt cứng: dù giá có thay đổi nhiều, lượng cầu chỉ thay đổi tương đối nhỏ. Người học thường gặp điều này ở các hàng hóa thiết yếu hoặc khó thay thế."
+              - paragraph [ref=f1e470]: Trên đồ thị, đường cầu co giãn thường tương đối phẳng (lài), trong khi đường cầu kém co giãn lại tương đối dốc (đứng). Nếu người bán tăng giá một mặt hàng có cầu co giãn cao, khách hàng sẽ bỏ đi rất nhiều khiến tổng doanh thu sụt giảm.
+              - generic [ref=f1e471]:
+                - heading "Sau bài này, bạn sẽ" [level=3] [ref=f1e472]
+                - list [ref=f1e476]:
+                  - listitem [ref=f1e477]: Định nghĩa và giải thích ý nghĩa của chỉ số PED.
+                  - listitem [ref=f1e478]: Phân biệt cầu co giãn (sợi dây thun) và cầu kém co giãn (thanh sắt).
+                  - listitem [ref=f1e479]: Nhận ra hình dạng phẳng (lài) và dốc (đứng) của đường cầu trên đồ thị.
+                  - listitem [ref=f1e480]: Hiểu mối quan hệ giữa thay đổi giá, PED và doanh thu của người bán.
+              - generic [ref=f1e481]:
+                - 'heading "Tóm tắt Tập 2A: Độ co giãn của cầu theo giá (PED)" [level=3] [ref=f1e482]'
+                - list [ref=f1e483]:
+                  - listitem [ref=f1e484]: PED đo lường mức độ phản ứng của lượng cầu khi giá hàng hóa thay đổi.
+                  - listitem [ref=f1e485]: "Cầu co giãn: Lượng cầu đổi mạnh khi giá đổi nhẹ; đường cầu tương đối phẳng/lài."
+                  - listitem [ref=f1e486]: "Cầu kém co giãn: Lượng cầu đổi rất ít dù giá đổi nhiều; đường cầu tương đối dốc/đứng."
+                  - listitem [ref=f1e487]: Biết PED giúp người bán ra quyết định định giá thông minh để tối ưu doanh thu.
+            - generic [ref=f1e488]:
+              - generic [ref=f1e489]:
+                - generic [ref=f1e490]: ĐẾN LƯỢT BẠN
+                - heading "Thử xem bạn nhớ được gì?" [level=2] [ref=f1e491]
+                - paragraph [ref=f1e492]: Một bài kiểm tra ngắn để kiến thức ở lại lâu hơn.
+              - button "Làm bài kiểm tra" [ref=f1e493] [cursor=pointer]
+          - complementary [ref=f1e496]:
+            - heading "Trong chương này" [level=2] [ref=f1e498]
+            - list [ref=f1e501]:
+              - listitem [ref=f1e502]:
+                - button "2A Độ co giãn của cầu theo giá (PED)" [ref=f1e503] [cursor=pointer]:
+                  - generic [ref=f1e504]: 2A
+                  - strong [ref=f1e505]: Độ co giãn của cầu theo giá (PED)
+              - listitem [ref=f1e506]:
+                - button "2B Các yếu tố ảnh hưởng PED" [ref=f1e507] [cursor=pointer]:
+                  - generic [ref=f1e508]: 2B
+                  - strong [ref=f1e509]: Các yếu tố ảnh hưởng PED
+              - listitem [ref=f1e510]:
+                - button "2C Độ co giãn theo thu nhập (YED)" [ref=f1e511] [cursor=pointer]:
+                  - generic [ref=f1e512]: 2C
+                  - strong [ref=f1e513]: Độ co giãn theo thu nhập (YED)
+              - listitem [ref=f1e514]:
+                - button "2D Độ co giãn chéo (XED)" [ref=f1e515] [cursor=pointer]:
+                  - generic [ref=f1e516]: 2D
+                  - strong [ref=f1e517]: Độ co giãn chéo (XED)
+              - listitem [ref=f1e518]:
+                - button "2E Độ co giãn của cung (PES)" [ref=f1e519] [cursor=pointer]:
+                  - generic [ref=f1e520]: 2E
+                  - strong [ref=f1e521]: Độ co giãn của cung (PES)
+    - contentinfo [ref=f1e45]:
+      - generic [ref=f1e46]: ECONVERSE
+      - generic [ref=f1e47]: Kiến thức nhỏ. Thay đổi lớn.

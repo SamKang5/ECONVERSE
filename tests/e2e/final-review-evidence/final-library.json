@@ -1,0 +1,19 @@
+{
+  "base": "http://127.0.0.1:8788",
+  "publishedLessons": 13,
+  "ids": [
+    "lesson-1",
+    "lesson-2",
+    "lesson-1c",
+    "lesson-1d",
+    "lesson-2a",
+    "lesson-2b",
+    "lesson-2c",
+    "lesson-2d",
+    "lesson-2e",
+    "lesson-5",
+    "lesson-6",
+    "lesson-7",
+    "lesson-8"
+  ]
+}

@@ -1,0 +1,127 @@
+async page => {
+  const config=__MOTION_CONFIG__,checks=[],accessibility=[],errors=[];
+  const verify=(value,message)=>{if(!value)throw new Error(message);checks.push(message);};
+  const settle=()=>page.evaluate(async()=>{await Promise.all(document.getAnimations().filter(a=>a.effect?.getComputedTiming().iterations!==Infinity).map(a=>a.finished.catch(()=>{})));});
+  const shot=async name=>{await settle();await page.screenshot({path:config.evidence+'/'+name+'.png',fullPage:false});};
+  const scan=async name=>{
+    await settle();if(!await page.evaluate(()=>Boolean(window.axe)))await page.addScriptTag({url:config.base+'/__review-axe.js'});
+    const violations=await page.evaluate(async()=>(await window.axe.run(document,{iframes:false,runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21aa']}})).violations.map(v=>({id:v.id,impact:v.impact,nodes:v.nodes.map(n=>n.target)})));
+    accessibility.push({screen:name,violations});verify(!violations.length,name+': clean WCAG A/AA scan');
+  };
+  const register=async suffix=>{
+    const user={email:`final-${suffix}-${config.suffix}@review.invalid`,password:`Final-${config.suffix}-aA1!`,displayName:'Final '+suffix};
+    const response=await page.context().request.post(config.base+'/api/auth/register',{headers:{Origin:config.base},data:user});
+    verify(response.status()===201,'Local '+suffix+' account created');return {...user,id:(await response.json()).user.id};
+  };
+  const refresh=async user=>{
+    const response=page.waitForResponse(r=>r.url().endsWith('/api/auth/session'));
+    await page.evaluate(()=>window.dispatchEvent(new Event('focus')));await response;
+    await page.getByRole('button',{name:'Hồ sơ '+user.displayName,exact:true}).waitFor();
+  };
+  const answer=async()=>{for(let i=0;i<config.answers.length;i++)await page.locator('.quiz-question').nth(i).getByRole('radio').nth(config.answers[i]).check();};
+  const login=async account=>{
+    await page.goto(config.base+'/#dashboard');await page.getByRole('button',{name:'Đăng nhập',exact:true}).click();const dialog=page.getByRole('dialog');
+    await dialog.getByLabel('Địa chỉ email').fill(account.email);await dialog.getByLabel('Mật khẩu').fill(account.password);await dialog.getByRole('button',{name:'Đăng nhập ngay',exact:true}).click();await dialog.waitFor({state:'hidden'});
+  };
+  page.on('pageerror',error=>errors.push(String(error)));
+  try {
+    await page.setViewportSize({width:1440,height:1000});
+    await page.getByRole('heading',{level:1}).waitFor();await scan('guest dashboard');await shot('dashboard-desktop');
+    await register('learner-a');await page.goto(config.base+'/#lesson/lesson-2a');await page.reload();
+    await page.getByRole('button',{name:'Làm bài kiểm tra',exact:true}).waitFor();const iframe=await page.locator('iframe').elementHandle();
+    await page.getByRole('button',{name:'Làm bài kiểm tra',exact:true}).focus();await page.keyboard.press('Enter');await page.locator('.quiz-question').first().waitFor();await settle();
+    verify(await page.locator('.quiz-area h2').first().evaluate(e=>e===document.activeElement),'Keyboard quiz entry focuses its heading');
+    verify(await iframe.evaluate(e=>e.isConnected),'Quiz entry retains original iframe');
+    await answer();await page.getByRole('button',{name:'Nộp bài kiểm tra',exact:true}).click();await page.locator('.xp-reward').waitFor();
+    verify((await page.locator('.xp-reward').innerText()).includes('+45 XP'),'Confirmed learner-a response shows backend reward');
+    await scan('quiz result');await shot('quiz-result');
+    await page.getByRole('button',{name:'Làm lại',exact:true}).focus();await page.keyboard.press('Enter');await page.getByRole('button',{name:'Nộp bài kiểm tra',exact:true}).waitFor();await settle();
+    verify(await page.locator('.quiz-area h2').first().evaluate(e=>e===document.activeElement),'Keyboard retry restores quiz heading focus');
+    await answer();await page.getByRole('button',{name:'Nộp bài kiểm tra',exact:true}).click();await page.locator('.quiz-result').waitFor();
+    verify(await page.locator('.xp-reward').count()===0,'Repeat perfect completion shows no repeated XP award');
+    const second=await register('learner-b');await refresh(second);await settle();
+    verify(await page.locator('.quiz-result,.xp-reward').count()===0,'Account switch clears previous learner result and reward');
+    verify(await page.locator('.quiz-option.selected').count()===0,'Account switch clears previous learner answers');
+    verify(await iframe.evaluate(e=>e.isConnected),'Account switch preserves video iframe');
+    await answer();let release,arrived;const gate=new Promise(resolve=>release=resolve),pending=new Promise(resolve=>arrived=resolve);
+    await page.route('**/api/quizzes/lesson-2a/submit',async route=>{const response=await route.fetch();arrived();await gate;await route.fulfill({response});});
+    await page.getByRole('button',{name:'Nộp bài kiểm tra',exact:true}).click();await pending;
+    const third=await register('learner-c');await refresh(third);
+    const submitted=page.waitForResponse(r=>r.url().endsWith('/api/quizzes/lesson-2a/submit'));release();await submitted;
+    await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
+    verify(await page.locator('.quiz-result,.xp-reward').count()===0,'Late result from previous account cannot appear or celebrate');
+    await page.unroute('**/api/quizzes/lesson-2a/submit');
+    await answer();await page.getByRole('button',{name:'Nộp bài kiểm tra',exact:true}).click();await page.locator('.xp-reward').waitFor();
+    verify((await page.locator('.xp-reward').innerText()).includes('+45 XP'),'New account can submit after stale request resolves');
+    const history=await (await page.context().request.get(config.base+'/api/gamification/xp-history')).json();
+    verify(history.transactions.length===1&&history.transactions[0].amount===45,'New account has exactly one persistent XP transaction');
+    await page.emulateMedia({reducedMotion:'reduce'});
+    await page.waitForFunction(()=>matchMedia('(prefers-reduced-motion: reduce)').matches&&!document.querySelector('.is-celebrating'));
+    await settle();await page.emulateMedia({reducedMotion:'no-preference'});
+    verify(await page.locator('.is-celebrating').count()===0,'Changing reduced motion never resurrects a reward celebration');
+    await page.getByRole('link',{name:'Hồ sơ của tôi',exact:true}).click();await page.locator('.xp-history li').first().waitFor();
+    let releaseHistory,historyArrived;const historyGate=new Promise(resolve=>releaseHistory=resolve),historyHeld=new Promise(resolve=>historyArrived=resolve);
+    await page.route('**/api/gamification/xp-history',async route=>{const response=await route.fetch();historyArrived();await historyGate;await route.fulfill({response});});
+    const fourth=await register('learner-d');await refresh(fourth);await historyHeld;
+    verify(await page.locator('.xp-history li').count()===0,'Profile never shows previous account history while new history is pending');
+    const nextHistory=page.waitForResponse(r=>r.url().endsWith('/api/gamification/xp-history'));releaseHistory();await nextHistory;await page.unroute('**/api/gamification/xp-history');
+    let releaseSave,saveArrived;const saveGate=new Promise(resolve=>releaseSave=resolve),saveHeld=new Promise(resolve=>saveArrived=resolve);
+    await page.route('**/api/me',async route=>{if(route.request().method()!=='PATCH'){await route.continue();return;}const response=await route.fetch();saveArrived();await saveGate;await route.fulfill({response});});
+    await page.getByLabel('Tên hiển thị',{exact:true}).fill('Final learner-d saved');await page.getByRole('button',{name:'Lưu thay đổi',exact:true}).click();await saveHeld;
+    const fifth=await register('learner-e');await refresh(fifth);
+    await page.evaluate(()=>{window.qaAccountNames=[];window.qaNameObserver=new MutationObserver(()=>window.qaAccountNames.push(document.querySelector('.account-button')?.textContent||''));window.qaNameObserver.observe(document.querySelector('.top-actions'),{childList:true,subtree:true,characterData:true});});
+    const saveResponse=page.waitForResponse(r=>r.url().endsWith('/api/me')&&r.request().method()==='PATCH');releaseSave();await saveResponse;
+    await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
+    verify(await page.evaluate(()=>{window.qaNameObserver.disconnect();return !window.qaAccountNames.some(name=>name.includes('learner-d'));}),'Late profile save cannot restore the previous account identity');
+    await page.unroute('**/api/me');
+    let releaseSameSave,sameSaveArrived;const sameSaveGate=new Promise(resolve=>releaseSameSave=resolve),sameSaveHeld=new Promise(resolve=>sameSaveArrived=resolve);
+    await page.route('**/api/me',async route=>{if(route.request().method()!=='PATCH'){await route.continue();return;}const response=await route.fetch();sameSaveArrived();await sameSaveGate;await route.fulfill({response});});
+    await page.getByLabel('Tên hiển thị',{exact:true}).fill('Final learner-e saved');await page.getByRole('button',{name:'Lưu thay đổi',exact:true}).click();await sameSaveHeld;
+    let releaseLogout,logoutArrived;const logoutGate=new Promise(resolve=>releaseLogout=resolve),logoutHeld=new Promise(resolve=>logoutArrived=resolve);
+    await page.route('**/api/auth/logout',async route=>{logoutArrived();await logoutGate;await route.continue();});
+    await page.getByRole('button',{name:'Đăng xuất',exact:true}).click();await logoutHeld;
+    const savedSession=page.waitForResponse(r=>r.url().endsWith('/api/auth/session'));releaseSameSave();await savedSession;await page.getByRole('button',{name:'Hồ sơ Final learner-e saved',exact:true}).waitFor();
+    let releaseSession,sessionArrived;let firstSession=true;const sessionGate=new Promise(resolve=>releaseSession=resolve),sessionHeld=new Promise(resolve=>sessionArrived=resolve);
+    await page.route('**/api/auth/session',async route=>{if(!firstSession){await route.continue();return;}firstSession=false;const response=await route.fetch();sessionArrived();await sessionGate;await route.fulfill({response});});
+    await page.evaluate(()=>window.dispatchEvent(new Event('focus')));await sessionHeld;
+    const logoutRefresh=page.waitForResponse(async r=>r.url().endsWith('/api/auth/session')&&(await r.json()).authenticated===false);
+    releaseLogout();await logoutRefresh;await page.getByRole('button',{name:'Đăng nhập',exact:true}).waitFor();
+    verify(true,'Same-account profile save finishing during logout cannot cancel logout');
+    const oldSession=page.waitForResponse(r=>r.url().endsWith('/api/auth/session'));releaseSession();await oldSession;await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
+    verify(await page.locator('.account-button').count()===0,'Late authenticated session response cannot undo logout');
+    await page.unroute('**/api/auth/session');await page.unroute('**/api/auth/logout');await page.unroute('**/api/me');
+    await login(config.accounts.editor);
+    await page.getByRole('link',{name:'Content Studio',exact:true}).click();await page.getByRole('button',{name:'Create lesson',exact:true}).click();
+    await page.getByRole('button',{name:'Lesson details',exact:true}).click();await settle();await page.getByRole('button',{name:'Save draft',exact:true}).click();
+    await page.waitForFunction(()=>document.querySelector('.mg-section-toggle')?.getAttribute('aria-expanded')==='true');await settle();
+    verify(await page.getByLabel('Lesson ID',{exact:true}).evaluate(e=>e===document.activeElement),'Hidden invalid required field reopens section and receives focus');
+    await page.getByLabel('Lesson ID',{exact:true}).fill('final-qa-'+config.suffix);await page.getByRole('button',{name:'Add question',exact:true}).click();await settle();
+    const captured=page.waitForFunction(()=>{const e=document.querySelector('.mg-question[inert]');const animation=e?.getAnimations().find(a=>a.effect?.getTiming().duration===150);if(animation){window.qaRemovalAnimation=animation;return true;}});
+    await page.getByRole('button',{name:'Remove question 1',exact:true}).click();await captured;await page.emulateMedia({reducedMotion:'reduce'});await page.locator('.mg-question').waitFor({state:'hidden'});
+    verify(await page.evaluate(()=>window.qaRemovalAnimation.playState!=='running'),'Runtime reduced motion stops an active removal animation');
+    await page.emulateMedia({reducedMotion:'no-preference'});
+    const privateTitle='Final private draft '+config.suffix;
+    await page.getByLabel('Lesson title',{exact:true}).fill(privateTitle);const privateSaved=page.waitForResponse(r=>r.url().endsWith('/api/studio/lessons')&&r.request().method()==='POST');await page.getByRole('button',{name:'Save draft',exact:true}).click();const privateRevision=(await (await privateSaved).json()).revision.id;await page.getByRole('status').filter({hasText:'Draft saved.'}).waitFor();
+    const adminContext=await page.context().browser().newContext();
+    const adminLogin=await adminContext.request.post(config.base+'/api/auth/login',{headers:{Origin:config.base},data:config.accounts.admin});verify(adminLogin.status()===200,'Isolated administrator fixture authenticated');
+    const otherEditor=await register('editor-b');
+    const promotion=await adminContext.request.patch(config.base+'/api/admin/users/'+otherEditor.id,{headers:{Origin:config.base},data:{role:'editor'}});verify(promotion.status()===200,'Local second-editor fixture assigned through authorized API');
+    await refresh(otherEditor);await page.getByRole('button',{name:'Create lesson',exact:true}).waitFor();
+    verify((await page.context().request.get(config.base+'/api/studio/revisions/'+privateRevision)).status()===404,'Other editor still cannot fetch previous account private revision');
+    verify(await page.locator('.mg-editor').count()===0&&await page.getByText(privateTitle,{exact:true}).count()===0,'Same-role account switch clears previous editor private draft');
+    await page.setViewportSize({width:320,height:640});await scan('mobile editor');await shot('editor-mobile');
+    await page.setViewportSize({width:1440,height:1000});await page.getByRole('button',{name:'Đăng xuất',exact:true}).click();await adminContext.request.patch(config.base+'/api/admin/users/'+otherEditor.id,{headers:{Origin:config.base},data:{role:'learner'}});await adminContext.close();await login(config.accounts.admin);
+    await page.getByRole('link',{name:'Admin Console',exact:true}).click();await page.getByRole('combobox',{name:'Filter revisions by status'}).selectOption('published');
+    await page.getByRole('row').filter({hasText:'lesson-2a'}).getByRole('button',{name:/Open /}).click();
+    for(const width of [1440,768,390,320]) {
+      await page.setViewportSize({width,height:width===320?480:844});await page.getByRole('button',{name:'Unpublish lesson',exact:true}).click();await settle();
+      verify(await page.locator('.confirm-dialog').evaluate(e=>{const r=e.getBoundingClientRect();return r.left>=0&&r.right<=innerWidth&&r.top>=0&&r.bottom<=innerHeight;}),width+'px confirmation stays inside viewport');
+      await page.getByRole('button',{name:'Confirm unpublish',exact:true}).scrollIntoViewIfNeeded();
+      verify(await page.getByRole('button',{name:'Confirm unpublish',exact:true}).isVisible(),width+'px confirmation action remains reachable');
+      if(width===320){await scan('mobile confirmation');await shot('confirmation-mobile');}
+      await page.keyboard.press('Escape');await page.getByRole('dialog').waitFor({state:'hidden'});
+    }
+    verify(errors.length===0,'No application page errors');
+    return {passed:true,browser:await page.evaluate(()=>navigator.userAgent),checks,accessibility,errors};
+  } catch(error) {await shot('failure');return {passed:false,error:String(error),checks,accessibility,errors};}
+}

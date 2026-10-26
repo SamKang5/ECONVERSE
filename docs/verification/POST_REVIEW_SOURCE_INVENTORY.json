@@ -1,0 +1,2165 @@
+{
+  "reviewDate": "2026-10-24",
+  "baseline": "19d3f0cc9fc89122ece5b4cd4b0cf0bcb2acd006",
+  "branches": [
+    {
+      "owner": "frontend",
+      "branch": "feat/econverse2-frontend",
+      "head": "19d3f0cc9fc89122ece5b4cd4b0cf0bcb2acd006",
+      "modified": 7,
+      "untracked": 250,
+      "total": 257
+    },
+    {
+      "owner": "backend",
+      "branch": "feat/econverse2-backend",
+      "head": "19d3f0cc9fc89122ece5b4cd4b0cf0bcb2acd006",
+      "modified": 15,
+      "untracked": 33,
+      "total": 48
+    }
+  ],
+  "totalBranchEntries": 305,
+  "uniqueCombinedPaths": 304,
+  "onlyOverlap": ".gitignore",
+  "allOriginalPendingFileBytesPreserved": true,
+  "selfEntryHashAndSizeExcluded": true,
+  "files": [
+    {
+      "owner": "frontend",
+      "status": "M",
+      "file": ".gitignore",
+      "bytes": 252,
+      "sha256": "293476badd75c95da5f48e26bb7b83bc0f98714b3b8ceaf9fa5aafc1a253d59c"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "FINAL_INTEGRATION_REVIEW.md",
+      "bytes": 22285,
+      "sha256": "1e04c26d4ca64bdf1fa25066c65832d3373b4e1d23609fd55091841dd117dc7c"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "MOTION_POLISH_REPORT.md",
+      "bytes": 16606,
+      "sha256": "0b391b659e71fcf84de47e0792090f54ed8db6721043b056302ccd87fb5f771e"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "design-qa.md",
+      "bytes": 5876,
+      "sha256": "19b0804a4e0ae530b2e4759e984505920c90df1f79761849db10e5913cf19095"
+    },
+    {
+      "owner": "frontend",
+      "status": "M",
+      "file": "index.html",
+      "bytes": 669,
+      "sha256": "85fcf0c5994fec8bb8ba4c726aa7277a7bd4511fa209ec9785a4e4be08ba1690"
+    },
+    {
+      "owner": "frontend",
+      "status": "M",
+      "file": "src/App.tsx",
+      "bytes": 12971,
+      "sha256": "3c4be2c05551e0b0d1830123d3ce0becf2cff434a84331faa8b1de46d1712e87"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "src/assets/econverse-logo.webp",
+      "bytes": 12392,
+      "sha256": "6cce84248a351a604bccd27006390a793e625c66ee564ecfdbfb627672e2ae6e"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "src/assets/tun-mascot.webp",
+      "bytes": 32994,
+      "sha256": "3e041f85f7e1618278f7756081bb9be0da52ed5405b6c85a45c57445ce924916"
+    },
+    {
+      "owner": "frontend",
+      "status": "M",
+      "file": "src/components/AuthModal.tsx",
+      "bytes": 3472,
+      "sha256": "d0099c28c41740f4b02042420995408a369236f06c1de71f0d2b3169733e97dd"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "src/components/CourseLibrary.tsx",
+      "bytes": 4778,
+      "sha256": "260742af081b6448a0c9f23f5d6ca2846b7b0dada8e1af7c9beafc4451229e21"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "src/components/LearnerDashboard.tsx",
+      "bytes": 6887,
+      "sha256": "c77a3861df81db13c590c21e5b653546d6500971d8ba83da5cac817dd77dcf48"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "src/components/LearnerProfile.tsx",
+      "bytes": 6259,
+      "sha256": "8f24c9a2cbfa10ef30714b586dee09a9e2d8d54784ecf7e7dfbad069ab5deb9c"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "src/components/LessonExperience.tsx",
+      "bytes": 13342,
+      "sha256": "c3254d8360bb3452c04c23696d09bb3022a14c9a84b55431c8384ee8861415fa"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "src/components/ManagementPage.css",
+      "bytes": 9052,
+      "sha256": "c2931ee5ff41038bba705446ba17c1fb93d217b6f9ed62e0f203c1ba889b035a"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "src/components/ManagementPage.tsx",
+      "bytes": 31180,
+      "sha256": "ebd863eeb86b280c0383c86928b9227b951c2df708106055404707779f00cf24"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "src/components/Motion.tsx",
+      "bytes": 3731,
+      "sha256": "b0a0abe8b6f4aaec9f203af3e453b6954c735f09c6c01497848c83882233e99b"
+    },
+    {
+      "owner": "frontend",
+      "status": "M",
+      "file": "src/index.css",
+      "bytes": 36124,
+      "sha256": "f197beba300808e06e31ae7defbfaeb459456f6099e6aeefa4841ed5fb61bf80"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "src/learnerModel.ts",
+      "bytes": 2109,
+      "sha256": "466cbe0100d65f15de85c294a5252cb4a0f597789cf97ad0a9e70ed07785f0ea"
+    },
+    {
+      "owner": "frontend",
+      "status": "M",
+      "file": "src/main.tsx",
+      "bytes": 265,
+      "sha256": "b352fee312ab3d6f382fbae9e268469bb3faec4e8f7d28c5bbcba7a14feea386"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "src/motion.css",
+      "bytes": 9408,
+      "sha256": "a012716e151e2fbbf9ce48004d9660f62d07cc041403b61ddd6b024b293e1e0b"
+    },
+    {
+      "owner": "frontend",
+      "status": "M",
+      "file": "src/services/api.ts",
+      "bytes": 6303,
+      "sha256": "ca9b304efd648e818b997418f3c167beac5efb03082d1bcbfa3f665482aa68a0"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "src/services/content.ts",
+      "bytes": 998,
+      "sha256": "05b1453f8ece391ae47d8bd8ec7c6bfd534f7ce01c5a4dbc1d82829c2032cd7e"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "src/services/management.ts",
+      "bytes": 4018,
+      "sha256": "d5644af8a17222f305b5dadf2945af4d97e99bfb7077b550108b8813dd43b4b5"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/econverse2-evidence/01-dashboard-desktop.png",
+      "bytes": 191755,
+      "sha256": "0e9b4607399e128de3266b66dd8596351cc33bc6bbbf007d85c9c4ee912ce033"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/econverse2-evidence/02-library-desktop.png",
+      "bytes": 261648,
+      "sha256": "d836a7514716f6e39f8a6d8e6616e50852ba76ab60a919120e5b21dc4cd7499a"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/econverse2-evidence/03-lesson-desktop.png",
+      "bytes": 150586,
+      "sha256": "2c766a808a7394f882d6fd5c1e285687e0877217a0583dc51c0dd1d24d9e9f89"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/econverse2-evidence/03b-video-playing.png",
+      "bytes": 186980,
+      "sha256": "3076b86c8a422fb049dd56f27b5dbce136c645fc8ecaf9e48d5966909482c2fb"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/econverse2-evidence/04-quiz-result.png",
+      "bytes": 184756,
+      "sha256": "88c40866227497e699c5183be558101f0f9c3b8c7dc1234bb7206c5f22a8299f"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/econverse2-evidence/05-profile.png",
+      "bytes": 83429,
+      "sha256": "e9afdfa5b5d2088e0a601fca32c796c19ec82635c118456c73920967ec81f9bc"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/econverse2-evidence/06-dashboard-390.png",
+      "bytes": 111300,
+      "sha256": "0345f699c15ffc751bb1ba09a6107239bf0398fae063dcbc0600eef31ec717af"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/econverse2-evidence/06-dashboard-768.png",
+      "bytes": 144826,
+      "sha256": "26fc5265da2726f77aa15644990c21da96321dff15d4bcec708d91529990c021"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/econverse2-evidence/07-library-mobile.png",
+      "bytes": 200769,
+      "sha256": "8a292d61dbad4f39c408fc7cdb1889cc4b6d3ba1347861b50be2cf0bf8a42ff9"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/econverse2-evidence/08-editor-preview.png",
+      "bytes": 94579,
+      "sha256": "a7c1683d07c3e3dab8e5d4c0d7c33a42267fdb4631830f96031b1766c28af148"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/econverse2-evidence/09-editor-submitted.png",
+      "bytes": 150275,
+      "sha256": "be85c65d4864c0253ef1ba321001ab4389305d48dccb28a398432a9f7cd99215"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/econverse2-evidence/10-admin-published.png",
+      "bytes": 161765,
+      "sha256": "88e78c29270c50ea02618ab5bbcc119cbd6f75a54e3f8f51d6a6d84d7dcbda11"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/econverse2-evidence/11-admin-audit.png",
+      "bytes": 228716,
+      "sha256": "a20e9802d68bac8dd63caba6c271b4fbeed7a45f044f5c124f15f59151fccba0"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/econverse2-evidence/12-admin-analytics.png",
+      "bytes": 67089,
+      "sha256": "c7aaded932a8f0324fe7d96812f040a9ecd1539b9711e71e3148c3b879b4c281"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/econverse2-evidence/13-admin-390.png",
+      "bytes": 44818,
+      "sha256": "f35666ba5a814184263c0064b9274e9393880b58c532c4c811061a0f246d78af"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/econverse2-evidence/13-admin-768.png",
+      "bytes": 61932,
+      "sha256": "11928c34001e8266ea7d609f561eef62c2a1fab269c995cb222855fcf081f4cd"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/econverse2-evidence/14-editor-mobile.png",
+      "bytes": 119585,
+      "sha256": "cd736e55805482706dc50982f2998dc2dd9a4b299950dbb0de903ea18ba399ca"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/econverse2-evidence/comparison-desktop.png",
+      "bytes": 566883,
+      "sha256": "8640e6945f5b43eda516e54df36576bb0e5af91129f8ebb5762b2943f6225e00"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/econverse2-evidence/comparison-mobile.png",
+      "bytes": 174554,
+      "sha256": "fef83b5078c61750b3bf7b903f335b03c9e0b59cf8f94fb8a396777a6dcb7c2d"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/econverse2-evidence/comparison-navigation.png",
+      "bytes": 21594,
+      "sha256": "e373517ab812f49471f51c2196667326dd4373fb867caf2d361790322cb7c0c2"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/econverse2-evidence/comparison-tablet.png",
+      "bytes": 278296,
+      "sha256": "e0a70959dbb7a5cd697bfc4b1fa3e426adef5d6515c652bf8b7d2511b72cfc54"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/econverse2-evidence/dashboard-desktop.png",
+      "bytes": 143416,
+      "sha256": "543b9f0f704301b1912554f1a620010a5452fbbb8ec3352a265284f8a456045b"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/econverse2-evidence/dashboard-desktop.yml",
+      "bytes": 7891,
+      "sha256": "2e8911d22040607cd13e9f8f9fb19e1eb168a0c73fa05400eaf2bdfada1f3420"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/econverse2-evidence/dashboard-mobile.png",
+      "bytes": 61246,
+      "sha256": "d27dbeefbc4fd7a3c60d951916481f37c1ddc76125bcae3d118f371139684c8b"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/econverse2-evidence/dashboard-mobile.yml",
+      "bytes": 7880,
+      "sha256": "bae27ca17582ae5cdc65f42e7ff42a4ba2fc58ea1ddd5436e2c28232d686e28d"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/econverse2-evidence/dashboard-tablet.png",
+      "bytes": 98946,
+      "sha256": "0d0935a45e405075f05ca9a7ee7b7c165262f797a9949f82f59ce2a925af7b22"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/econverse2-evidence/dashboard-tablet.yml",
+      "bytes": 7733,
+      "sha256": "c5c9d94f83d01eb1f3c6257b3427c4c15a8a9b6324b291252e465981234685ee"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/econverse2-evidence/initial.yml",
+      "bytes": 7665,
+      "sha256": "0345567de2b81c4f7c08f98db7e7b46db04303fe2713f5dd55dce1d579180bc5"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/econverse2-evidence/lesson-mobile.png",
+      "bytes": 171244,
+      "sha256": "e797e0e274c4701d8b3065aafffa398b5a4de11e83587fd3f35db83a00473337"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/econverse2-evidence/lesson-mobile.yml",
+      "bytes": 9217,
+      "sha256": "93b053f9d02b2051c899d86444638230028e96f3c10212429937e138d3801085"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/econverse2-evidence/library-mobile.png",
+      "bytes": 38812,
+      "sha256": "b5b915da9503eb7364014940ce3c4bcf29106b33db1b3cf99a98b9b621a5017d"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/econverse2-evidence/library-mobile.yml",
+      "bytes": 16827,
+      "sha256": "15f1e1d869a37bd0170d561971164d7f4372f0df7e00472b2b5a0ca8bd053013"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/econverse2-evidence/library-search.yml",
+      "bytes": 5205,
+      "sha256": "fa413c6804495782857d0590ebeada2955c2f69f11e5da0aa05056d1aa602e2d"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/econverse2-evidence/mobile-menu.yml",
+      "bytes": 7967,
+      "sha256": "cc81809c843a458d14160f31682c98e92c76e63220ba23e7fa8fe4a6be8552e2"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/econverse2-evidence/owner-dashboard-desktop.png",
+      "bytes": 143307,
+      "sha256": "4e7f2723f4708add25f991501f9390492ceef75d1d764a7a5396aa582d087978"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/econverse2-evidence/owner-dashboard-desktop.yml",
+      "bytes": 7665,
+      "sha256": "992222c2b97a54e7bedf33160d414aab5bbc797a84412f6d38ad9275156f1459"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/econverse2-evidence/owner-dashboard-mobile.png",
+      "bytes": 61219,
+      "sha256": "1d4e8e5800acb5813b8b3c01c54f7d432b4b777f8f666fff2ecc620baff90746"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/econverse2-evidence/owner-dashboard-mobile.yml",
+      "bytes": 7654,
+      "sha256": "0669ec0674f14dffa89603e63930f2c4e23254bc81180996cc3dc7b90b7bfc7a"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/econverse2-evidence/owner-dashboard-tablet.png",
+      "bytes": 98937,
+      "sha256": "e7efb05417b5f24356e73350faaf59f3854ba0a0fc9f6c8090a9d7c21f95b0b3"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/econverse2-evidence/quiz-mobile.png",
+      "bytes": 44948,
+      "sha256": "7f4fa1c47ca26582453ee465b1d3d4452219967a908582944fbfca014abb5ff1"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/econverse2-evidence/quiz-mobile.yml",
+      "bytes": 11580,
+      "sha256": "cd7509100626d3b06ad290f740d1fcd01f496fee7fd02218c063013437531f20"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/econverse2-evidence/reference-desktop.png",
+      "bytes": 377229,
+      "sha256": "dfda2526cfbfd5017371cdf12d663c3830c6ff7c252ee63131febaf94a3d4509"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/econverse2-evidence/reference-mobile.png",
+      "bytes": 115438,
+      "sha256": "340045f3b497e9865c20feaf70837d2cadc0b629c586e0ede491a98dfb726323"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/econverse2-evidence/reference-tablet.png",
+      "bytes": 175129,
+      "sha256": "d1c007e0233ebcf6c07bf688faa8c3ee052c1f0eae02c111ab747d23a72c31f2"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/econverse2_journeys.js",
+      "bytes": 18473,
+      "sha256": "7725e5e7d7158930844d525341687f7c6e6bd03ae1cf752b237de871ed4860ab"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/account-reproduction.json",
+      "bytes": 80,
+      "sha256": "b5bdddb526fe5a4a6628fd178f2c31035be73acf41af4643f2d67027eec7364f"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/before-account-switch.png",
+      "bytes": 190701,
+      "sha256": "0a18c74d23dd801f1f9f187637507cba8f8df374afc78a86f3552c4caee74274"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/before-collapsed-validation.png",
+      "bytes": 81523,
+      "sha256": "7463af4af3c6bda8dadafb5b9d3ef25709b9ccb0cdbfb4e043e3491778b9855b"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/before-confirmation-320.png",
+      "bytes": 31441,
+      "sha256": "f3fa1e720891929d1980e6d8e32f59ffc4b89eb33c4f5a9c168a891f63f37c6e"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/before-confirmation-390.png",
+      "bytes": 32305,
+      "sha256": "dffaa01614ee419fa5f2ff3689fee01e5ba33b8bcfe0389dd5dfa78852e6e24d"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/build-equivalence.json",
+      "bytes": 1052,
+      "sha256": "092ee9b8dcca6f05e913d8f5f5792009a9a67bffeee1ffe4098d19d2fc947a3f"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/build-final.txt",
+      "bytes": 573,
+      "sha256": "f7f3a9011174bafe80b6484e8c39b903f2299f1652fafd27c9b161bd99d6430b"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/chrome/after-admin.png",
+      "bytes": 68384,
+      "sha256": "21aa4a823c6f72d7ffc0e1f1d1f13b3e9d5e68b1d5046597806fb1ed9f7d5fee"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/chrome/after-confirmation.png",
+      "bytes": 76730,
+      "sha256": "6408876ae5bfa26e025896a94af5c1d175937d336273b0cae39537f8372c3780"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/chrome/after-dashboard-desktop.png",
+      "bytes": 191432,
+      "sha256": "a113f66fe009228147a6864e8abf09e551f8fadb6b963e7b3ad8c66299a2ef8c"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/chrome/after-dashboard-mobile.png",
+      "bytes": 139872,
+      "sha256": "1dc457238f89c4c84260d4c4cdc30134751b576b34b99920c08e8b079c3b9862"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/chrome/after-editor.png",
+      "bytes": 102200,
+      "sha256": "47a4b3255a46a2bd4bc533e6ba7d21637211cb1d19013f65c6d75ad9203c9277"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/chrome/after-lesson.png",
+      "bytes": 150558,
+      "sha256": "c5882d380ceb8cd25d988e940ddd833b5aca358ded5d66798c1fbdc9a3a73632"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/chrome/after-library-mobile.png",
+      "bytes": 146033,
+      "sha256": "c717208b71b01e5d2233871a4ff427fc99e79ac84a70a32d0b65c04352ad54e4"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/chrome/after-quiz-result.png",
+      "bytes": 191117,
+      "sha256": "ab1330b5f181da0bdb9a618109ca9af2b5151bd3e5e4332e29138e7fa05508a0"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/chrome/after-quiz-selected.png",
+      "bytes": 148840,
+      "sha256": "df05d8a282bbf6f342336f1727e0a9f2deecb323f13c456debad4f7fca1a4f3a"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/chrome/confirmation-mobile.png",
+      "bytes": 18630,
+      "sha256": "1e91dab0895a826209d4ee3eab11dc7bc30240270375a22609e37f869e6accf7"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/chrome/dashboard-desktop.png",
+      "bytes": 143125,
+      "sha256": "cc060f21b0ff4cffee6f454407c647408de715f1d41f7118b4a6957a037f88c2"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/chrome/editor-mobile.png",
+      "bytes": 23958,
+      "sha256": "114bf1ad776802ea3fe8e814c187e57509d9c2ac90e45c93da86ae0c2de88c71"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/chrome/failure.png",
+      "bytes": 143125,
+      "sha256": "cc060f21b0ff4cffee6f454407c647408de715f1d41f7118b4a6957a037f88c2"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/chrome/final-integration-results.json",
+      "bytes": 2369,
+      "sha256": "9cbef9328b6ecce83444225dce6e3e51e14531aebd636c220de437579d1ab4bb"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/chrome/initial.yml",
+      "bytes": 7780,
+      "sha256": "d4cee87fae649615a6ce2c409ab3b5056dc5d596684ce1921253c3db355f69a7"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/chrome/motion-results.json",
+      "bytes": 3083,
+      "sha256": "cfb9fac93fafd5bda9b5e6b3eb1fbac94769191bd0d8cabda8450e8ab785bc98"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/chrome/quiz-result.png",
+      "bytes": 96349,
+      "sha256": "b15ccfd4648bf50d53505633eff6afa79de219c3c8aba75013b1d72aa3df485f"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/core-results.json",
+      "bytes": 3971,
+      "sha256": "9225e4a457bf53d72cf45d35844e245577a9baab09094ebdd6dd06cbec88babd"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/core/01-dashboard-desktop.png",
+      "bytes": 191505,
+      "sha256": "fae30fbc337843fae9f9ed516608bc1a4b3517f5a972eea31edcc7f09f985b89"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/core/02-library-desktop.png",
+      "bytes": 219830,
+      "sha256": "11f05adc4179267d7b26ceca22ff48090f9644e967d4dc90c798cafa7ff0c44a"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/core/03-lesson-desktop.png",
+      "bytes": 150554,
+      "sha256": "cb5a37a22e987a019e53a395ed8acc94196e5c2a8a18557b3b33c856eb1dd640"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/core/03b-video-playing.png",
+      "bytes": 150554,
+      "sha256": "cb5a37a22e987a019e53a395ed8acc94196e5c2a8a18557b3b33c856eb1dd640"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/core/04-quiz-result.png",
+      "bytes": 223500,
+      "sha256": "b60d94313ed82ebaf9d977bf38fb3d7e5304c5ba4ea20cf8b8968c792bbe3c41"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/core/05-profile.png",
+      "bytes": 83345,
+      "sha256": "e7c852fe38da802d182049416757753dd6e3e1342dd517426af00cbbd98426b8"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/core/06-dashboard-390.png",
+      "bytes": 107027,
+      "sha256": "ac049ba203de779a4de9b3cc8ca8cbeddd48439d1b8bc2fb86680c8e474a3f8d"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/core/06-dashboard-768.png",
+      "bytes": 145374,
+      "sha256": "dcd2ea68c49f22f7f1c78468b0ecac427488bd69e13ff0cfc76bffbf4c9a1ba7"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/core/07-library-mobile.png",
+      "bytes": 161493,
+      "sha256": "dc3b287f430299079830be794eee71a4459d820bbc20ab4fac6b18ee56f6852c"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/core/08-editor-preview.png",
+      "bytes": 93986,
+      "sha256": "1c87b0638628f5b9aae621ca8b724cc9a99344bd83a92e94e63b07cde0d7713f"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/core/09-editor-submitted.png",
+      "bytes": 151706,
+      "sha256": "b5c35b17f739a727d3479a8fb14676506582bef916a6ca4431f34e904f12f8ef"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/core/10-admin-published.png",
+      "bytes": 162567,
+      "sha256": "f1ff7f9142b6af310857d9f8689ec9d4e2e2d4e8386e0bab9878ee40ab63928e"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/core/11-admin-audit.png",
+      "bytes": 232889,
+      "sha256": "729e77c867348ff3d4f7a3dda6fb96fd94f66a139fea5bfe17040a27b4e51358"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/core/12-admin-analytics.png",
+      "bytes": 69545,
+      "sha256": "c293ca8b643f75fd0319de311275dedfd19bc0273acf0d2675dffbd332b79e5e"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/core/13-admin-390.png",
+      "bytes": 39496,
+      "sha256": "58933897cf9c9a5889b635ad3b136ca7137b8f866c0d336298f247884a7aeef0"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/core/13-admin-768.png",
+      "bytes": 64161,
+      "sha256": "87a146e8fadaabfa9adb699256376ab41f4ae1a27265a0578b841a0fce7d268e"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/core/14-editor-mobile.png",
+      "bytes": 115723,
+      "sha256": "f13632929aec7f624596de0a0361375f19fa24034f292a7e21ca6f31beb806a4"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/core/comparison-desktop.png",
+      "bytes": 566883,
+      "sha256": "8640e6945f5b43eda516e54df36576bb0e5af91129f8ebb5762b2943f6225e00"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/core/comparison-mobile.png",
+      "bytes": 174554,
+      "sha256": "fef83b5078c61750b3bf7b903f335b03c9e0b59cf8f94fb8a396777a6dcb7c2d"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/core/comparison-navigation.png",
+      "bytes": 21594,
+      "sha256": "e373517ab812f49471f51c2196667326dd4373fb867caf2d361790322cb7c0c2"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/core/comparison-tablet.png",
+      "bytes": 278296,
+      "sha256": "e0a70959dbb7a5cd697bfc4b1fa3e426adef5d6515c652bf8b7d2511b72cfc54"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/core/dashboard-desktop.png",
+      "bytes": 143416,
+      "sha256": "543b9f0f704301b1912554f1a620010a5452fbbb8ec3352a265284f8a456045b"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/core/dashboard-mobile.png",
+      "bytes": 61246,
+      "sha256": "d27dbeefbc4fd7a3c60d951916481f37c1ddc76125bcae3d118f371139684c8b"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/core/dashboard-tablet.png",
+      "bytes": 98946,
+      "sha256": "0d0935a45e405075f05ca9a7ee7b7c165262f797a9949f82f59ce2a925af7b22"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/core/initial.yml",
+      "bytes": 7780,
+      "sha256": "3d83aee83ca99d21631f34571fada12cb54031abbfbf0ccf236d1c6d534b117c"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/core/lesson-mobile.png",
+      "bytes": 171244,
+      "sha256": "e797e0e274c4701d8b3065aafffa398b5a4de11e83587fd3f35db83a00473337"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/core/library-mobile.png",
+      "bytes": 38812,
+      "sha256": "b5b915da9503eb7364014940ce3c4bcf29106b33db1b3cf99a98b9b621a5017d"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/core/owner-dashboard-desktop.png",
+      "bytes": 143307,
+      "sha256": "4e7f2723f4708add25f991501f9390492ceef75d1d764a7a5396aa582d087978"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/core/owner-dashboard-mobile.png",
+      "bytes": 61219,
+      "sha256": "1d4e8e5800acb5813b8b3c01c54f7d432b4b777f8f666fff2ecc620baff90746"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/core/owner-dashboard-tablet.png",
+      "bytes": 98937,
+      "sha256": "e7efb05417b5f24356e73350faaf59f3854ba0a0fc9f6c8090a9d7c21f95b0b3"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/core/quiz-mobile.png",
+      "bytes": 44948,
+      "sha256": "7f4fa1c47ca26582453ee465b1d3d4452219967a908582944fbfca014abb5ff1"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/core/reference-desktop.png",
+      "bytes": 377229,
+      "sha256": "dfda2526cfbfd5017371cdf12d663c3830c6ff7c252ee63131febaf94a3d4509"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/core/reference-mobile.png",
+      "bytes": 115438,
+      "sha256": "340045f3b497e9865c20feaf70837d2cadc0b629c586e0ede491a98dfb726323"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/core/reference-tablet.png",
+      "bytes": 175129,
+      "sha256": "d1c007e0233ebcf6c07bf688faa8c3ee052c1f0eae02c111ab747d23a72c31f2"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/evidence-manifest.json",
+      "bytes": 22453,
+      "sha256": "2cea14c3a325908d7e6a2bc9c1df9b97d52d24421c9003e00971156679e6128e"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/final-library.json",
+      "bytes": 293,
+      "sha256": "b2f83a3d81ded04c4b6d6f02b28d8e3b45aa1285efb2ff28522c3fd8b7ea78a7"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/firefox/after-admin.png",
+      "bytes": 70012,
+      "sha256": "4f17c3007d0dd0ccf9a8d276938254bf49d14af4b60f8e4867a5421c575d27de"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/firefox/after-confirmation.png",
+      "bytes": 75829,
+      "sha256": "1f2adc561ea9ee608f1cbe28d463e9e938e2b0363a2633491515a0993d40e44d"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/firefox/after-dashboard-desktop.png",
+      "bytes": 202859,
+      "sha256": "e4f474879a6da14b5757d5f851eb46a1b2f1c700204becbc586f816f1ada89d4"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/firefox/after-dashboard-mobile.png",
+      "bytes": 106773,
+      "sha256": "a68a79fef5e7c5b984d326e8836b4a2d2d748317180996e1b5106016780172bc"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/firefox/after-editor.png",
+      "bytes": 112373,
+      "sha256": "d5ef291821821a1264c8345934c51cb7c832c1652db16a0ed3593c1204cc5520"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/firefox/after-lesson.png",
+      "bytes": 149160,
+      "sha256": "3e75c043d7fcef2f21ef6eb2e8b859d1fbc2a473f6f4ee8c0af56e5edd9a0234"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/firefox/after-library-mobile.png",
+      "bytes": 138132,
+      "sha256": "3365ff50f006e52e9490bc731ec16192e10ee01b7c3863a81fd87a6a69708208"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/firefox/after-quiz-result.png",
+      "bytes": 204130,
+      "sha256": "f16efd927b05b13c481669227a499150582b76cf8cc2c014de9ca7c26f408065"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/firefox/after-quiz-selected.png",
+      "bytes": 157655,
+      "sha256": "5f012e8a72b07ff0fa83d64cb05b52f8916b9eeb1e7feb9a361487cdf6759a09"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/firefox/confirmation-mobile.png",
+      "bytes": 16505,
+      "sha256": "2a410ad2bce29022d5fd7c7598f5fde43a6a93f1a312879d66953f27eade062d"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/firefox/dashboard-desktop.png",
+      "bytes": 157116,
+      "sha256": "5f5cc2fb232fce0580c792dfd14f1d56637c6f747c0fe271e065eeb4e9dd7275"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/firefox/editor-mobile.png",
+      "bytes": 22762,
+      "sha256": "eeb1a2b11283badf300ce3472f379891ac81fb4241b858c500260af3eb43071e"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/firefox/failure.png",
+      "bytes": 157116,
+      "sha256": "5f5cc2fb232fce0580c792dfd14f1d56637c6f747c0fe271e065eeb4e9dd7275"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/firefox/final-integration-results.json",
+      "bytes": 2330,
+      "sha256": "b0e98b26f329fa8a4a192abc70c6f961f868a7a168ede1b528e55074167cb03f"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/firefox/initial.yml",
+      "bytes": 7781,
+      "sha256": "df7f46e1ca92da63909bace80b00e586486a2f9ac53fd411e9f793de8006f32e"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/firefox/motion-results.json",
+      "bytes": 3083,
+      "sha256": "cfb9fac93fafd5bda9b5e6b3eb1fbac94769191bd0d8cabda8450e8ab785bc98"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/firefox/quiz-result.png",
+      "bytes": 97666,
+      "sha256": "9224a44990478df458e0f25bf95c198a78f33d700d33cce914791c1dc554edcf"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/http-final.txt",
+      "bytes": 2515,
+      "sha256": "4f9079ba4a8e2dc8682c6e7b326abce13669cff6c7624f1c5b042ee28146418a"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/http-results.json",
+      "bytes": 107,
+      "sha256": "f0fd0f9e1aa5f70db71ecb26e1867e1653e4205b71107a314e50638633645ba1"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/identity-reproduction-notes.md",
+      "bytes": 2743,
+      "sha256": "1c46fcc4aade78b5454cfebbec3ab293a85c2188b7036a5d2044c575e2b9eaa3"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/independent-security-notes.md",
+      "bytes": 3339,
+      "sha256": "da1d661f10e58acda31922ab69e80746cfb8333796eb83df8ebd3a7da261a4a3"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/initial-defect-reproductions.json",
+      "bytes": 249,
+      "sha256": "1e5a6e79d9e98e83021554ded783ee9f436bbe9db16a5ed381eb7aefb8433093"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/initial.yml",
+      "bytes": 7780,
+      "sha256": "4f3329d5be5a76f4cb403c173dd5b1530e9195b266f219c118b20cdcb8d6807b"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/integration-status.json",
+      "bytes": 13986,
+      "sha256": "31aad07c92816aef81b81fb7f87fc753f9ec08446217012793f5c69c4d95b0e8"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/lifecycle-final.json",
+      "bytes": 154,
+      "sha256": "9ce5dcdd42531ab05ab85c072fc1f304cae0db7e543f2b1dec2815dc3ced1e1e"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/lifecycle.json",
+      "bytes": 155,
+      "sha256": "81b738eea02686af57a8c0f5c1361f0e8221deebce8dba9868e4d5aaa6f7b395"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/lighthouse-desktop-summary.txt",
+      "bytes": 1681,
+      "sha256": "c2ca4b94dd945d7ff9d80e37804c8caef26c7c0df6e0c155f61f4e9d3aaa6aef"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/lighthouse-desktop/report.html",
+      "bytes": 313896,
+      "sha256": "dbe3fcc283bb989fff892d51a1a290aa970f50407124e20cdc8187a75b52bc2f"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/lighthouse-desktop/report.json",
+      "bytes": 175708,
+      "sha256": "b3a5454e4d754131ed0e8ff25982a51c1644b31d8ace629ba87449714fd912a9"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/lighthouse-mobile-summary.txt",
+      "bytes": 1954,
+      "sha256": "bd2198e65f66b6c1d8ecebcf252b0d9ce568f781400a41c35d1ffecd2ac32cb5"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/lighthouse-mobile/report.html",
+      "bytes": 313922,
+      "sha256": "803cd413683ecf00837edd410dae2dafec35cc9688d2a1e1e0d57eb933c75e01"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/lighthouse-mobile/report.json",
+      "bytes": 175768,
+      "sha256": "5f56cd6fa5330c3202a89741bab12eec5ee0f0451ac9236c74f1c7385d1aacf1"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/local-fixture-cleanup.txt",
+      "bytes": 229,
+      "sha256": "776b03242de0ed55907c5a88490ee3df0505745b88a85a15fa4cf57ef103624c"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/performance-final.json",
+      "bytes": 118,
+      "sha256": "2723c89be576b33862647dc08c210c123699993615439e324e553b1a4291af29"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/performance-trace-summary.txt",
+      "bytes": 8909,
+      "sha256": "0a19fd3259b0a1f6ecd9f13e197b28693ffcc226a6133193f438305bf71a7ef7"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/performance-trace.json.gz",
+      "bytes": 1007932,
+      "sha256": "90ac65720ae05767f77d9923235da9c999a8bdc048042ba5f5e6947aa9fa2fbc"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/performance.json",
+      "bytes": 132,
+      "sha256": "54564c8d9e7ba53774746031a7f1914db92b474f77f5cf594aa4136f0cc5176f"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/playback-hidden-test-failure.json",
+      "bytes": 888,
+      "sha256": "0965d977effecde77d8431d4b82392b080e57b27b74caa81636d4a529eb48054"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/publish-after.png",
+      "bytes": 51000,
+      "sha256": "2333b7217b030cf06715d270634034780f4b309bea4ef06ccc1300d496cb0be5"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/publish-before.png",
+      "bytes": 69662,
+      "sha256": "415fadcdf150909262609b0ce8988eef5780a5b71a5ee8cc3cf9421ebdce743a"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/publish-diagnostic.json",
+      "bytes": 199,
+      "sha256": "935464c424bbc8acfe782c8ffaf75e785f7773de5e486c6045c870c1a8967c39"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/quiz-touch.png",
+      "bytes": 521722,
+      "sha256": "7763e1075fbb434532d0e6d0c0eba6715c3da44ddd374257881103f3d7b5d05b"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/recording-0.3.png",
+      "bytes": 302725,
+      "sha256": "28e370efeaf10a303f19f4ca46104118ec90cf53f0afbd2b0051c2c8ae0d3b1b"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/recording-1.4.png",
+      "bytes": 268018,
+      "sha256": "1d53901646804707a5ac98f66885afb825fca4856ec527484de43f076d05bcdf"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/recording-3.4.png",
+      "bytes": 247711,
+      "sha256": "a81b23891cee6d92ace1658d5bf35b0d317dbd5c529b1a5727cc97e5bb168e36"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/recording-5.4.png",
+      "bytes": 248686,
+      "sha256": "4c7a9a36ff35ebec0b9e2625376afb92d42c7e97c7688924a4fcc46f6ef1701b"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/recording-6.9.png",
+      "bytes": 288825,
+      "sha256": "b9cb57bed9048d9335a0c2eaf0581de24629ecc72dbafff96eafceddfae92ffc"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/reflow-analysis.txt",
+      "bytes": 906,
+      "sha256": "3f18a68b9dfc51599a86a9c81c2f5dac7971382225e4611ce4c41ca4c1199f6f"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/session-reproduction.json",
+      "bytes": 80,
+      "sha256": "c9dc09af804a1c24aaf6a4a77aae8691e13645d09c35d3b37e57f2a0551d9f2f"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/standalone-build-final.txt",
+      "bytes": 572,
+      "sha256": "8a06846ba37d469bacd012359bcc7af38a2696d0f2ca0846ef8a2ff95ee7182d"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/standalone-http-results.json",
+      "bytes": 107,
+      "sha256": "17c9351e5a94ab5926423845b76a4a1139b81b64b21f525083a7078ea829cf37"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/standalone-http.txt",
+      "bytes": 2515,
+      "sha256": "4f9079ba4a8e2dc8682c6e7b326abce13669cff6c7624f1c5b042ee28146418a"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/standalone-install.txt",
+      "bytes": 149,
+      "sha256": "645bdc54eff3cc118f449e23add2121159f1cc8140acd59fcb17d96bfb40f146"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/standalone-migrations.txt",
+      "bytes": 9011,
+      "sha256": "849152ac2116ef1caab58df3f35042fec27d0d3cebb380df26fbd52822864ecd"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/standalone-typecheck.txt",
+      "bytes": 84,
+      "sha256": "64084d3960c77c611191e78898f6f1c39b12275e4498adc2ddedc1b31fc76c10"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/standalone-ui-results.json",
+      "bytes": 2369,
+      "sha256": "9cbef9328b6ecce83444225dce6e3e51e14531aebd636c220de437579d1ab4bb"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/test-summary.json",
+      "bytes": 3076,
+      "sha256": "0d1438b495b6e48b19b2b4aabab4057d543cdc3e189cad6771cf9af56e0c9d45"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/touch-initial.yml",
+      "bytes": 6737,
+      "sha256": "b04ab05034a798035157f13817d0122c6235decfb0448f942c427ee5a522e713"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/touch-results.json",
+      "bytes": 198,
+      "sha256": "d465240bad0cabc8436b13da05aa4c43e43c9dfb40f08c2c1edfd80cfe1ff002"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/unit-final.txt",
+      "bytes": 9388,
+      "sha256": "6a18de9a1da54b330572ea6ab7376f2156fc4650ca13d904a1f5e4c7f091fc4d"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/video-diagnostic.json",
+      "bytes": 460,
+      "sha256": "f9f8c62145c1140ee8150322f5807257d36998fd1bbeb9adfdda6e60da9d4e89"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/webkit/after-admin.png",
+      "bytes": 62556,
+      "sha256": "03500c36eae4f353cde6d4c8bb8615e03cab225b96f037782e0e3fac351b4d7a"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/webkit/after-confirmation.png",
+      "bytes": 71697,
+      "sha256": "ec8ddd169cc9681d046f853f38db3adf8976779c59647c01b0c3c431511db21a"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/webkit/after-dashboard-desktop.png",
+      "bytes": 181785,
+      "sha256": "216eb343bc7eec770b5d2b7aa1d8d87f6aab28ec64789e8cbfec888f3805d21d"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/webkit/after-dashboard-mobile.png",
+      "bytes": 92712,
+      "sha256": "ec7dc82b0e3c9db4b7cd6924ba711521d2422db199df3e645abc0f0cc01c2e77"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/webkit/after-editor.png",
+      "bytes": 99012,
+      "sha256": "6448526f58a70210fe35dfdc4064e7c900b5d479ec2d08478ef7ba449264e5bd"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/webkit/after-lesson.png",
+      "bytes": 133249,
+      "sha256": "28f04907a0b2c7193fd80852c34276c8ef4e9688c64c8f585217803422763d66"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/webkit/after-library-mobile.png",
+      "bytes": 131339,
+      "sha256": "c03eb0cb855a2a1280c558a1f89ba460ed5140b6e2a317c6018b8c1de45215fb"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/webkit/after-quiz-result.png",
+      "bytes": 178178,
+      "sha256": "7d123248aa2ec315ed5247e1adfbcc75942481b5d326ccd9b4dd2b85e0b4b588"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/webkit/after-quiz-selected.png",
+      "bytes": 137077,
+      "sha256": "28d5932ae0017a9ce83f3b6de3f576ca880eee2db0d0076ec71468ddeb3fe653"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/webkit/confirmation-mobile.png",
+      "bytes": 16485,
+      "sha256": "f1cf823b3692b3ddde520de510f0eb39f52fee4ff205260155384d618e48880b"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/webkit/dashboard-desktop.png",
+      "bytes": 138497,
+      "sha256": "0fb595c15fc013bf30f71ddaf781a359953be23f582082b952e4539b0b83a9f5"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/webkit/editor-mobile.png",
+      "bytes": 21891,
+      "sha256": "a2e669bdaaa18680fd936e868f2e88352227dc70e79a94b91cc17c4dc2a6eb58"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/webkit/failure.png",
+      "bytes": 62950,
+      "sha256": "4aaaec8ab88e2954ade33fc7d87bad9d8eef2c0da2e90c5baa30048b98865265"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/webkit/final-integration-results.json",
+      "bytes": 2367,
+      "sha256": "9a94e1023726cb3e10558c1eed6701b79bc340494009db9162578214b45c77fe"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/webkit/first-motion-failure.json",
+      "bytes": 3152,
+      "sha256": "9f849eef18113a0871f370eaff0cb824ab0358e0049fefd516e647e95adb8d65"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/webkit/initial.yml",
+      "bytes": 7695,
+      "sha256": "d2bb375c29c5e6216a5408643ef033e925e00520208d934ed067916fcba4341e"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/webkit/motion-results.json",
+      "bytes": 3083,
+      "sha256": "cfb9fac93fafd5bda9b5e6b3eb1fbac94769191bd0d8cabda8450e8ab785bc98"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final-review-evidence/webkit/quiz-result.png",
+      "bytes": 88801,
+      "sha256": "2894df39a0e5e8e3aa054d523540a07ff433e07eba39da7abc6a13d47a57173d"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/final_integration.js",
+      "bytes": 16068,
+      "sha256": "4af417803c9d5f7ef9dff76ad442161fdfa5a53a238e57be4f5f65077d5950f3"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/motion-evidence/after-admin.png",
+      "bytes": 68389,
+      "sha256": "9fdf5714d6921837221b76254d9a60b518d7ad07f07495c60ed6ddce393753f4"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/motion-evidence/after-confirmation.png",
+      "bytes": 75937,
+      "sha256": "7919e028099d8f9610558caa8eb0b66e70359f820c5a7f1e00fd8a82a00c45e6"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/motion-evidence/after-dashboard-desktop.png",
+      "bytes": 191474,
+      "sha256": "61a8aa98ef8a3a43024c06e6f97145879a609c28c5f57c3fd44d0c1b96a12376"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/motion-evidence/after-dashboard-guest-mobile.png",
+      "bytes": 116993,
+      "sha256": "7bb4eeabf37f9cc3b8bfae47e628b8d97bd464ee104256bc527cab3a3b310045"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/motion-evidence/after-dashboard-mobile.png",
+      "bytes": 143124,
+      "sha256": "b52aa406417c2691bb4362407c0058c2e9772aaf367d0338542ee824ef2d927b"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/motion-evidence/after-dashboard.yml",
+      "bytes": 8122,
+      "sha256": "ebbb0ab5d795fbae8b094119919513001b41d5811d10d0fbc285691ab6411c61"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/motion-evidence/after-editor.png",
+      "bytes": 102312,
+      "sha256": "c1cf915cd2711db1de8ed968a55cf79de3ce862c9890f42d49205bf32dd2fbdc"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/motion-evidence/after-lesson.png",
+      "bytes": 150637,
+      "sha256": "d7f77cba63d02c0318f7e39ff246a7978986f73a57b7ec830795ce370e8a73a1"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/motion-evidence/after-library-mobile.png",
+      "bytes": 205533,
+      "sha256": "395c4d11ab5869c4ab323766d6b7d6da604d16c95cf3207b021cc28abc271f3a"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/motion-evidence/after-quiz-result.png",
+      "bytes": 191117,
+      "sha256": "ab1330b5f181da0bdb9a618109ca9af2b5151bd3e5e4332e29138e7fa05508a0"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/motion-evidence/after-quiz-selected.png",
+      "bytes": 147875,
+      "sha256": "db660eee7a70872b67b485e7eeeb63905b45feae083acc9ead58beea6629bbe5"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/motion-evidence/after-quiz-touch.png",
+      "bytes": 521636,
+      "sha256": "e64ccf357aa3acf8bdf9e84f3860d3ca423c470edddeecba1c002352291c5ade"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/motion-evidence/before-dashboard-desktop.png",
+      "bytes": 191593,
+      "sha256": "48e5948c886b765060a373dbaab347f1ce9257a9b289db5a5c864263515bc404"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/motion-evidence/before-dashboard-mobile.png",
+      "bytes": 124466,
+      "sha256": "8b2887f1f01a7d882649e9feb1472e6565c4f541897124e7968df24af3888c87"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/motion-evidence/before-dashboard.yml",
+      "bytes": 7891,
+      "sha256": "e92194b6aaa267726c436b3293e3e8e2ad0d68e229ec6c6ec82362cbacd8efec"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/motion-evidence/before-lesson.png",
+      "bytes": 148388,
+      "sha256": "654e42eeaa5e0a81c2b14bf5a09b464c05a819556c0e2b0ca632d36b835c3a54"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/motion-evidence/before-quiz.png",
+      "bytes": 144177,
+      "sha256": "e01b5b443b738cc073f69d773e27619d90f4970ab3971707226b4c6d94195802"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/motion-evidence/chrome-performance-initial.json.gz",
+      "bytes": 893706,
+      "sha256": "cad36f2979f7e37ab524832baa33dbccb8e9a575552f13caa5082d609d46f5f3"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/motion-evidence/chrome-performance.json.gz",
+      "bytes": 982308,
+      "sha256": "bed2b1501fde6192a7645f10fc627dc3054283ceba8f5a610b150c65074b73ab"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/motion-evidence/devtools-reflow.txt",
+      "bytes": 921,
+      "sha256": "3680eeda77546c0dbec10ce73f0058d0bd1853429af003be204291847c25db7d"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/motion-evidence/devtools-trace-summary.txt",
+      "bytes": 8997,
+      "sha256": "04e3b04aa4ad9f7448bd8824ebd39373e29cbc330c1ae17400dbae3e5d37b4d0"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/motion-evidence/editor-repro-results.json",
+      "bytes": 6060,
+      "sha256": "7b4820fa572466a674294d5b8d40243c207bb3d40b8b06e95fa4740e3cea14d8"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/motion-evidence/evidence-manifest.json",
+      "bytes": 6611,
+      "sha256": "a14e4a7b2cc3f353929721c1388063701ccd7cd9090058bf191f69550c404282"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/motion-evidence/existing-journeys-results.json",
+      "bytes": 1226,
+      "sha256": "84dd6f1f92789719b764fdf60340c272db2c142d5427b9d4a13b9d68e1493351"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/motion-evidence/initial.yml",
+      "bytes": 7780,
+      "sha256": "4f3329d5be5a76f4cb403c173dd5b1530e9195b266f219c118b20cdcb8d6807b"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/motion-evidence/lifecycle-results.json",
+      "bytes": 155,
+      "sha256": "81b738eea02686af57a8c0f5c1361f0e8221deebce8dba9868e4d5aaa6f7b395"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/motion-evidence/lighthouse-desktop-summary.txt",
+      "bytes": 1703,
+      "sha256": "1c7c6c8c160c83a5b6a5da8bd18ac5dc80d10822638993bf6780d88acd033b74"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/motion-evidence/lighthouse-desktop/report.html",
+      "bytes": 313755,
+      "sha256": "d2ae90136208d396e4d6b148b4ce702040cefbf9a9382679ca54ec0a32a3313a"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/motion-evidence/lighthouse-desktop/report.json",
+      "bytes": 175567,
+      "sha256": "a95db332ba751845708ec83384d822e7b74e36e5c15b8f9b35e6fcaec6fa9ff5"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/motion-evidence/lighthouse-mobile-summary.txt",
+      "bytes": 1957,
+      "sha256": "4a675ecdaf12a3d296307e1dc539e200d85503c4e5206a451d01c15c4ee19e2b"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/motion-evidence/lighthouse-mobile/report.html",
+      "bytes": 313733,
+      "sha256": "bca0600ffa9c0d756961aa32ffd022a50294f2a965fb740d6cca278f0825854d"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/motion-evidence/lighthouse-mobile/report.json",
+      "bytes": 175579,
+      "sha256": "eb38912e7f9f8b7ec4ba99dbfffe8316644492230774baa539fddb2a9cb2bb36"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/motion-evidence/motion-interactions.webm",
+      "bytes": 419806,
+      "sha256": "b4fa6de1468d906aa7a44ff0b57a564beee35aa63afc403a7d043a6d94c8b942"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/motion-evidence/motion-results.json",
+      "bytes": 3044,
+      "sha256": "874ba6f8e5096b5c4babb3fcf4d7cfa09e21a06f0d6652d7cf49476a362f33c9"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/motion-evidence/performance-after-1.json",
+      "bytes": 119,
+      "sha256": "46795a5d65d5b5902802e0119858f1cf1c5c97172f4c42e7efb860f41b271545"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/motion-evidence/performance-after-2.json",
+      "bytes": 119,
+      "sha256": "07657cf68d361f6c4fcb2ced5f585e52fd5f5d320ea5b3e312ccb7810babe488"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/motion-evidence/performance-after-3.json",
+      "bytes": 135,
+      "sha256": "b96d7d355a138f71295547337b5b62a09d5bbcf9468849a9275265582defef37"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/motion-evidence/performance-before.json",
+      "bytes": 131,
+      "sha256": "974cc418ff91f8c5cad53299ea2dbbdb1a75fe6d6e1b0279984d90ad80d3a4ec"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/motion-evidence/performance-final-1.json",
+      "bytes": 120,
+      "sha256": "fd4f6085dcf08f93770cc42ec84f3171ceb44697e3154844e515a2a2c05f8b04"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/motion-evidence/performance-final-2.json",
+      "bytes": 120,
+      "sha256": "53ef2e79e58658c36c789f975a8dafb2c40790735475db44bd332e2653e61a53"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/motion-evidence/performance-final-3.json",
+      "bytes": 136,
+      "sha256": "59c36e5d42cf3ceed586fdcbb7c76de562c539a603de3f8e0f75089689512fe5"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/motion-evidence/touch-results.json",
+      "bytes": 199,
+      "sha256": "3e2a40dc5cd536c27f2b6efe079946d10c9c8b52f9614c11a2b5e12e294f8f4a"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/motion_lifecycle.js",
+      "bytes": 1479,
+      "sha256": "66c3e5fb7632e5d70aa04ce8a2f4c6d859c3cc045cd6c6289aff555fc7a7d002"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/motion_performance.js",
+      "bytes": 2222,
+      "sha256": "7beda4f6a749301fe348e9bb7e0ee209c877caf5d170f533df738a4ca00024e1"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/motion_polish.js",
+      "bytes": 18829,
+      "sha256": "d3628ffc0c4e191d1f238683b7cb343ef14232b46798315f25de2a54450248e3"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/motion_touch.js",
+      "bytes": 1534,
+      "sha256": "cec75f239ea9ca76bc66c9fab1ab37f0faf5f718150eb232daf3f9cb54e37ed3"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/e2e/run_motion_review.mjs",
+      "bytes": 3840,
+      "sha256": "ea6c6f94a53371f825697944e5572173ca1ef9bae152058ec8a349f8cde52c43"
+    },
+    {
+      "owner": "frontend",
+      "status": "A",
+      "file": "tests/learner_model.test.mjs",
+      "bytes": 2130,
+      "sha256": "010310f4b33eba9bc0859f671c62d1fba099f5b3193db270329624d5db0c46ad"
+    },
+    {
+      "owner": "backend",
+      "status": "M",
+      "file": ".gitignore",
+      "bytes": 252,
+      "sha256": "293476badd75c95da5f48e26bb7b83bc0f98714b3b8ceaf9fa5aafc1a253d59c"
+    },
+    {
+      "owner": "backend",
+      "status": "M",
+      "file": "README.md",
+      "bytes": 2034,
+      "sha256": "e9d41217e42ed7ad7c68c9919f1039c21076f5d2bc830f9c4d49b32e09b53187"
+    },
+    {
+      "owner": "backend",
+      "status": "A",
+      "file": "docs/ARCHITECTURE_AND_SECURITY.md",
+      "bytes": 7066,
+      "sha256": "13047d8e6d1842c7f9827d44ad312d8d19db006a53891001b8a3eec9f19c3888"
+    },
+    {
+      "owner": "backend",
+      "status": "A",
+      "file": "docs/CHANGED_FILES.md",
+      "bytes": 16947,
+      "sha256": "ae3a5faa1653b9add20ba1c3bee8c6a33f9826cb13d52b2ee30b80981696a35a"
+    },
+    {
+      "owner": "backend",
+      "status": "A",
+      "file": "docs/DESIGN_QA.md",
+      "bytes": 5876,
+      "sha256": "19b0804a4e0ae530b2e4759e984505920c90df1f79761849db10e5913cf19095"
+    },
+    {
+      "owner": "backend",
+      "status": "A",
+      "file": "docs/ECONVERSE2_API.md",
+      "bytes": 5361,
+      "sha256": "beca9eb375cadb948a8b2dff900a73550d975a0d05ff9d5484378831d3265f82"
+    },
+    {
+      "owner": "backend",
+      "status": "A",
+      "file": "docs/IMPLEMENTATION_REPORT.md",
+      "bytes": 7369,
+      "sha256": "87e7406f25825d59e3d0a6fbf316625b6e599e53d950df2c5dd3136b2bb5a341"
+    },
+    {
+      "owner": "backend",
+      "status": "A",
+      "file": "docs/LOCAL_REVIEW.md",
+      "bytes": 11689,
+      "sha256": "d1df115fb4eb3a895943b70723f17ba5fac4743407da261913f412c7ffeccb05"
+    },
+    {
+      "owner": "backend",
+      "status": "A",
+      "file": "docs/POST_REVIEW_MERGE_PLAN.md",
+      "bytes": 28154,
+      "sha256": "5dd2e1dc36926308f1af37a66fd8539259d242bf2db24b662e6dcd548dda9660"
+    },
+    {
+      "owner": "backend",
+      "status": "A",
+      "file": "docs/verification/POST_REVIEW_SOURCE_INVENTORY.json",
+      "bytes": null,
+      "sha256": null,
+      "selfExcludedToAvoidCircularHash": true
+    },
+    {
+      "owner": "backend",
+      "status": "A",
+      "file": "docs/verification/POST_REVIEW_VERIFICATION.json",
+      "bytes": 38605,
+      "sha256": "43187a78c2d90532195f3baea7d62f3e5ba052846254314348f3f92dc27d0b91"
+    },
+    {
+      "owner": "backend",
+      "status": "A",
+      "file": "docs/verification/browser-review.json",
+      "bytes": 3442,
+      "sha256": "9924684188497322d6b04cfeb1426f53f78430e25027dee85e05960d74787f18"
+    },
+    {
+      "owner": "backend",
+      "status": "A",
+      "file": "docs/verification/local-http.json",
+      "bytes": 107,
+      "sha256": "1de8ef5ed657f519197339b0b219b7f037f53dc656d185b06d5dc5fa0b1123fa"
+    },
+    {
+      "owner": "backend",
+      "status": "A",
+      "file": "functions/api/_middleware.ts",
+      "bytes": 2361,
+      "sha256": "6b4749fd846853137a446e51edd19d0b268af933724956a3116148f5a85409c5"
+    },
+    {
+      "owner": "backend",
+      "status": "A",
+      "file": "functions/api/admin/[[path]].ts",
+      "bytes": 7785,
+      "sha256": "b676422d79847f6819e41b68b6822a48cc261382f5fd33bbd693125008faed97"
+    },
+    {
+      "owner": "backend",
+      "status": "M",
+      "file": "functions/api/auth/register.ts",
+      "bytes": 3017,
+      "sha256": "b01c1ea866b79035fb6ec69a48181b8522a27ad704fca10812cbc7b9c3e5cad3"
+    },
+    {
+      "owner": "backend",
+      "status": "A",
+      "file": "functions/api/courses.ts",
+      "bytes": 924,
+      "sha256": "307d475dd3ec7043a7e8ee483aa70fb74a3ead2d3967681124ad4672286ab952"
+    },
+    {
+      "owner": "backend",
+      "status": "A",
+      "file": "functions/api/lessons/[lessonId].ts",
+      "bytes": 489,
+      "sha256": "994baf5c0222bd57e850dc69e9d79e90ab27f0f017bba975388d120b59f40a2a"
+    },
+    {
+      "owner": "backend",
+      "status": "M",
+      "file": "functions/api/me.ts",
+      "bytes": 1243,
+      "sha256": "7900f14224c0bee2a0df6dca53e7f23efd3e6a6b082113307357587fffd1cb2d"
+    },
+    {
+      "owner": "backend",
+      "status": "M",
+      "file": "functions/api/progress/[lessonId].ts",
+      "bytes": 2363,
+      "sha256": "44b1409025474042287febd2bffa5c7d5870461780faca878162fa0553feb4e5"
+    },
+    {
+      "owner": "backend",
+      "status": "M",
+      "file": "functions/api/progress/index.ts",
+      "bytes": 1531,
+      "sha256": "1fb23e5e69dd1815e640976bffa5f1844d4866e38721af2af3450ca59ac8c0d8"
+    },
+    {
+      "owner": "backend",
+      "status": "M",
+      "file": "functions/api/quizzes/[lessonId]/index.ts",
+      "bytes": 804,
+      "sha256": "fbae5896d9b8c3b53ff76e20850f414191d5d67a2890cfa591c0e7cb604164d3"
+    },
+    {
+      "owner": "backend",
+      "status": "M",
+      "file": "functions/api/quizzes/[lessonId]/submit.ts",
+      "bytes": 6597,
+      "sha256": "d4cf101cb1ca067e650db796937bc225971429c9587d38fb141f97bff9c03850"
+    },
+    {
+      "owner": "backend",
+      "status": "A",
+      "file": "functions/api/studio/[[path]].ts",
+      "bytes": 5223,
+      "sha256": "be81d4864b5f9951c390a30880c71bafedee361c9a5f54090e168a62ae82da9e"
+    },
+    {
+      "owner": "backend",
+      "status": "M",
+      "file": "functions/lib/auth.ts",
+      "bytes": 8054,
+      "sha256": "0d4371367ed17241e9b7d46f8ecc8123ccdcbdd44bc78e2232302f5f70e6107a"
+    },
+    {
+      "owner": "backend",
+      "status": "A",
+      "file": "functions/lib/content.ts",
+      "bytes": 6084,
+      "sha256": "8ced3b576dee063734b3268744e283de34e16804e12c2c084c49f93f076e1cf3"
+    },
+    {
+      "owner": "backend",
+      "status": "M",
+      "file": "functions/lib/errors.ts",
+      "bytes": 1392,
+      "sha256": "48da4ad9c96f4b733f15070641599c8d2e6eec56a7b02c6470b1e926070b2496"
+    },
+    {
+      "owner": "backend",
+      "status": "A",
+      "file": "functions/lib/http.ts",
+      "bytes": 2951,
+      "sha256": "537c3e891ce902e34f6539604e311694e261110e00c5a50e9c4040b69b610015"
+    },
+    {
+      "owner": "backend",
+      "status": "M",
+      "file": "functions/lib/types.ts",
+      "bytes": 3887,
+      "sha256": "c0e5f69923eee9968cd6af32c150fe7efd2adb66d0d6a6558d0817fdcc5222ed"
+    },
+    {
+      "owner": "backend",
+      "status": "A",
+      "file": "migrations/0003_user_roles.sql",
+      "bytes": 2538,
+      "sha256": "24d69fedb674633c50c066a29c95e1a4c9b190d5b07456ad3b19c1d35952f0ac"
+    },
+    {
+      "owner": "backend",
+      "status": "A",
+      "file": "migrations/0004_content_workflow.sql",
+      "bytes": 2075,
+      "sha256": "48d724727204bd254954c0d505b25c00d0ef62b03ee8d080f7ff29681600b064"
+    },
+    {
+      "owner": "backend",
+      "status": "A",
+      "file": "migrations/0005_migrate_legacy_content.sql",
+      "bytes": 44947,
+      "sha256": "f8070b3e88046e59ef71190bac97068f9828342ac9c9209b66c2972cfa0075a8"
+    },
+    {
+      "owner": "backend",
+      "status": "M",
+      "file": "package-lock.json",
+      "bytes": 86282,
+      "sha256": "6cf572c5888fb5fbae3226bad816df6f0ead34662aa8a96a78e5994c57da1044"
+    },
+    {
+      "owner": "backend",
+      "status": "M",
+      "file": "package.json",
+      "bytes": 1750,
+      "sha256": "73466b2d7082145e82611e5ac9ebba8a863a7c57abdfd5040c55cf51dbf2fb0f"
+    },
+    {
+      "owner": "backend",
+      "status": "A",
+      "file": "public/_headers",
+      "bytes": 471,
+      "sha256": "8684a4fb0c1b89e09ea4feee240f67f1f8fd27e6558a707c62065b5cb25b603d"
+    },
+    {
+      "owner": "backend",
+      "status": "A",
+      "file": "scripts/bootstrap-admin.mjs",
+      "bytes": 693,
+      "sha256": "a745364bc4ba0308350c946d5ab1a90e600633225484821e1b2eebf7a061cede"
+    },
+    {
+      "owner": "backend",
+      "status": "A",
+      "file": "scripts/generate-content-migration.mjs",
+      "bytes": 2583,
+      "sha256": "8282b8f4299483d56715c2446568f1063098175cba9a5df24801318313d931a4"
+    },
+    {
+      "owner": "backend",
+      "status": "A",
+      "file": "scripts/local-wrangler.mjs",
+      "bytes": 1314,
+      "sha256": "f19b3cec0391ecdec349946194a2760bb16b83f2a4a4cc79b2dea3419b573641"
+    },
+    {
+      "owner": "backend",
+      "status": "A",
+      "file": "scripts/prepare-local-review.mjs",
+      "bytes": 3242,
+      "sha256": "5eff67bfa85e87a5b506303cce762840c5fba6842c72b12263503e822969902b"
+    },
+    {
+      "owner": "backend",
+      "status": "A",
+      "file": "scripts/run-browser-review.mjs",
+      "bytes": 2489,
+      "sha256": "6ace5fc678033ed81a4ed6615baa81b6eeaa188819d3ac01612fc9087cef1130"
+    },
+    {
+      "owner": "backend",
+      "status": "A",
+      "file": "scripts/sync-integration.mjs",
+      "bytes": 4308,
+      "sha256": "9e37df500ec2f7eb7ffd48b66b47a6e89ac89e419039550e22e000e3c242f99c"
+    },
+    {
+      "owner": "backend",
+      "status": "A",
+      "file": "scripts/tidy-local-review.mjs",
+      "bytes": 1851,
+      "sha256": "f87999a861d5ae79927fd271dce52a37db7ca53fc1b1d3a1c1356847ec1df5d3"
+    },
+    {
+      "owner": "backend",
+      "status": "M",
+      "file": "tests/backend_foundation.test.mjs",
+      "bytes": 24694,
+      "sha256": "a9604f243d5f72fd3b7dcfa790405f4e98773751a007ee8c02a81a992a193743"
+    },
+    {
+      "owner": "backend",
+      "status": "A",
+      "file": "tests/cms_security.test.mjs",
+      "bytes": 18345,
+      "sha256": "1a1b9a4f13e69d9dfc92b4584a764e56b034d5e0fa3a51e202d44a4ff4221326"
+    },
+    {
+      "owner": "backend",
+      "status": "A",
+      "file": "tests/integration_sync.test.mjs",
+      "bytes": 1600,
+      "sha256": "9a61797cc43d70cebb9bd76a06303f7aa43c058e9e1344e048a9e083f94e40f6"
+    },
+    {
+      "owner": "backend",
+      "status": "A",
+      "file": "tests/local_http.integration.test.mjs",
+      "bytes": 10718,
+      "sha256": "284ec3f362fc3f9f11d93b2a965e2adc371b03352cd5824573e1b08b6fc78c72"
+    },
+    {
+      "owner": "backend",
+      "status": "A",
+      "file": "tests/migration_rehearsal.test.mjs",
+      "bytes": 4236,
+      "sha256": "72f73e09c3357d7fd7b7b9d8be10b1e6f0ab6d1104bce14d7e90b51424f7a2d2"
+    },
+    {
+      "owner": "backend",
+      "status": "M",
+      "file": "vite.config.ts",
+      "bytes": 642,
+      "sha256": "dd85a5a758f95393e4e5faabc11a03b49365eb0549d9ec7aa70415c53c2d3f39"
+    }
+  ]
+}

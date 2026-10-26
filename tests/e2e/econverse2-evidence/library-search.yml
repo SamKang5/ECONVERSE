@@ -1,0 +1,81 @@
+- generic [ref=f1e3]:
+  - link "Đến nội dung chính" [ref=f1e4] [cursor=pointer]:
+    - /url: "#main-content"
+  - complementary "Điều hướng chính" [ref=f1e5]:
+    - link "ECONVERSE LEARN. THINK. GROW." [ref=f1e6] [cursor=pointer]:
+      - /url: "#dashboard"
+      - generic [ref=f1e7]:
+        - text: ECONVERSE
+        - generic [ref=f1e8]: LEARN. THINK. GROW.
+    - button "Đóng menu" [ref=f1e194] [cursor=pointer]
+    - paragraph [ref=f1e9]: KHÔNG GIAN CỦA BẠN
+    - navigation [ref=f1e10]:
+      - link "Tổng quan" [ref=f1e11] [cursor=pointer]:
+        - /url: "#dashboard"
+      - link "Thư viện bài học" [ref=f1e15] [cursor=pointer]:
+        - /url: "#library"
+      - link "Hồ sơ của tôi" [ref=f1e18] [cursor=pointer]:
+        - /url: "#profile"
+    - generic [ref=f1e22]:
+      - generic [ref=f1e23]:
+        - strong [ref=f1e27]: Mỗi bài học, một góc nhìn mới.
+        - paragraph [ref=f1e28]: Cùng Tũn khám phá kinh tế từ những điều gần gũi.
+        - button "Khám phá thư viện" [ref=f1e29] [cursor=pointer]
+      - generic [ref=f1e33]: ECONVERSE · Học để hiểu hơn
+  - generic [ref=f1e34]:
+    - banner [ref=f1e35]:
+      - generic [ref=f1e36]:
+        - button "Mở menu" [ref=f1e198] [cursor=pointer]
+        - generic [ref=f1e37]: ECONVERSE / Thư viện bài học
+      - button "Đăng nhập" [ref=f1e48] [cursor=pointer]
+    - main [ref=f1e40]:
+      - generic [ref=f1e201]:
+        - generic [ref=f1e202]:
+          - generic [ref=f1e203]:
+            - paragraph [ref=f1e204]: KIẾN THỨC TỪ NHỮNG ĐIỀU QUEN
+            - heading "Thư viện bài học" [level=1] [ref=f1e205]
+            - paragraph [ref=f1e206]: Chọn điều bạn tò mò. Học theo nhịp của riêng mình.
+          - button "Tiếp tục học" [ref=f1e207] [cursor=pointer]
+        - generic [ref=f1e210]:
+          - group "Danh mục khóa học" [ref=f1e211]:
+            - button "Tất cả" [pressed] [ref=f1e212] [cursor=pointer]
+            - button "Kinh tế" [ref=f1e213] [cursor=pointer]
+            - button "Tài chính" [ref=f1e214] [cursor=pointer]
+          - textbox "Tìm bài học" [active] [ref=f1e219]:
+            - /placeholder: Tìm bài học, chủ đề…
+            - text: PED
+          - generic [ref=f1e220]:
+            - generic [ref=f1e221]: Trạng thái học tập
+            - combobox "Trạng thái học tập" [ref=f1e222]:
+              - option "Mọi tiến độ" [selected]
+              - option "Chưa bắt đầu"
+              - option "Đang học"
+              - option "Đã hoàn thành"
+        - status [ref=f1e223]: 2 bài học · 1 chương
+        - generic [ref=f1e275]:
+          - 'button "KINH TẾ Unit 2: Độ co giãn Hiểu cách cầu và cung phản ứng mạnh hay yếu trước thay đổi về giá, thu nhập và mối quan hệ giữa các hàng hóa. 0/5 hoàn thành" [expanded] [ref=f1e276] [cursor=pointer]':
+            - generic [ref=f1e280]:
+              - text: KINH TẾ
+              - 'heading "Unit 2: Độ co giãn" [level=2] [ref=f1e281]'
+              - paragraph [ref=f1e282]: Hiểu cách cầu và cung phản ứng mạnh hay yếu trước thay đổi về giá, thu nhập và mối quan hệ giữa các hàng hóa.
+            - generic [ref=f1e283]:
+              - strong [ref=f1e284]: 0/5
+              - generic [ref=f1e285]: hoàn thành
+          - generic [ref=f1e288]:
+            - 'button "2A Độ co giãn của cầu theo giá (PED) Sợi dây thun hay thanh sắt: hiểu vì sao có món chỉ đổi giá một chút là lượng cầu đổi rất mạnh, còn có món gần như không nhúc nhích. 08 phút · 45 XP Chưa bắt đầu" [ref=f1e289] [cursor=pointer]':
+              - generic [ref=f1e290]: 2A
+              - generic [ref=f1e291]:
+                - strong [ref=f1e292]: Độ co giãn của cầu theo giá (PED)
+                - generic [ref=f1e293]: "Sợi dây thun hay thanh sắt: hiểu vì sao có món chỉ đổi giá một chút là lượng cầu đổi rất mạnh, còn có món gần như không nhúc nhích."
+                - generic [ref=f1e294]: 08 phút · 45 XP
+              - generic [ref=f1e295]: Chưa bắt đầu
+            - 'button "2B Các yếu tố ảnh hưởng PED Tại sao xăng tăng bạn vẫn phải đổ: phân tích 3 yếu tố quyết định độ nhạy của cầu gồm hàng thay thế, hàng thiết yếu và thời gian. 08 phút · 45 XP Chưa bắt đầu" [ref=f1e298] [cursor=pointer]':
+              - generic [ref=f1e299]: 2B
+              - generic [ref=f1e300]:
+                - strong [ref=f1e301]: Các yếu tố ảnh hưởng PED
+                - generic [ref=f1e302]: "Tại sao xăng tăng bạn vẫn phải đổ: phân tích 3 yếu tố quyết định độ nhạy của cầu gồm hàng thay thế, hàng thiết yếu và thời gian."
+                - generic [ref=f1e303]: 08 phút · 45 XP
+              - generic [ref=f1e304]: Chưa bắt đầu
+    - contentinfo [ref=f1e45]:
+      - generic [ref=f1e46]: ECONVERSE
+      - generic [ref=f1e47]: Kiến thức nhỏ. Thay đổi lớn.

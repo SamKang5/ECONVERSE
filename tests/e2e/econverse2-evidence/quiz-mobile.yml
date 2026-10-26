@@ -1,0 +1,164 @@
+- generic [ref=f1e3]:
+  - link "Đến nội dung chính" [ref=f1e4] [cursor=pointer]:
+    - /url: "#main-content"
+  - complementary "Điều hướng chính" [ref=f1e5]:
+    - link "ECONVERSE LEARN. THINK. GROW." [ref=f1e6] [cursor=pointer]:
+      - /url: "#dashboard"
+      - generic [ref=f1e7]:
+        - text: ECONVERSE
+        - generic [ref=f1e8]: LEARN. THINK. GROW.
+    - button "Đóng menu" [ref=f1e194] [cursor=pointer]
+    - paragraph [ref=f1e9]: KHÔNG GIAN CỦA BẠN
+    - navigation [ref=f1e10]:
+      - link "Tổng quan" [ref=f1e11] [cursor=pointer]:
+        - /url: "#dashboard"
+      - link "Thư viện bài học" [ref=f1e15] [cursor=pointer]:
+        - /url: "#library"
+      - link "Hồ sơ của tôi" [ref=f1e18] [cursor=pointer]:
+        - /url: "#profile"
+    - generic [ref=f1e22]:
+      - generic [ref=f1e23]:
+        - strong [ref=f1e27]: Mỗi bài học, một góc nhìn mới.
+        - paragraph [ref=f1e28]: Cùng Tũn khám phá kinh tế từ những điều gần gũi.
+        - button "Khám phá thư viện" [ref=f1e29] [cursor=pointer]
+      - generic [ref=f1e33]: ECONVERSE · Học để hiểu hơn
+  - generic [ref=f1e34]:
+    - banner [ref=f1e35]:
+      - generic [ref=f1e36]:
+        - button "Mở menu" [ref=f1e198] [cursor=pointer]
+        - generic [ref=f1e37]: ECONVERSE / Không gian học tập
+      - button "Đăng nhập" [ref=f1e48] [cursor=pointer]
+    - main [ref=f1e40]:
+      - generic [ref=f1e430]:
+        - button "Thư viện bài học" [ref=f1e431] [cursor=pointer]
+        - generic [ref=f1e435]:
+          - paragraph [ref=f1e436]: "Unit 2: Độ co giãn TẬP 2A"
+          - heading "Độ co giãn của cầu theo giá (PED)" [level=1] [ref=f1e439]
+          - paragraph [ref=f1e440]: "Sợi dây thun hay thanh sắt: hiểu vì sao có món chỉ đổi giá một chút là lượng cầu đổi rất mạnh, còn có món gần như không nhúc nhích."
+          - generic [ref=f1e441]:
+            - generic [ref=f1e442]: 08 phút
+            - generic [ref=f1e446]: 45 XP khi hoàn thành
+        - generic [ref=f1e450]:
+          - generic [ref=f1e451]:
+            - group "Nội dung bài học" [ref=f1e452]:
+              - button "Bài học" [ref=f1e453] [cursor=pointer]
+              - button "Kiểm tra kiến thức" [active] [pressed] [ref=f1e457] [cursor=pointer]
+            - region "Bài kiểm tra kiến thức" [ref=f1e522]:
+              - generic [ref=f1e523]:
+                - generic [ref=f1e524]:
+                  - heading "Kiểm tra kiến thức" [level=2] [ref=f1e525]
+                  - paragraph [ref=f1e526]: Chọn một đáp án cho mỗi câu hỏi.
+                - generic [ref=f1e527]: 0/4 câu
+              - group "CÂU 1 Độ co giãn của cầu theo giá (PED) dùng để đo lường điều gì?" [ref=f1e528]:
+                - generic [ref=f1e529]:
+                  - generic [ref=f1e530]: CÂU 1
+                  - text: Độ co giãn của cầu theo giá (PED) dùng để đo lường điều gì?
+                - generic [ref=f1e531]:
+                  - generic [ref=f1e532] [cursor=pointer]:
+                    - radio "A Mức độ phản ứng của lượng cầu khi giá của chính hàng hóa đó thay đổi" [ref=f1e533]
+                    - generic [ref=f1e534]: A
+                    - generic [ref=f1e535]: Mức độ phản ứng của lượng cầu khi giá của chính hàng hóa đó thay đổi
+                  - generic [ref=f1e536] [cursor=pointer]:
+                    - radio "B Tổng số tiền chi tiêu của người mua trong một năm" [ref=f1e537]
+                    - generic [ref=f1e538]: B
+                    - generic [ref=f1e539]: Tổng số tiền chi tiêu của người mua trong một năm
+                  - generic [ref=f1e540] [cursor=pointer]:
+                    - radio "C Tốc độ sản xuất hàng hóa của các nhà máy" [ref=f1e541]
+                    - generic [ref=f1e542]: C
+                    - generic [ref=f1e543]: Tốc độ sản xuất hàng hóa của các nhà máy
+                  - generic [ref=f1e544] [cursor=pointer]:
+                    - radio "D Mức độ thay đổi của thu nhập người tiêu dùng" [ref=f1e545]
+                    - generic [ref=f1e546]: D
+                    - generic [ref=f1e547]: Mức độ thay đổi của thu nhập người tiêu dùng
+              - group "CÂU 2 Một hàng hóa có cầu co giãn (Elastic Demand) được ví như 'sợi dây thun' vì lý do gì?" [ref=f1e548]:
+                - generic [ref=f1e549]:
+                  - generic [ref=f1e550]: CÂU 2
+                  - text: Một hàng hóa có cầu co giãn (Elastic Demand) được ví như 'sợi dây thun' vì lý do gì?
+                - generic [ref=f1e551]:
+                  - generic [ref=f1e552] [cursor=pointer]:
+                    - radio "A Giá thay đổi nhưng lượng cầu đứng yên không đổi" [ref=f1e553]
+                    - generic [ref=f1e554]: A
+                    - generic [ref=f1e555]: Giá thay đổi nhưng lượng cầu đứng yên không đổi
+                  - generic [ref=f1e556] [cursor=pointer]:
+                    - radio "B Giá chỉ thay đổi một chút nhưng lượng cầu phản ứng rất mạnh" [ref=f1e557]
+                    - generic [ref=f1e558]: B
+                    - generic [ref=f1e559]: Giá chỉ thay đổi một chút nhưng lượng cầu phản ứng rất mạnh
+                  - generic [ref=f1e560] [cursor=pointer]:
+                    - radio "C Người bán luôn tặng kèm quà khi bán sản phẩm" [ref=f1e561]
+                    - generic [ref=f1e562]: C
+                    - generic [ref=f1e563]: Người bán luôn tặng kèm quà khi bán sản phẩm
+                  - generic [ref=f1e564] [cursor=pointer]:
+                    - radio "D Thu nhập người mua tăng gấp đôi ngay lập tức" [ref=f1e565]
+                    - generic [ref=f1e566]: D
+                    - generic [ref=f1e567]: Thu nhập người mua tăng gấp đôi ngay lập tức
+              - group "CÂU 3 Trên đồ thị kinh tế học, hình dạng của đường cầu co giãn và đường cầu kém co giãn khác nhau như thế nào?" [ref=f1e568]:
+                - generic [ref=f1e569]:
+                  - generic [ref=f1e570]: CÂU 3
+                  - text: Trên đồ thị kinh tế học, hình dạng của đường cầu co giãn và đường cầu kém co giãn khác nhau như thế nào?
+                - generic [ref=f1e571]:
+                  - generic [ref=f1e572] [cursor=pointer]:
+                    - radio "A Đường cầu co giãn dốc đứng hơn, đường cầu kém co giãn phẳng hơn" [ref=f1e573]
+                    - generic [ref=f1e574]: A
+                    - generic [ref=f1e575]: Đường cầu co giãn dốc đứng hơn, đường cầu kém co giãn phẳng hơn
+                  - generic [ref=f1e576] [cursor=pointer]:
+                    - radio "B Đường cầu co giãn tương đối phẳng (lài), đường cầu kém co giãn tương đối dốc (đứng)" [ref=f1e577]
+                    - generic [ref=f1e578]: B
+                    - generic [ref=f1e579]: Đường cầu co giãn tương đối phẳng (lài), đường cầu kém co giãn tương đối dốc (đứng)
+                  - generic [ref=f1e580] [cursor=pointer]:
+                    - radio "C Cả hai đường đều là đường thẳng nằm ngang" [ref=f1e581]
+                    - generic [ref=f1e582]: C
+                    - generic [ref=f1e583]: Cả hai đường đều là đường thẳng nằm ngang
+                  - generic [ref=f1e584] [cursor=pointer]:
+                    - radio "D Cả hai đường đều là đường thẳng đứng song song trục giá" [ref=f1e585]
+                    - generic [ref=f1e586]: D
+                    - generic [ref=f1e587]: Cả hai đường đều là đường thẳng đứng song song trục giá
+              - group "CÂU 4 Nếu một chủ shop tăng giá một mặt hàng có cầu co giãn cao (nhiều hàng thay thế), kết quả nào dễ xảy ra nhất?" [ref=f1e588]:
+                - generic [ref=f1e589]:
+                  - generic [ref=f1e590]: CÂU 4
+                  - text: Nếu một chủ shop tăng giá một mặt hàng có cầu co giãn cao (nhiều hàng thay thế), kết quả nào dễ xảy ra nhất?
+                - generic [ref=f1e591]:
+                  - generic [ref=f1e592] [cursor=pointer]:
+                    - radio "A Khách hàng mua nhiều hơn trước" [ref=f1e593]
+                    - generic [ref=f1e594]: A
+                    - generic [ref=f1e595]: Khách hàng mua nhiều hơn trước
+                  - generic [ref=f1e596] [cursor=pointer]:
+                    - radio "B Lượng khách mua giảm mạnh và tổng doanh thu sụt giảm" [ref=f1e597]
+                    - generic [ref=f1e598]: B
+                    - generic [ref=f1e599]: Lượng khách mua giảm mạnh và tổng doanh thu sụt giảm
+                  - generic [ref=f1e600] [cursor=pointer]:
+                    - radio "C Tổng doanh thu chắc chắn tăng gấp đôi" [ref=f1e601]
+                    - generic [ref=f1e602]: C
+                    - generic [ref=f1e603]: Tổng doanh thu chắc chắn tăng gấp đôi
+                  - generic [ref=f1e604] [cursor=pointer]:
+                    - radio "D Không có khách hàng nào quan tâm đến việc tăng giá" [ref=f1e605]
+                    - generic [ref=f1e606]: D
+                    - generic [ref=f1e607]: Không có khách hàng nào quan tâm đến việc tăng giá
+              - generic [ref=f1e608]:
+                - paragraph [ref=f1e609]: Đăng nhập để nộp bài, nhận XP và lưu kết quả.
+                - button "Đăng nhập để nộp bài" [ref=f1e610] [cursor=pointer]
+          - complementary [ref=f1e496]:
+            - heading "Trong chương này" [level=2] [ref=f1e498]
+            - list [ref=f1e501]:
+              - listitem [ref=f1e502]:
+                - button "2A Độ co giãn của cầu theo giá (PED)" [ref=f1e503] [cursor=pointer]:
+                  - generic [ref=f1e504]: 2A
+                  - strong [ref=f1e505]: Độ co giãn của cầu theo giá (PED)
+              - listitem [ref=f1e506]:
+                - button "2B Các yếu tố ảnh hưởng PED" [ref=f1e507] [cursor=pointer]:
+                  - generic [ref=f1e508]: 2B
+                  - strong [ref=f1e509]: Các yếu tố ảnh hưởng PED
+              - listitem [ref=f1e510]:
+                - button "2C Độ co giãn theo thu nhập (YED)" [ref=f1e511] [cursor=pointer]:
+                  - generic [ref=f1e512]: 2C
+                  - strong [ref=f1e513]: Độ co giãn theo thu nhập (YED)
+              - listitem [ref=f1e514]:
+                - button "2D Độ co giãn chéo (XED)" [ref=f1e515] [cursor=pointer]:
+                  - generic [ref=f1e516]: 2D
+                  - strong [ref=f1e517]: Độ co giãn chéo (XED)
+              - listitem [ref=f1e518]:
+                - button "2E Độ co giãn của cung (PES)" [ref=f1e519] [cursor=pointer]:
+                  - generic [ref=f1e520]: 2E
+                  - strong [ref=f1e521]: Độ co giãn của cung (PES)
+    - contentinfo [ref=f1e45]:
+      - generic [ref=f1e46]: ECONVERSE
+      - generic [ref=f1e47]: Kiến thức nhỏ. Thay đổi lớn.

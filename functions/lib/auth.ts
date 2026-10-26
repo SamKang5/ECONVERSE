@@ -164,7 +164,7 @@ export function getSessionTokenFromRequest(request: Request): string | null {
   for (const cookie of cookies) {
     const [name, ...rest] = cookie.trim().split('=');
     if (name === SESSION_COOKIE_NAME) {
-      return decodeURIComponent(rest.join('='));
+      try { return decodeURIComponent(rest.join('=')); } catch { return null; }
     }
   }
 
@@ -187,7 +187,7 @@ export async function authenticateRequest(
   const row = await db
     .prepare(
       `SELECT 
-         u.id as user_id, u.email, u.password_hash, u.display_name, u.created_at, u.updated_at, u.last_login_at, u.is_active,
+         u.id as user_id, u.email, u.password_hash, u.display_name, u.created_at, u.updated_at, u.last_login_at, u.is_active, u.role,
          s.id as session_id, s.token_hash, s.expires_at, s.created_at as session_created_at, s.last_used_at, s.revoked_at
        FROM sessions s
        JOIN users u ON s.user_id = u.id
@@ -202,7 +202,7 @@ export async function authenticateRequest(
     return null;
   }
 
-  if (new Date(row.expires_at) < new Date()) {
+  if (!Number.isFinite(Date.parse(row.expires_at)) || new Date(row.expires_at) <= new Date()) {
     return null;
   }
 
@@ -213,6 +213,7 @@ export async function authenticateRequest(
     .catch(() => {});
 
   const user: DbUser = {
+    role: row.role,
     id: row.user_id,
     email: row.email,
     password_hash: row.password_hash,
@@ -275,6 +276,7 @@ export function buildLogoutCookie(isSecure = true): string {
  */
 export function toPublicUser(user: DbUser): PublicUser {
   return {
+    role: user.role,
     id: user.id,
     email: user.email,
     displayName: user.display_name,

@@ -68,6 +68,7 @@ export const onRequestPost: PagesFunction = async (context) => {
   const cookieHeader = buildSessionCookie(token, isSecure);
 
   const newUser = {
+    role: 'learner' as const,
     id: userId,
     email,
     password_hash: passwordHash,

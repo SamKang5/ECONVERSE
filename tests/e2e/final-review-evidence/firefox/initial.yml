@@ -1,0 +1,125 @@
+- generic [ref=e3]:
+  - link "Đến nội dung chính" [ref=e4] [cursor=pointer]:
+    - /url: "#main-content"
+  - complementary "Điều hướng chính" [ref=e5]:
+    - link "ECONVERSE LEARN. THINK. GROW." [ref=e6] [cursor=pointer]:
+      - /url: "#dashboard"
+      - generic [ref=e7]:
+        - text: ECONVERSE
+        - generic [ref=e8]: LEARN. THINK. GROW.
+    - paragraph [ref=e9]: KHÔNG GIAN CỦA BẠN
+    - navigation [ref=e10]:
+      - link "Tổng quan" [ref=e11] [cursor=pointer]:
+        - /url: "#dashboard"
+      - link "Thư viện bài học" [ref=e15] [cursor=pointer]:
+        - /url: "#library"
+      - link "Hồ sơ của tôi" [ref=e19] [cursor=pointer]:
+        - /url: "#profile"
+    - generic [ref=e23]:
+      - generic [ref=e24]:
+        - strong [ref=e29]: Mỗi bài học, một góc nhìn mới.
+        - paragraph [ref=e30]: Cùng Tũn khám phá kinh tế từ những điều gần gũi.
+        - button "Khám phá thư viện" [ref=e31] [cursor=pointer]
+      - generic [ref=e35]: ECONVERSE · Học để hiểu hơn
+  - generic [ref=e36]:
+    - banner [ref=e37]:
+      - generic [ref=e38]: ECONVERSE / Tổng quan
+      - button "Đăng nhập" [ref=e41] [cursor=pointer]
+    - main [ref=e42]:
+      - generic [ref=e44]:
+        - generic [ref=e45]:
+          - generic [ref=e46]:
+            - paragraph [ref=e47]: MỘT CHÚT TÒ MÒ, MỖI NGÀY
+            - heading "Chào bạn, học cùng Tũn nhé." [level=1] [ref=e48]
+            - paragraph [ref=e49]: Một bài học hôm nay. Một góc nhìn mới cho ngày mai.
+          - generic [ref=e54]:
+            - text: 14 bài học
+            - strong [ref=e55]: đang chờ bạn
+        - region [ref=e56]:
+          - generic [ref=e57]:
+            - generic [ref=e58]: HỌC ĐỂ HIỂU THẾ GIỚI
+            - heading "Kinh tế không xa. Bắt đầu từ quanh ta." [level=2] [ref=e59]: Kinh tế không xa.Bắt đầu từ quanh ta.
+            - paragraph [ref=e60]: "Tiếp tục khám phá: Quy luật Cầu. Những khái niệm quen mà lạ, được giải thích thật dễ hiểu."
+            - button "Tiếp tục học" [ref=e61] [cursor=pointer]
+            - generic [ref=e65]: Tập 1A · 08 phút
+          - img "Tũn, người bạn đồng hành ECONVERSE" [ref=e67]
+        - generic [ref=e68]:
+          - generic [ref=e69]:
+            - generic [ref=e70]:
+              - generic [ref=e71]:
+                - heading "Hành trình của bạn" [level=2] [ref=e72]
+                - generic [ref=e73]: TỪNG BƯỚC TIẾN LÊN
+              - generic [ref=e74]:
+                - generic [ref=e75]:
+                  - strong [ref=e82]:
+                    - generic [ref=e83]: "0"
+                  - generic [ref=e84]: XP tích lũy
+                - generic [ref=e85]:
+                  - strong [ref=e90]:
+                    - text: "0"
+                    - generic [ref=e91]: / 14
+                  - generic [ref=e92]: Bài đã hoàn thành
+                - generic [ref=e93]:
+                  - strong [ref=e97]:
+                    - generic [ref=e98]: "0"
+                    - text: ngày
+                  - generic [ref=e99]: Chuỗi học liên tiếp
+            - generic [ref=e100]:
+              - generic [ref=e101]:
+                - heading "Bắt đầu khám phá" [level=2] [ref=e102]
+                - button "Xem tất cả" [ref=e103] [cursor=pointer]
+              - generic [ref=e107]:
+                - 'button "1A Unit 1: Cung và Cầu Quy luật Cầu 08 phút · Tiếp tục khám phá" [ref=e108] [cursor=pointer]':
+                  - generic [ref=e109]: 1A
+                  - generic [ref=e110]:
+                    - generic [ref=e111]: "Unit 1: Cung và Cầu"
+                    - strong [ref=e112]: Quy luật Cầu
+                    - generic [ref=e113]: 08 phút · Tiếp tục khám phá
+                - 'button "1B Unit 1: Cung và Cầu Quy luật Cung 08 phút · Tiếp tục khám phá" [ref=e117] [cursor=pointer]':
+                  - generic [ref=e118]: 1B
+                  - generic [ref=e119]:
+                    - generic [ref=e120]: "Unit 1: Cung và Cầu"
+                    - strong [ref=e121]: Quy luật Cung
+                    - generic [ref=e122]: 08 phút · Tiếp tục khám phá
+                - 'button "1C Unit 1: Cung và Cầu Cung và Cầu đại chiến – Điểm cân bằng 09 phút · Tiếp tục khám phá" [ref=e126] [cursor=pointer]':
+                  - generic [ref=e127]: 1C
+                  - generic [ref=e128]:
+                    - generic [ref=e129]: "Unit 1: Cung và Cầu"
+                    - strong [ref=e130]: Cung và Cầu đại chiến – Điểm cân bằng
+                    - generic [ref=e131]: 09 phút · Tiếp tục khám phá
+            - generic [ref=e135]:
+              - heading "Dành cho sự tò mò của bạn" [level=2] [ref=e137]
+              - generic [ref=e138]:
+                - 'button "KINH TẾ CƠ BẢN Unit 1: Cung và Cầu Đi từ quy luật cầu, quy luật cung đến điểm cân bằng và các ngoại lệ để hiểu vì sao giá cả thị trường luôn biến động. 4 bài học" [ref=e139] [cursor=pointer]':
+                  - generic [ref=e147]: KINH TẾ CƠ BẢN
+                  - 'heading "Unit 1: Cung và Cầu" [level=3] [ref=e148]'
+                  - paragraph [ref=e149]: Đi từ quy luật cầu, quy luật cung đến điểm cân bằng và các ngoại lệ để hiểu vì sao giá cả thị trường luôn biến động.
+                  - generic [ref=e150]: 4 bài học
+                - 'button "KINH TẾ CƠ BẢN Unit 2: Độ co giãn Hiểu cách cầu và cung phản ứng mạnh hay yếu trước thay đổi về giá, thu nhập và mối quan hệ giữa các hàng hóa. 5 bài học" [ref=e154] [cursor=pointer]':
+                  - generic [ref=e162]: KINH TẾ CƠ BẢN
+                  - 'heading "Unit 2: Độ co giãn" [level=3] [ref=e163]'
+                  - paragraph [ref=e164]: Hiểu cách cầu và cung phản ứng mạnh hay yếu trước thay đổi về giá, thu nhập và mối quan hệ giữa các hàng hóa.
+                  - generic [ref=e165]: 5 bài học
+          - complementary [ref=e169]:
+            - generic [ref=e170]:
+              - heading "Nhìn lại một chút" [level=2] [ref=e172]
+              - generic [ref=e180]:
+                - strong [ref=e181]: 0%
+                - generic [ref=e182]: hành trình đã hoàn thành
+              - progressbar "Tiến độ tổng thể" [ref=e183]
+              - paragraph [ref=e184]: Bài học đầu tiên luôn là một khởi đầu tốt. Tũn đang chờ bạn!
+              - generic [ref=e185]:
+                - generic [ref=e186]: CẤP ĐỘ HIỆN TẠI
+                - strong [ref=e187]: Level 1
+                - generic [ref=e188]: 300 XP đến cấp tiếp theo
+            - generic [ref=e189]:
+              - text: GÓC NHỎ CỦA TŨN
+              - heading "Hiểu một điều, nhìn khác một chút." [level=3] [ref=e190]: Hiểu một điều,nhìn khác một chút.
+              - paragraph [ref=e191]: Thử tìm một ví dụ trong cuộc sống cho điều bạn vừa học. Kiến thức sẽ ở lại lâu hơn.
+            - generic [ref=e195]:
+              - heading "Giữ lại hành trình của bạn" [level=3] [ref=e196]
+              - paragraph [ref=e197]: Tạo tài khoản để lưu tiến độ và tích lũy XP trên mọi thiết bị.
+              - button "Bắt đầu miễn phí" [ref=e198] [cursor=pointer]
+    - contentinfo [ref=e202]:
+      - generic [ref=e203]: ECONVERSE
+      - generic [ref=e204]: Kiến thức nhỏ. Thay đổi lớn.

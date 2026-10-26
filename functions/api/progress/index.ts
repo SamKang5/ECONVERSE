@@ -16,7 +16,7 @@ export const onRequestGet: PagesFunction = async (context) => {
   }
 
   const progressRows = await db
-    .prepare('SELECT lesson_id, status, completed_at FROM lesson_progress WHERE user_id = ?')
+    .prepare('SELECT lesson_id, status, completed_at, updated_at FROM lesson_progress WHERE user_id = ? ORDER BY updated_at DESC, lesson_id ASC')
     .bind(auth.user.id)
     .all<DbLessonProgress>();
 
@@ -29,6 +29,7 @@ export const onRequestGet: PagesFunction = async (context) => {
     lessonId: p.lesson_id,
     status: p.status,
     completedAt: p.completed_at,
+    updatedAt: p.updated_at,
   }));
 
   const gamification = gamificationRow

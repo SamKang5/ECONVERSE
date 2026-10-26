@@ -8,3 +8,10 @@ coverage/
 !.env.example
 # Playwright CLI output (may contain credentials)
 .playwright-cli/
+.worktrees/
+.local-review/
+.wrangler/
+tests/results/
+bootstrap.sql
+.motion-review/
+.qa-review/

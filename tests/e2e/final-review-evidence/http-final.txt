@@ -1,0 +1,57 @@
+
+> econverse@0.1.0 test:http
+> node tests/local_http.integration.test.mjs
+
+PASS: Public registration succeeds
+PASS: Browser role claim cannot escalate public registration
+PASS: Editor login
+PASS: Admin login
+PASS: Real D1 trigger prevents last Admin demotion
+PASS: Real D1 trigger prevents last Admin deactivation
+PASS: Anonymous Studio rejected
+PASS: Learner Studio rejected
+PASS: Editor user management rejected
+PASS: Editor audit rejected
+PASS: Editor analytics rejected
+PASS: Cross-origin authenticated mutation rejected
+PASS: Published courses returned from real D1
+PASS: Historical lesson ID visible
+PASS: Public course response excludes quiz keys
+PASS: Editor creates a persistent draft
+PASS: Empty All statuses filter is accepted
+PASS: Default Studio filter includes newly saved owned draft
+PASS: Draft absent from public learner endpoint
+PASS: Learner cannot preview private draft
+PASS: Editor cannot publish
+PASS: Simultaneous conflicting draft edits: one succeeds, one conflicts
+PASS: Editor submits for review
+PASS: Admin returns draft with review feedback
+PASS: Review feedback persists
+PASS: Admin publishes reviewed revision
+PASS: Published learner content matches approved revision
+PASS: Published content is edited through a separate revision
+PASS: New draft saves
+PASS: Draft edits cannot silently alter live lesson
+PASS: Learner quiz omits correct answer and explanation
+PASS: Concurrent successful quiz attempts both complete
+PASS: Concurrent quiz completions award XP exactly once
+PASS: XP persists in real D1
+PASS: First historical lesson view is recorded
+PASS: Later historical lesson view is recorded
+PASS: Progress is returned in latest-view order
+PASS: Progress supplies persistent view timestamps
+PASS: Revisited completed lesson becomes most recent
+PASS: Recording a completed lesson view cannot regress completion
+PASS: Recording lesson views does not award additional XP
+PASS: Retry with same idempotency key replays original attempt
+PASS: Same idempotency key with changed answers rejected
+PASS: Admin grants Editor
+PASS: Role promotion takes effect on existing session
+PASS: Other editor cannot discover private draft
+PASS: Demotion takes effect on existing session
+PASS: Disabled account loses existing session access
+PASS: Admin audit log available
+PASS: Content workflow recorded in audit log
+PASS: Privileged responses cannot be cached
+PASS: Analytics reports real quiz attempts
+52 real local Pages/D1 HTTP checks passed.

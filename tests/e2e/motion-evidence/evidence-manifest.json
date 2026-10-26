@@ -1,0 +1,211 @@
+{
+  "reviewDate": "2026-10-23",
+  "timezone": "Asia/Saigon",
+  "files": [
+    {
+      "file": "after-admin.png",
+      "bytes": 68389,
+      "sha256": "9fdf5714d6921837221b76254d9a60b518d7ad07f07495c60ed6ddce393753f4"
+    },
+    {
+      "file": "after-confirmation.png",
+      "bytes": 75937,
+      "sha256": "7919e028099d8f9610558caa8eb0b66e70359f820c5a7f1e00fd8a82a00c45e6"
+    },
+    {
+      "file": "after-dashboard-desktop.png",
+      "bytes": 191474,
+      "sha256": "61a8aa98ef8a3a43024c06e6f97145879a609c28c5f57c3fd44d0c1b96a12376"
+    },
+    {
+      "file": "after-dashboard-guest-mobile.png",
+      "bytes": 116993,
+      "sha256": "7bb4eeabf37f9cc3b8bfae47e628b8d97bd464ee104256bc527cab3a3b310045"
+    },
+    {
+      "file": "after-dashboard-mobile.png",
+      "bytes": 143124,
+      "sha256": "b52aa406417c2691bb4362407c0058c2e9772aaf367d0338542ee824ef2d927b"
+    },
+    {
+      "file": "after-dashboard.yml",
+      "bytes": 8122,
+      "sha256": "ebbb0ab5d795fbae8b094119919513001b41d5811d10d0fbc285691ab6411c61"
+    },
+    {
+      "file": "after-editor.png",
+      "bytes": 102312,
+      "sha256": "c1cf915cd2711db1de8ed968a55cf79de3ce862c9890f42d49205bf32dd2fbdc"
+    },
+    {
+      "file": "after-lesson.png",
+      "bytes": 150637,
+      "sha256": "d7f77cba63d02c0318f7e39ff246a7978986f73a57b7ec830795ce370e8a73a1"
+    },
+    {
+      "file": "after-library-mobile.png",
+      "bytes": 205533,
+      "sha256": "395c4d11ab5869c4ab323766d6b7d6da604d16c95cf3207b021cc28abc271f3a"
+    },
+    {
+      "file": "after-quiz-result.png",
+      "bytes": 191117,
+      "sha256": "ab1330b5f181da0bdb9a618109ca9af2b5151bd3e5e4332e29138e7fa05508a0"
+    },
+    {
+      "file": "after-quiz-selected.png",
+      "bytes": 147875,
+      "sha256": "db660eee7a70872b67b485e7eeeb63905b45feae083acc9ead58beea6629bbe5"
+    },
+    {
+      "file": "after-quiz-touch.png",
+      "bytes": 521636,
+      "sha256": "e64ccf357aa3acf8bdf9e84f3860d3ca423c470edddeecba1c002352291c5ade"
+    },
+    {
+      "file": "before-dashboard-desktop.png",
+      "bytes": 191593,
+      "sha256": "48e5948c886b765060a373dbaab347f1ce9257a9b289db5a5c864263515bc404"
+    },
+    {
+      "file": "before-dashboard-mobile.png",
+      "bytes": 124466,
+      "sha256": "8b2887f1f01a7d882649e9feb1472e6565c4f541897124e7968df24af3888c87"
+    },
+    {
+      "file": "before-dashboard.yml",
+      "bytes": 7891,
+      "sha256": "e92194b6aaa267726c436b3293e3e8e2ad0d68e229ec6c6ec82362cbacd8efec"
+    },
+    {
+      "file": "before-lesson.png",
+      "bytes": 148388,
+      "sha256": "654e42eeaa5e0a81c2b14bf5a09b464c05a819556c0e2b0ca632d36b835c3a54"
+    },
+    {
+      "file": "before-quiz.png",
+      "bytes": 144177,
+      "sha256": "e01b5b443b738cc073f69d773e27619d90f4970ab3971707226b4c6d94195802"
+    },
+    {
+      "file": "chrome-performance-initial.json.gz",
+      "bytes": 893706,
+      "sha256": "cad36f2979f7e37ab524832baa33dbccb8e9a575552f13caa5082d609d46f5f3"
+    },
+    {
+      "file": "chrome-performance.json.gz",
+      "bytes": 982308,
+      "sha256": "bed2b1501fde6192a7645f10fc627dc3054283ceba8f5a610b150c65074b73ab"
+    },
+    {
+      "file": "devtools-reflow.txt",
+      "bytes": 921,
+      "sha256": "3680eeda77546c0dbec10ce73f0058d0bd1853429af003be204291847c25db7d"
+    },
+    {
+      "file": "devtools-trace-summary.txt",
+      "bytes": 8997,
+      "sha256": "04e3b04aa4ad9f7448bd8824ebd39373e29cbc330c1ae17400dbae3e5d37b4d0"
+    },
+    {
+      "file": "editor-repro-results.json",
+      "bytes": 6060,
+      "sha256": "7b4820fa572466a674294d5b8d40243c207bb3d40b8b06e95fa4740e3cea14d8"
+    },
+    {
+      "file": "existing-journeys-results.json",
+      "bytes": 1226,
+      "sha256": "84dd6f1f92789719b764fdf60340c272db2c142d5427b9d4a13b9d68e1493351"
+    },
+    {
+      "file": "initial.yml",
+      "bytes": 7780,
+      "sha256": "4f3329d5be5a76f4cb403c173dd5b1530e9195b266f219c118b20cdcb8d6807b"
+    },
+    {
+      "file": "lifecycle-results.json",
+      "bytes": 155,
+      "sha256": "81b738eea02686af57a8c0f5c1361f0e8221deebce8dba9868e4d5aaa6f7b395"
+    },
+    {
+      "file": "lighthouse-desktop-summary.txt",
+      "bytes": 1703,
+      "sha256": "1c7c6c8c160c83a5b6a5da8bd18ac5dc80d10822638993bf6780d88acd033b74"
+    },
+    {
+      "file": "lighthouse-desktop/report.html",
+      "bytes": 313755,
+      "sha256": "d2ae90136208d396e4d6b148b4ce702040cefbf9a9382679ca54ec0a32a3313a"
+    },
+    {
+      "file": "lighthouse-desktop/report.json",
+      "bytes": 175567,
+      "sha256": "a95db332ba751845708ec83384d822e7b74e36e5c15b8f9b35e6fcaec6fa9ff5"
+    },
+    {
+      "file": "lighthouse-mobile-summary.txt",
+      "bytes": 1957,
+      "sha256": "4a675ecdaf12a3d296307e1dc539e200d85503c4e5206a451d01c15c4ee19e2b"
+    },
+    {
+      "file": "lighthouse-mobile/report.html",
+      "bytes": 313733,
+      "sha256": "bca0600ffa9c0d756961aa32ffd022a50294f2a965fb740d6cca278f0825854d"
+    },
+    {
+      "file": "lighthouse-mobile/report.json",
+      "bytes": 175579,
+      "sha256": "eb38912e7f9f8b7ec4ba99dbfffe8316644492230774baa539fddb2a9cb2bb36"
+    },
+    {
+      "file": "motion-interactions.webm",
+      "bytes": 419806,
+      "sha256": "b4fa6de1468d906aa7a44ff0b57a564beee35aa63afc403a7d043a6d94c8b942"
+    },
+    {
+      "file": "motion-results.json",
+      "bytes": 3044,
+      "sha256": "874ba6f8e5096b5c4babb3fcf4d7cfa09e21a06f0d6652d7cf49476a362f33c9"
+    },
+    {
+      "file": "performance-after-1.json",
+      "bytes": 119,
+      "sha256": "46795a5d65d5b5902802e0119858f1cf1c5c97172f4c42e7efb860f41b271545"
+    },
+    {
+      "file": "performance-after-2.json",
+      "bytes": 119,
+      "sha256": "07657cf68d361f6c4fcb2ced5f585e52fd5f5d320ea5b3e312ccb7810babe488"
+    },
+    {
+      "file": "performance-after-3.json",
+      "bytes": 135,
+      "sha256": "b96d7d355a138f71295547337b5b62a09d5bbcf9468849a9275265582defef37"
+    },
+    {
+      "file": "performance-before.json",
+      "bytes": 131,
+      "sha256": "974cc418ff91f8c5cad53299ea2dbbdb1a75fe6d6e1b0279984d90ad80d3a4ec"
+    },
+    {
+      "file": "performance-final-1.json",
+      "bytes": 120,
+      "sha256": "fd4f6085dcf08f93770cc42ec84f3171ceb44697e3154844e515a2a2c05f8b04"
+    },
+    {
+      "file": "performance-final-2.json",
+      "bytes": 120,
+      "sha256": "53ef2e79e58658c36c789f975a8dafb2c40790735475db44bd332e2653e61a53"
+    },
+    {
+      "file": "performance-final-3.json",
+      "bytes": 136,
+      "sha256": "59c36e5d42cf3ceed586fdcbb7c76de562c539a603de3f8e0f75089689512fe5"
+    },
+    {
+      "file": "touch-results.json",
+      "bytes": 199,
+      "sha256": "3e2a40dc5cd536c27f2b6efe079946d10c9c8b52f9614c11a2b5e12e294f8f4a"
+    }
+  ]
+}

@@ -41,10 +41,10 @@ export const onRequestPut: PagesFunction<'lessonId'> = async (context) => {
   }
 
   const status = body.status;
-  if (!['not_started', 'in_progress', 'completed'].includes(status)) {
+  if (!['not_started', 'in_progress'].includes(status)) {
     return jsonError(
       ErrorCodes.VALIDATION_ERROR,
-      'Trạng thái tiến độ phải là not_started, in_progress hoặc completed.'
+      'Completion is recorded by server-side quiz grading. Use not_started or in_progress.'
     );
   }
 
@@ -56,7 +56,7 @@ export const onRequestPut: PagesFunction<'lessonId'> = async (context) => {
       `INSERT INTO lesson_progress (user_id, lesson_id, status, started_at, completed_at, updated_at)
        VALUES (?, ?, ?, ?, ?, ?)
        ON CONFLICT(user_id, lesson_id) DO UPDATE SET
-         status = excluded.status,
+         status = CASE WHEN lesson_progress.status = 'completed' THEN 'completed' ELSE excluded.status END,
          completed_at = CASE 
            WHEN excluded.status = 'completed' AND lesson_progress.completed_at IS NULL THEN excluded.completed_at 
            ELSE lesson_progress.completed_at 

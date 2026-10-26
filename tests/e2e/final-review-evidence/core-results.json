@@ -1,0 +1,137 @@
+{
+  "passed": true,
+  "checks": [
+    "guest dashboard: zero WCAG A/AA violations",
+    "Registration creates visible learner account",
+    "Registered learner can log out and log in through UI",
+    "Finance category and keyword search filter canonical lessons",
+    "course library: zero WCAG A/AA violations",
+    "Historical YouTube video ID retained in responsive player",
+    "lesson player: zero WCAG A/AA violations",
+    "Actual playing video survives unrelated session refresh without iframe remount",
+    "Incomplete quiz is validated before submission",
+    "quiz: zero WCAG A/AA violations",
+    "Real playing iframe remains mounted through quiz selection and validation",
+    "Actual YouTube playback continues after unrelated quiz interactions",
+    "Server grading returns perfect score and 45 XP",
+    "Explanations become available after grading",
+    "Lesson completion persists after reload",
+    "XP ledger appears in profile after reload",
+    "profile: zero WCAG A/AA violations",
+    "Profile settings persist in D1",
+    "768px dashboard has no page overflow",
+    "768px dashboard: zero WCAG A/AA violations",
+    "390px dashboard has no page overflow",
+    "390px dashboard: zero WCAG A/AA violations",
+    "Mobile library navigation and layout work",
+    "mobile library: zero WCAG A/AA violations",
+    "Continue Learning resumes most recently viewed unfinished lesson",
+    "Recent lessons list uses persistent view order",
+    "Editor UI excludes privileged admin controls",
+    "editor draft preview: zero WCAG A/AA violations",
+    "Editor creates draft, edits quiz, previews and submits through real UI",
+    "Admin reviews and publishes submitted content through real UI",
+    "admin review: zero WCAG A/AA violations",
+    "Newly published lesson is visible to learner",
+    "Admin role assignment updates learner existing session UI",
+    "Admin reviews persisted audit entries after changing user role",
+    "admin audit: zero WCAG A/AA violations",
+    "admin analytics: zero WCAG A/AA violations",
+    "768px Admin Console has no page overflow",
+    "768px admin analytics: zero WCAG A/AA violations",
+    "390px Admin Console has no page overflow",
+    "390px admin analytics: zero WCAG A/AA violations",
+    "Mobile Content Studio has no page overflow",
+    "mobile editor studio: zero WCAG A/AA violations"
+  ],
+  "accessibility": [
+    {
+      "screen": "guest dashboard",
+      "violations": []
+    },
+    {
+      "screen": "course library",
+      "violations": []
+    },
+    {
+      "screen": "lesson player",
+      "violations": []
+    },
+    {
+      "screen": "quiz",
+      "violations": []
+    },
+    {
+      "screen": "profile",
+      "violations": []
+    },
+    {
+      "screen": "768px dashboard",
+      "violations": []
+    },
+    {
+      "screen": "390px dashboard",
+      "violations": []
+    },
+    {
+      "screen": "mobile library",
+      "violations": []
+    },
+    {
+      "screen": "editor draft preview",
+      "violations": []
+    },
+    {
+      "screen": "admin review",
+      "violations": []
+    },
+    {
+      "screen": "admin audit",
+      "violations": []
+    },
+    {
+      "screen": "admin analytics",
+      "violations": []
+    },
+    {
+      "screen": "768px admin analytics",
+      "violations": []
+    },
+    {
+      "screen": "390px admin analytics",
+      "violations": []
+    },
+    {
+      "screen": "mobile editor studio",
+      "violations": []
+    }
+  ],
+  "playback": [
+    {
+      "verified": true,
+      "state": {
+        "paused": false,
+        "readyState": 4,
+        "currentTime": 0.270478
+      }
+    },
+    {
+      "verified": true,
+      "state": {
+        "paused": false,
+        "currentTime": 0.552432,
+        "readyState": 4
+      },
+      "after": "session refresh"
+    },
+    {
+      "verified": true,
+      "state": {
+        "paused": false,
+        "currentTime": 1.787179,
+        "readyState": 4
+      },
+      "after": "quiz selection and validation"
+    }
+  ]
+}

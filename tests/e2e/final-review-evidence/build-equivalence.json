@@ -1,0 +1,37 @@
+{
+  "equal": true,
+  "includesIndexAndPublicFiles": true,
+  "reviewHelperAbsent": true,
+  "files": [
+    {
+      "file": "_headers",
+      "bytes": 471,
+      "sha256": "8684a4fb0c1b89e09ea4feee240f67f1f8fd27e6558a707c62065b5cb25b603d"
+    },
+    {
+      "file": "assets/econverse-logo-Be0A0b_H.webp",
+      "bytes": 12392,
+      "sha256": "6cce84248a351a604bccd27006390a793e625c66ee564ecfdbfb627672e2ae6e"
+    },
+    {
+      "file": "assets/index-b95i1IQb.css",
+      "bytes": 95351,
+      "sha256": "5c550a7ba1407dbc5262607c5b80ebd45477ee4bc24243b913e59ae38c83b1a8"
+    },
+    {
+      "file": "assets/index-QfrWgQg6.js",
+      "bytes": 280990,
+      "sha256": "0b26fc9e7d315bffe2b9193faafbd39f597fa13acfe9032eb40249e62bfd2808"
+    },
+    {
+      "file": "assets/tun-mascot-BdvjS-Z6.webp",
+      "bytes": 32994,
+      "sha256": "3e041f85f7e1618278f7756081bb9be0da52ed5405b6c85a45c57445ce924916"
+    },
+    {
+      "file": "index.html",
+      "bytes": 772,
+      "sha256": "9ca942f04c576deea34992960940b23e1baf84533847c0f3c58e57f0bd5e2b0a"
+    }
+  ]
+}

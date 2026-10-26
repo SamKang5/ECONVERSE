@@ -1,0 +1,75 @@
+{
+  "passed": true,
+  "checks": 39,
+  "scans": [
+    {
+      "screen": "guest dashboard",
+      "violations": 0
+    },
+    {
+      "screen": "course library",
+      "violations": 0
+    },
+    {
+      "screen": "lesson player",
+      "violations": 0
+    },
+    {
+      "screen": "quiz",
+      "violations": 0
+    },
+    {
+      "screen": "profile",
+      "violations": 0
+    },
+    {
+      "screen": "768px dashboard",
+      "violations": 0
+    },
+    {
+      "screen": "390px dashboard",
+      "violations": 0
+    },
+    {
+      "screen": "mobile library",
+      "violations": 0
+    },
+    {
+      "screen": "editor draft preview",
+      "violations": 0
+    },
+    {
+      "screen": "admin review",
+      "violations": 0
+    },
+    {
+      "screen": "admin audit",
+      "violations": 0
+    },
+    {
+      "screen": "admin analytics",
+      "violations": 0
+    },
+    {
+      "screen": "768px admin analytics",
+      "violations": 0
+    },
+    {
+      "screen": "390px admin analytics",
+      "violations": 0
+    },
+    {
+      "screen": "mobile editor studio",
+      "violations": 0
+    }
+  ],
+  "playback": [
+    {
+      "verified": true,
+      "state": {
+        "paused": false,
+        "readyState": 4
+      }
+    }
+  ]
+}

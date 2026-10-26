@@ -1,0 +1,1 @@
+{"passed":true,"checks":["Actual mobile emulation has touch input and a coarse pointer","Touch selects a quiz answer","Mobile quiz has no horizontal overflow","Touch quiz respects reduced motion"]}

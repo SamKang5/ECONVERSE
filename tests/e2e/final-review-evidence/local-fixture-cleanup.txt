@@ -1,0 +1,5 @@
+
+> econverse@0.1.0 review:tidy
+> node scripts/tidy-local-review.mjs
+
+Unpublished 4 disposable QA lessons from the local learner library. All lesson rows, attempts, progress, revisions, XP and audit history remain preserved.

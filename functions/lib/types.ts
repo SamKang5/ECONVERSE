@@ -52,6 +52,7 @@ export interface EventContext<TEnv, TParams extends string, TData> {
 
 // Database Models
 export interface DbUser {
+  role: 'learner' | 'editor' | 'admin';
   id: string;
   email: string;
   password_hash: string;
@@ -167,6 +168,7 @@ export interface DbUserInventory {
 
 // Public API DTOs
 export interface PublicUser {
+  role: 'learner' | 'editor' | 'admin';
   id: string;
   email: string;
   displayName: string;

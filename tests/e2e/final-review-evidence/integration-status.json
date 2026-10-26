@@ -1,0 +1,436 @@
+{
+  "baseline": "19d3f0cc9fc89122ece5b4cd4b0cf0bcb2acd006",
+  "states": [
+    {
+      "checkout": "frontend",
+      "head": "19d3f0cc9fc89122ece5b4cd4b0cf0bcb2acd006",
+      "branch": "feat/econverse2-frontend",
+      "stagedFiles": [],
+      "diffCheck": true
+    },
+    {
+      "checkout": "backend",
+      "head": "19d3f0cc9fc89122ece5b4cd4b0cf0bcb2acd006",
+      "branch": "feat/econverse2-backend",
+      "stagedFiles": [],
+      "diffCheck": true
+    },
+    {
+      "checkout": "integration",
+      "head": "19d3f0cc9fc89122ece5b4cd4b0cf0bcb2acd006",
+      "branch": "(detached)",
+      "stagedFiles": [],
+      "diffCheck": true
+    },
+    {
+      "checkout": "original",
+      "head": "19d3f0cc9fc89122ece5b4cd4b0cf0bcb2acd006",
+      "branch": "codex/feat/econverse2-backend",
+      "stagedFiles": [],
+      "diffCheck": true
+    }
+  ],
+  "identicalSharedIgnoreRules": true,
+  "ownedFilesVerified": 75,
+  "sources": [
+    {
+      "source": "backend",
+      "file": ".gitignore",
+      "sha256": "293476badd75c95da5f48e26bb7b83bc0f98714b3b8ceaf9fa5aafc1a253d59c"
+    },
+    {
+      "source": "backend",
+      "file": "README.md",
+      "sha256": "e9d41217e42ed7ad7c68c9919f1039c21076f5d2bc830f9c4d49b32e09b53187"
+    },
+    {
+      "source": "backend",
+      "file": "docs/ARCHITECTURE_AND_SECURITY.md",
+      "sha256": "13047d8e6d1842c7f9827d44ad312d8d19db006a53891001b8a3eec9f19c3888"
+    },
+    {
+      "source": "backend",
+      "file": "docs/CHANGED_FILES.md",
+      "sha256": "ae3a5faa1653b9add20ba1c3bee8c6a33f9826cb13d52b2ee30b80981696a35a"
+    },
+    {
+      "source": "backend",
+      "file": "docs/DESIGN_QA.md",
+      "sha256": "19b0804a4e0ae530b2e4759e984505920c90df1f79761849db10e5913cf19095"
+    },
+    {
+      "source": "backend",
+      "file": "docs/ECONVERSE2_API.md",
+      "sha256": "beca9eb375cadb948a8b2dff900a73550d975a0d05ff9d5484378831d3265f82"
+    },
+    {
+      "source": "backend",
+      "file": "docs/IMPLEMENTATION_REPORT.md",
+      "sha256": "87e7406f25825d59e3d0a6fbf316625b6e599e53d950df2c5dd3136b2bb5a341"
+    },
+    {
+      "source": "backend",
+      "file": "docs/LOCAL_REVIEW.md",
+      "sha256": "d1df115fb4eb3a895943b70723f17ba5fac4743407da261913f412c7ffeccb05"
+    },
+    {
+      "source": "backend",
+      "file": "docs/verification/browser-review.json",
+      "sha256": "9924684188497322d6b04cfeb1426f53f78430e25027dee85e05960d74787f18"
+    },
+    {
+      "source": "backend",
+      "file": "docs/verification/local-http.json",
+      "sha256": "1de8ef5ed657f519197339b0b219b7f037f53dc656d185b06d5dc5fa0b1123fa"
+    },
+    {
+      "source": "backend",
+      "file": "functions/api/_middleware.ts",
+      "sha256": "6b4749fd846853137a446e51edd19d0b268af933724956a3116148f5a85409c5"
+    },
+    {
+      "source": "backend",
+      "file": "functions/api/admin/[[path]].ts",
+      "sha256": "b676422d79847f6819e41b68b6822a48cc261382f5fd33bbd693125008faed97"
+    },
+    {
+      "source": "backend",
+      "file": "functions/api/auth/register.ts",
+      "sha256": "b01c1ea866b79035fb6ec69a48181b8522a27ad704fca10812cbc7b9c3e5cad3"
+    },
+    {
+      "source": "backend",
+      "file": "functions/api/courses.ts",
+      "sha256": "307d475dd3ec7043a7e8ee483aa70fb74a3ead2d3967681124ad4672286ab952"
+    },
+    {
+      "source": "backend",
+      "file": "functions/api/lessons/[lessonId].ts",
+      "sha256": "994baf5c0222bd57e850dc69e9d79e90ab27f0f017bba975388d120b59f40a2a"
+    },
+    {
+      "source": "backend",
+      "file": "functions/api/me.ts",
+      "sha256": "7900f14224c0bee2a0df6dca53e7f23efd3e6a6b082113307357587fffd1cb2d"
+    },
+    {
+      "source": "backend",
+      "file": "functions/api/progress/[lessonId].ts",
+      "sha256": "44b1409025474042287febd2bffa5c7d5870461780faca878162fa0553feb4e5"
+    },
+    {
+      "source": "backend",
+      "file": "functions/api/progress/index.ts",
+      "sha256": "1fb23e5e69dd1815e640976bffa5f1844d4866e38721af2af3450ca59ac8c0d8"
+    },
+    {
+      "source": "backend",
+      "file": "functions/api/quizzes/[lessonId]/index.ts",
+      "sha256": "fbae5896d9b8c3b53ff76e20850f414191d5d67a2890cfa591c0e7cb604164d3"
+    },
+    {
+      "source": "backend",
+      "file": "functions/api/quizzes/[lessonId]/submit.ts",
+      "sha256": "d4cf101cb1ca067e650db796937bc225971429c9587d38fb141f97bff9c03850"
+    },
+    {
+      "source": "backend",
+      "file": "functions/api/studio/[[path]].ts",
+      "sha256": "be81d4864b5f9951c390a30880c71bafedee361c9a5f54090e168a62ae82da9e"
+    },
+    {
+      "source": "backend",
+      "file": "functions/lib/auth.ts",
+      "sha256": "0d4371367ed17241e9b7d46f8ecc8123ccdcbdd44bc78e2232302f5f70e6107a"
+    },
+    {
+      "source": "backend",
+      "file": "functions/lib/content.ts",
+      "sha256": "8ced3b576dee063734b3268744e283de34e16804e12c2c084c49f93f076e1cf3"
+    },
+    {
+      "source": "backend",
+      "file": "functions/lib/errors.ts",
+      "sha256": "48da4ad9c96f4b733f15070641599c8d2e6eec56a7b02c6470b1e926070b2496"
+    },
+    {
+      "source": "backend",
+      "file": "functions/lib/http.ts",
+      "sha256": "537c3e891ce902e34f6539604e311694e261110e00c5a50e9c4040b69b610015"
+    },
+    {
+      "source": "backend",
+      "file": "functions/lib/types.ts",
+      "sha256": "c0e5f69923eee9968cd6af32c150fe7efd2adb66d0d6a6558d0817fdcc5222ed"
+    },
+    {
+      "source": "backend",
+      "file": "migrations/0003_user_roles.sql",
+      "sha256": "24d69fedb674633c50c066a29c95e1a4c9b190d5b07456ad3b19c1d35952f0ac"
+    },
+    {
+      "source": "backend",
+      "file": "migrations/0004_content_workflow.sql",
+      "sha256": "48d724727204bd254954c0d505b25c00d0ef62b03ee8d080f7ff29681600b064"
+    },
+    {
+      "source": "backend",
+      "file": "migrations/0005_migrate_legacy_content.sql",
+      "sha256": "f8070b3e88046e59ef71190bac97068f9828342ac9c9209b66c2972cfa0075a8"
+    },
+    {
+      "source": "backend",
+      "file": "package-lock.json",
+      "sha256": "6cf572c5888fb5fbae3226bad816df6f0ead34662aa8a96a78e5994c57da1044"
+    },
+    {
+      "source": "backend",
+      "file": "package.json",
+      "sha256": "73466b2d7082145e82611e5ac9ebba8a863a7c57abdfd5040c55cf51dbf2fb0f"
+    },
+    {
+      "source": "backend",
+      "file": "public/_headers",
+      "sha256": "8684a4fb0c1b89e09ea4feee240f67f1f8fd27e6558a707c62065b5cb25b603d"
+    },
+    {
+      "source": "backend",
+      "file": "scripts/bootstrap-admin.mjs",
+      "sha256": "a745364bc4ba0308350c946d5ab1a90e600633225484821e1b2eebf7a061cede"
+    },
+    {
+      "source": "backend",
+      "file": "scripts/generate-content-migration.mjs",
+      "sha256": "8282b8f4299483d56715c2446568f1063098175cba9a5df24801318313d931a4"
+    },
+    {
+      "source": "backend",
+      "file": "scripts/local-wrangler.mjs",
+      "sha256": "f19b3cec0391ecdec349946194a2760bb16b83f2a4a4cc79b2dea3419b573641"
+    },
+    {
+      "source": "backend",
+      "file": "scripts/prepare-local-review.mjs",
+      "sha256": "5eff67bfa85e87a5b506303cce762840c5fba6842c72b12263503e822969902b"
+    },
+    {
+      "source": "backend",
+      "file": "scripts/run-browser-review.mjs",
+      "sha256": "6ace5fc678033ed81a4ed6615baa81b6eeaa188819d3ac01612fc9087cef1130"
+    },
+    {
+      "source": "backend",
+      "file": "scripts/sync-integration.mjs",
+      "sha256": "9e37df500ec2f7eb7ffd48b66b47a6e89ac89e419039550e22e000e3c242f99c"
+    },
+    {
+      "source": "backend",
+      "file": "scripts/tidy-local-review.mjs",
+      "sha256": "f87999a861d5ae79927fd271dce52a37db7ca53fc1b1d3a1c1356847ec1df5d3"
+    },
+    {
+      "source": "backend",
+      "file": "tests/backend_foundation.test.mjs",
+      "sha256": "a9604f243d5f72fd3b7dcfa790405f4e98773751a007ee8c02a81a992a193743"
+    },
+    {
+      "source": "backend",
+      "file": "tests/cms_security.test.mjs",
+      "sha256": "1a1b9a4f13e69d9dfc92b4584a764e56b034d5e0fa3a51e202d44a4ff4221326"
+    },
+    {
+      "source": "backend",
+      "file": "tests/integration_sync.test.mjs",
+      "sha256": "9a61797cc43d70cebb9bd76a06303f7aa43c058e9e1344e048a9e083f94e40f6"
+    },
+    {
+      "source": "backend",
+      "file": "tests/local_http.integration.test.mjs",
+      "sha256": "284ec3f362fc3f9f11d93b2a965e2adc371b03352cd5824573e1b08b6fc78c72"
+    },
+    {
+      "source": "backend",
+      "file": "tests/migration_rehearsal.test.mjs",
+      "sha256": "72f73e09c3357d7fd7b7b9d8be10b1e6f0ab6d1104bce14d7e90b51424f7a2d2"
+    },
+    {
+      "source": "backend",
+      "file": "vite.config.ts",
+      "sha256": "dd85a5a758f95393e4e5faabc11a03b49365eb0549d9ec7aa70415c53c2d3f39"
+    },
+    {
+      "source": "frontend",
+      "file": "FINAL_INTEGRATION_REVIEW.md",
+      "sha256": "1e04c26d4ca64bdf1fa25066c65832d3373b4e1d23609fd55091841dd117dc7c"
+    },
+    {
+      "source": "frontend",
+      "file": "MOTION_POLISH_REPORT.md",
+      "sha256": "0b391b659e71fcf84de47e0792090f54ed8db6721043b056302ccd87fb5f771e"
+    },
+    {
+      "source": "frontend",
+      "file": "design-qa.md",
+      "sha256": "19b0804a4e0ae530b2e4759e984505920c90df1f79761849db10e5913cf19095"
+    },
+    {
+      "source": "frontend",
+      "file": "index.html",
+      "sha256": "85fcf0c5994fec8bb8ba4c726aa7277a7bd4511fa209ec9785a4e4be08ba1690"
+    },
+    {
+      "source": "frontend",
+      "file": "src/App.tsx",
+      "sha256": "3c4be2c05551e0b0d1830123d3ce0becf2cff434a84331faa8b1de46d1712e87"
+    },
+    {
+      "source": "frontend",
+      "file": "src/assets/econverse-logo.webp",
+      "sha256": "6cce84248a351a604bccd27006390a793e625c66ee564ecfdbfb627672e2ae6e"
+    },
+    {
+      "source": "frontend",
+      "file": "src/assets/tun-mascot.webp",
+      "sha256": "3e041f85f7e1618278f7756081bb9be0da52ed5405b6c85a45c57445ce924916"
+    },
+    {
+      "source": "frontend",
+      "file": "src/components/AuthModal.tsx",
+      "sha256": "d0099c28c41740f4b02042420995408a369236f06c1de71f0d2b3169733e97dd"
+    },
+    {
+      "source": "frontend",
+      "file": "src/components/CourseLibrary.tsx",
+      "sha256": "260742af081b6448a0c9f23f5d6ca2846b7b0dada8e1af7c9beafc4451229e21"
+    },
+    {
+      "source": "frontend",
+      "file": "src/components/LearnerDashboard.tsx",
+      "sha256": "c77a3861df81db13c590c21e5b653546d6500971d8ba83da5cac817dd77dcf48"
+    },
+    {
+      "source": "frontend",
+      "file": "src/components/LearnerProfile.tsx",
+      "sha256": "8f24c9a2cbfa10ef30714b586dee09a9e2d8d54784ecf7e7dfbad069ab5deb9c"
+    },
+    {
+      "source": "frontend",
+      "file": "src/components/LessonExperience.tsx",
+      "sha256": "c3254d8360bb3452c04c23696d09bb3022a14c9a84b55431c8384ee8861415fa"
+    },
+    {
+      "source": "frontend",
+      "file": "src/components/ManagementPage.css",
+      "sha256": "c2931ee5ff41038bba705446ba17c1fb93d217b6f9ed62e0f203c1ba889b035a"
+    },
+    {
+      "source": "frontend",
+      "file": "src/components/ManagementPage.tsx",
+      "sha256": "ebd863eeb86b280c0383c86928b9227b951c2df708106055404707779f00cf24"
+    },
+    {
+      "source": "frontend",
+      "file": "src/components/Motion.tsx",
+      "sha256": "b0a0abe8b6f4aaec9f203af3e453b6954c735f09c6c01497848c83882233e99b"
+    },
+    {
+      "source": "frontend",
+      "file": "src/index.css",
+      "sha256": "f197beba300808e06e31ae7defbfaeb459456f6099e6aeefa4841ed5fb61bf80"
+    },
+    {
+      "source": "frontend",
+      "file": "src/learnerModel.ts",
+      "sha256": "466cbe0100d65f15de85c294a5252cb4a0f597789cf97ad0a9e70ed07785f0ea"
+    },
+    {
+      "source": "frontend",
+      "file": "src/main.tsx",
+      "sha256": "b352fee312ab3d6f382fbae9e268469bb3faec4e8f7d28c5bbcba7a14feea386"
+    },
+    {
+      "source": "frontend",
+      "file": "src/motion.css",
+      "sha256": "a012716e151e2fbbf9ce48004d9660f62d07cc041403b61ddd6b024b293e1e0b"
+    },
+    {
+      "source": "frontend",
+      "file": "src/services/api.ts",
+      "sha256": "ca9b304efd648e818b997418f3c167beac5efb03082d1bcbfa3f665482aa68a0"
+    },
+    {
+      "source": "frontend",
+      "file": "src/services/content.ts",
+      "sha256": "05b1453f8ece391ae47d8bd8ec7c6bfd534f7ce01c5a4dbc1d82829c2032cd7e"
+    },
+    {
+      "source": "frontend",
+      "file": "src/services/management.ts",
+      "sha256": "d5644af8a17222f305b5dadf2945af4d97e99bfb7077b550108b8813dd43b4b5"
+    },
+    {
+      "source": "frontend",
+      "file": "tests/e2e/econverse2_journeys.js",
+      "sha256": "7725e5e7d7158930844d525341687f7c6e6bd03ae1cf752b237de871ed4860ab"
+    },
+    {
+      "source": "frontend",
+      "file": "tests/e2e/final_integration.js",
+      "sha256": "4af417803c9d5f7ef9dff76ad442161fdfa5a53a238e57be4f5f65077d5950f3"
+    },
+    {
+      "source": "frontend",
+      "file": "tests/e2e/motion_lifecycle.js",
+      "sha256": "66c3e5fb7632e5d70aa04ce8a2f4c6d859c3cc045cd6c6289aff555fc7a7d002"
+    },
+    {
+      "source": "frontend",
+      "file": "tests/e2e/motion_performance.js",
+      "sha256": "7beda4f6a749301fe348e9bb7e0ee209c877caf5d170f533df738a4ca00024e1"
+    },
+    {
+      "source": "frontend",
+      "file": "tests/e2e/motion_polish.js",
+      "sha256": "d3628ffc0c4e191d1f238683b7cb343ef14232b46798315f25de2a54450248e3"
+    },
+    {
+      "source": "frontend",
+      "file": "tests/e2e/motion_touch.js",
+      "sha256": "cec75f239ea9ca76bc66c9fab1ab37f0faf5f718150eb232daf3f9cb54e37ed3"
+    },
+    {
+      "source": "frontend",
+      "file": "tests/e2e/run_motion_review.mjs",
+      "sha256": "ea6c6f94a53371f825697944e5572173ca1ef9bae152058ec8a349f8cde52c43"
+    },
+    {
+      "source": "frontend",
+      "file": "tests/learner_model.test.mjs",
+      "sha256": "010310f4b33eba9bc0859f671c62d1fba099f5b3193db270329624d5db0c46ad"
+    }
+  ],
+  "standalone": {
+    "freshNpmCi": true,
+    "freshLocalMigrations": [
+      "0001",
+      "0002",
+      "0003",
+      "0004",
+      "0005"
+    ],
+    "base": "http://127.0.0.1:8796",
+    "ownFixtures": true,
+    "ownD1": true,
+    "http": {
+      "checks": 52,
+      "passed": true,
+      "base": "http://127.0.0.1:8796",
+      "at": "2026-10-24T08:54:11.553Z"
+    },
+    "ui": {
+      "passed": true,
+      "checks": 41
+    }
+  },
+  "actualGitMergeExecuted": false
+}

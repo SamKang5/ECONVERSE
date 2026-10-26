@@ -1,0 +1,108 @@
+:root {
+  --motion-fast: 150ms;
+  --motion-standard: 220ms;
+  --motion-page: 280ms;
+  --motion-reward: 600ms;
+  --ease-out: cubic-bezier(.2,.7,.2,1);
+}
+
+/* Travel is deliberately small; content and actions never wait for an animation. */
+@keyframes content-reveal { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes feedback-reveal { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+@keyframes reward-reveal { from { opacity: 0; transform: translateY(8px) scale(.96); } to { opacity: 1; transform: none; } }
+@keyframes reward-particle { from { opacity: 0; transform: translateY(8px) scale(.5); } 30% { opacity: 1; } to { opacity: 0; transform: translateY(-24px) rotate(35deg); } }
+@keyframes busy-pulse { 50% { opacity: .45; } }
+@keyframes progress-grow { from { scale: 0 1; } to { scale: 1 1; } }
+
+.page-transition { animation: content-reveal var(--motion-page) var(--ease-out); }
+.lesson-content:not([hidden]), .quiz-area:not([hidden]), .mg-view { animation: content-reveal var(--motion-standard) var(--ease-out); }
+[hidden] { display: none !important; }
+.hero-mascot img { height: auto; animation: reward-reveal 450ms var(--ease-out); transform-origin: bottom center; }
+.dashboard-main > .panel:nth-child(2), .dashboard-aside > .learning-tip { animation: content-reveal 340ms var(--ease-out); }
+.stats-grid strong { font-variant-numeric: tabular-nums; }
+.stat-value { display: inline-block; animation: feedback-reveal var(--motion-standard) var(--ease-out); }
+
+button, a, input, textarea, select, .quiz-option {
+  transition: background-color var(--motion-fast), border-color var(--motion-fast), color var(--motion-fast), opacity var(--motion-fast), transform var(--motion-fast) var(--ease-out);
+}
+button:hover:not(:disabled) { filter: none; }
+button:active:not(:disabled), .sidebar nav a:active { transform: translateY(1px); }
+.button:active:not(:disabled) { transform: translateY(1px) scale(.985); }
+.button > svg:last-child, .lesson-list-item > svg:last-child, .library-lesson > svg:last-child { transition: transform var(--motion-fast) var(--ease-out); }
+@media (hover:hover) and (pointer:fine) {
+  .button:hover:not(:disabled) > svg:last-child, .lesson-list-item:hover > svg:last-child, .library-lesson:hover > svg:last-child { transform: translateX(2px); }
+  .course-recommendation:hover { transform: translateY(-3px); }
+  .lesson-list-item:hover { transform: translateY(-2px); }
+  .quiz-option:not(:has(input:disabled)):hover { border-color: #aa8737; background: #fbf5e5; }
+}
+.sidebar nav a { position: relative; }
+.sidebar nav a::before { content: ''; position: absolute; left: 5px; top: 14px; bottom: 14px; width: 3px; border-radius: 3px; background: currentColor; opacity: 0; transform: scaleY(.4); transition: opacity var(--motion-standard), transform var(--motion-standard) var(--ease-out); }
+.sidebar nav a.active::before { opacity: .65; transform: scaleY(1); }
+.filter-tabs button, .auth-tabs button, .management .mg-tabs button { transition: background-color var(--motion-fast), color var(--motion-fast), border-color var(--motion-fast); }
+.lesson-stage-tabs > button { position: relative; border-bottom-color: transparent !important; }
+.lesson-stage-tabs > button::after { content: ''; position: absolute; inset: auto 0 -2px; height: 2px; background: #9b7729; transform: scaleX(0); transform-origin: left; transition: transform var(--motion-standard) var(--ease-out); }
+.lesson-stage-tabs > button.active::after { transform: scaleX(1); }
+.module-progress svg { transition: transform var(--motion-standard) var(--ease-out); }
+.motion-collapse { display: grid; grid-template-rows: 0fr; visibility: hidden; transition: grid-template-rows var(--motion-standard) var(--ease-out), visibility 0s var(--motion-standard); }
+.motion-collapse > div { min-height: 0; overflow: hidden; }
+.motion-collapse.is-expanded { grid-template-rows: 1fr; visibility: visible; transition-delay: 0s; }
+.course-module { animation: feedback-reveal var(--motion-standard) var(--ease-out); }
+.motion-progress { height: 7px; width: 100%; background: #eee7d8; overflow: hidden; border-radius: 10px; }
+.motion-progress > span { display: block; width: 100%; height: 100%; border-radius: inherit; background: #b7871c; transform-origin: left; transition: transform 450ms var(--ease-out); animation: progress-grow 450ms var(--ease-out); }
+.quiz-completion-progress { margin: -6px 0 20px; }
+.quiz-option .option-letter { transition: background-color var(--motion-fast), border-color var(--motion-fast), color var(--motion-fast), transform var(--motion-fast) var(--ease-out); }
+.quiz-option.selected .option-letter { transform: scale(1.04); }
+.quiz-option:has(input:disabled) { cursor: default; }
+.quiz-option.correct, .quiz-option.wrong { animation: feedback-reveal var(--motion-standard) var(--ease-out); }
+.quiz-option.correct { color: #234632; }
+.quiz-option.wrong { color: #783b29; }
+.quiz-result { position: relative; animation: content-reveal 340ms var(--ease-out); }
+.quiz-result:focus { outline: 3px solid #a9780c; outline-offset: 4px; }
+.quiz-score { margin: 14px 0; }
+.quiz-score .motion-progress { max-width: 300px; }
+.xp-reward { display: inline-flex; align-items: center; gap: 7px; padding: 8px 12px; margin: 12px 0 0; background: #e5eedf; color: #305b48; border-radius: 8px; font-size: 13px; font-weight: 750; position: relative; }
+.xp-reward.is-celebrating, .result-mascot.is-celebrating { animation: reward-reveal var(--motion-reward) var(--ease-out); }
+.reward-particles { position: absolute; inset: 0; pointer-events: none; }
+.reward-particles i { position: absolute; width: 5px; height: 8px; left: 12%; top: 4px; background: #b7871c; border-radius: 2px; opacity: 0; }
+.is-celebrating .reward-particles i { animation: reward-particle var(--motion-reward) var(--ease-out); }
+.reward-particles i:nth-child(2) { left: 43%; animation-delay: 40ms; background: #305b48; }
+.reward-particles i:nth-child(3) { left: 75%; animation-delay: 80ms; }
+.result-mascot { width: 42px; height: 48px; object-fit: contain; flex-shrink: 0; margin: 12px 0; }
+.result-rewards { display: flex; align-items: center; gap: 14px; }
+.result-rewards .xp-reward { margin: 0; }
+.management .confirm-actions .button-dark { background: #252921; color: #fffdf9; }
+.notice, .form-error, .form-success, .mg-alert, .quiz-explanation, .mg-status, .completed-label { animation: feedback-reveal var(--motion-standard) var(--ease-out); }
+.button[aria-busy=true] > svg:last-child { display: none; }
+button[aria-busy=true]::after { content: ''; width: 7px; height: 7px; border-radius: 50%; background: currentColor; animation: busy-pulse 900ms ease-in-out infinite; }
+.page-loading > svg, .mg-panel[aria-busy=true] > .mg-empty, .quiz-area [aria-busy=true] { animation: busy-pulse 1s ease-in-out infinite; }
+input:focus, textarea:focus, select:focus { border-color: #a9780c; }
+
+.motion-dialog { border: 0; padding: 0; margin: auto; background: transparent; color: var(--ink); max-width: calc(100% - 32px); max-height: calc(100dvh - 32px); overflow: visible; }
+.motion-dialog:not([open]) { display: none; }
+.motion-dialog::backdrop { background: #141b16a8; animation: feedback-reveal var(--motion-standard) var(--ease-out); }
+.motion-dialog.is-closing::backdrop { opacity: 0; transition: opacity 160ms; }
+.motion-dialog .auth-dialog { max-height: calc(100dvh - 32px); }
+.confirm-dialog { width: 430px; max-width: 100%; max-height: calc(100dvh - 32px); overflow: auto; padding: 28px; border-radius: 14px; background: var(--surface); border: 1px solid var(--border); }
+.confirm-dialog h2 { font-size: 23px; letter-spacing: -.5px; font-weight: 750; margin-bottom: 12px; }
+.confirm-dialog p { font-size: 13px; line-height: 1.8; color: var(--muted); }
+.confirm-actions { display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+.mg-save-state { display: flex; align-items: center; gap: 8px; color: #655f52; font-size: 12px; margin-bottom: 16px; }
+.management .mg-section-toggle { width: 100%; border: 0; padding: 0 0 14px; background: transparent; justify-content: space-between; text-align: left; font-size: 17px; }
+.mg-section-toggle svg { transition: transform var(--motion-standard) var(--ease-out); }
+.mg-section-toggle[aria-expanded=false] svg { transform: rotate(-90deg); }
+.mg-editor-section > .motion-collapse > div > fieldset { border: 0; padding: 0; margin: 0; }
+.mg-question { animation: content-reveal var(--motion-standard) var(--ease-out); }
+.mg-question.is-removing { opacity: 0; transform: translateY(-6px); transition: opacity var(--motion-fast), transform var(--motion-fast) var(--ease-out); pointer-events: none; }
+.management .mg-panel[aria-busy=true] { min-height: 160px; }
+
+@media (max-width:760px) {
+  .sidebar { transition: transform var(--motion-standard) var(--ease-out), visibility 0s var(--motion-standard); visibility: hidden; }
+  .sidebar.is-open { visibility: visible; transition-delay: 0s; }
+  .menu-backdrop { animation: feedback-reveal var(--motion-standard) var(--ease-out); }
+}
+@media (max-width:480px) { .hero-mascot img { height: 175px; } }
+@media (prefers-reduced-motion:reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  .reward-particles { display: none; }
+  .quiz-option.selected .option-letter { transform: none; }
+}

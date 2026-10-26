@@ -1,754 +1,143 @@
-import * as Icons from "lucide-react";
-import { startTransition, useEffect, useState, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { ArrowUpRight, BookOpen, GraduationCap, House, LayoutDashboard, LogOut, Menu, ShieldCheck, UserRound, X } from 'lucide-react';
+import mascot from './assets/econverse-logo.webp';
+import { AuthModal } from './components/AuthModal';
+import { LearnerDashboard } from './components/LearnerDashboard';
+import { CourseLibrary } from './components/CourseLibrary';
+import { LessonExperience } from './components/LessonExperience';
+import { LearnerProfile } from './components/LearnerProfile';
+import ManagementPage from './components/ManagementPage';
+import { apiClient, type ProgressResponse, type PublicUser } from './services/api';
+import { getCourses, type PublishedCourse } from './services/content';
 
-import { Dashboard } from "./components/Dashboard";
-import { ComingSoonModal } from "./components/ComingSoonModal";
-import { AuthModal } from "./components/AuthModal";
-import { Footer } from "./components/Footer";
-import { Header } from "./components/Header";
-import { LearnPage } from "./components/LearnPage";
-import { MediaPage } from "./components/MediaPage";
-import { PetPage } from "./components/PetPage";
-import { ShopPage } from "./components/ShopPage";
-import { MOCK_SOCIAL_POSTS, SHOP_ITEMS } from "./data";
-import { COURSE_MODULES } from "./learnData";
-import { apiClient, type PublicUser } from "./services/api";
-import type {
-  AppTab,
-  CourseCategory,
-  LearnCategoryFilter,
-  LearnView,
-  LessonStage,
-  PetAccessory,
-  PetState,
-  SocialPost,
-} from "./types";
-
-const STORAGE_KEYS = {
-  pet: "econedu_pet",
-  shop: "econedu_shop",
-  socialPosts: "econedu_social_posts",
-} as const;
-
-const DISABLED_TABS: AppTab[] = ["pet", "shop", "media"];
-
-type StreakMeta = {
-  lastVisit: string;
-  streak: number;
-};
-
-const DEFAULT_GUEST_PET_STATE: PetState = {
-  name: "Tôm Heo Đất",
-  points: 0,
-  level: 1,
-  species: "gấu",
-  equipped: {
-    glasses: null,
-    hat: null,
-    clothing: null,
-    background: null,
-  },
-  ownedAccessories: [],
-};
-
-const ALL_LESSON_ENTRIES = COURSE_MODULES.flatMap((module) =>
-  module.lessons.map((lesson) => ({ module, lesson })),
-);
-
-function readStoredValue<T>(key: string, fallback: T): T {
-  if (typeof window === "undefined") {
-    return fallback;
-  }
-
-  try {
-    const savedValue = window.localStorage.getItem(key);
-    return savedValue ? (JSON.parse(savedValue) as T) : fallback;
-  } catch {
-    return fallback;
-  }
-}
-
-function findLessonEntry(lessonId: string) {
-  return ALL_LESSON_ENTRIES.find((entry) => entry.lesson.id === lessonId) ?? null;
-}
-
-function getFirstLessonByCategory(category: CourseCategory) {
-  return (
-    ALL_LESSON_ENTRIES.find((entry) => entry.module.category === category) ??
-    ALL_LESSON_ENTRIES[0] ??
-    null
-  );
-}
-
-function mergeShopItems(savedItems: PetAccessory[]) {
-  const savedById = new Map(savedItems.map((item) => [item.id, item]));
-
-  return SHOP_ITEMS.map((item) => ({
-    ...item,
-    ...savedById.get(item.id),
-  }));
-}
-
-function findNextLesson(completedLessons: string[]) {
-  const nextEntry =
-    ALL_LESSON_ENTRIES.find(
-      (entry) => !completedLessons.includes(entry.lesson.id),
-    ) ?? ALL_LESSON_ENTRIES[0];
-
-  if (!nextEntry) {
-    return null;
-  }
-
-  return {
-    category: nextEntry.module.category,
-    lessonId: nextEntry.lesson.id,
-    lessonTitle: nextEntry.lesson.title,
-    categoryLabel:
-      nextEntry.module.category === "economics" ? "Kinh tế" : "Tài chính",
-  };
+type View = 'dashboard' | 'library' | 'lesson' | 'profile' | 'management';
+const EMPTY_PROGRESS: ProgressResponse = { lessons: [], gamification: { totalXp: 0, level: 1, currentStreak: 0 } };
+function readLocation(): { view: View; lessonId: string | null } {
+  const [view, lessonId] = location.hash.slice(1).split('/');
+  if (view === 'lesson' && lessonId) { try { return { view: 'lesson', lessonId: decodeURIComponent(lessonId) }; } catch { return {view:'library',lessonId:null}; } }
+  return { view: ['library','profile','management'].includes(view) ? view as View : 'dashboard', lessonId: null };
 }
 
 export default function App() {
-  const [activeTab, setActiveTabState] = useState<AppTab>("dashboard");
-  const [selectedCategory, setSelectedCategory] =
-    useState<LearnCategoryFilter>("all");
-  const [learnView, setLearnView] = useState<LearnView>("catalog");
-  const [activeLessonId, setActiveLessonId] = useState<string | null>(null);
-  const [lessonStage, setLessonStage] = useState<LessonStage>("video");
-  const [quizAnswers, setQuizAnswers] = useState<Record<string, number>>({});
-  const [isQuizSubmitted, setIsQuizSubmitted] = useState(false);
-  const [feedbackMsg, setFeedbackMsg] = useState("");
-  
-  // Auth state
+  const [route, setRoute] = useState(readLocation);
   const [user, setUser] = useState<PublicUser | null>(null);
-  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
-  const [authModalMode, setAuthModalMode] = useState<"login" | "register">("login");
-  const [authModalMessage, setAuthModalMessage] = useState("");
-  const activeSubmissionKeyRef = useRef<string | null>(null);
-
-  // Gamification & Progress state (Server Authoritative)
-  const [petState, setPetState] = useState<PetState>(() =>
-    readStoredValue(STORAGE_KEYS.pet, DEFAULT_GUEST_PET_STATE),
-  );
-  const [shopItems, setShopItems] = useState<PetAccessory[]>(() =>
-    mergeShopItems(readStoredValue(STORAGE_KEYS.shop, SHOP_ITEMS)),
-  );
-  const [lessonsCompleted, setLessonsCompleted] = useState<string[]>([]);
-  const [socialPosts, setSocialPosts] = useState<SocialPost[]>(() =>
-    readStoredValue(STORAGE_KEYS.socialPosts, MOCK_SOCIAL_POSTS),
-  );
-  const [streakMeta, setStreakMeta] = useState<StreakMeta>({
-    lastVisit: "",
-    streak: 0,
-  });
-
-  const [memeScenario, setMemeScenario] = useState(
-    "Hết tiền tiêu vặt ngày 10 của tháng",
-  );
-  const [memeSolution, setMemeSolution] = useState(
-    "Quy tắc chia ví 50% thiết yếu, 30% sở thích, 20% tiết kiệm",
-  );
-  const [isMemeGenerated, setIsMemeGenerated] = useState(false);
-  const [isComingSoonOpen, setIsComingSoonOpen] = useState(false);
-  const [customMemeText, setCustomMemeText] = useState(
-    "Nhìn bạn bè đi ăn lẩu, mình hút nước trà đá cầm cự!",
-  );
-
-  const activeLessonEntry = activeLessonId ? findLessonEntry(activeLessonId) : null;
-  const activeModule = activeLessonEntry?.module ?? null;
-  const activeLesson = activeLessonEntry?.lesson ?? null;
-  const totalLessonCount = ALL_LESSON_ENTRIES.length;
-  const nextLessonInfo = findNextLesson(lessonsCompleted);
-  const pageMeta = getPageMeta(activeTab, {
-    activeLessonTitle: activeLesson?.title ?? null,
-    selectedCategory,
-    petName: petState.name,
-    isInLessonFlow: learnView === "lesson" && Boolean(activeLesson),
-  });
-
-  // Load server state on auth
-  async function loadUserData() {
-    try {
-      const [progressRes, gamificationRes, petsRes] = await Promise.all([
-        apiClient.progress.get().catch(() => null),
-        apiClient.gamification.get().catch(() => null),
-        apiClient.pets.getMe().catch(() => null),
-      ]);
-
-      if (progressRes) {
-        const completedIds = progressRes.lessons
-          .filter((l) => l.status === "completed")
-          .map((l) => l.lessonId);
-        setLessonsCompleted(completedIds);
-      }
-
-      if (gamificationRes) {
-        setPetState((prev) => ({
-          ...prev,
-          points: gamificationRes.totalXp,
-          level: gamificationRes.level,
-        }));
-        setStreakMeta({
-          lastVisit: gamificationRes.updatedAt || "",
-          streak: gamificationRes.currentStreak,
-        });
-      }
-
-      if (petsRes?.activePet) {
-        const species = (petsRes.activePet.metadata?.species as PetState["species"]) || "gấu";
-        setPetState((prev) => ({
-          ...prev,
-          name: petsRes.activePet?.name || prev.name,
-          species,
-        }));
-      }
-    } catch {
-      // Ignore background sync errors
-    }
-  }
-
-  // Check session on mount
+  const [sessionLoading, setSessionLoading] = useState(true);
+  const [courses, setCourses] = useState<PublishedCourse[]>([]);
+  const [progress, setProgress] = useState<ProgressResponse>(EMPTY_PROGRESS);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+  const [authMode, setAuthMode] = useState<'login' | 'register' | null>(null);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [mobile,setMobile] = useState(() => window.matchMedia('(max-width: 760px)').matches);
+  const sidebarRef = useRef<HTMLElement>(null);
+  const mainRef = useRef<HTMLElement>(null);
+  const previousRoute = useRef(`${route.view}:${route.lessonId || ''}`);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const [authVisible,setAuthVisible] = useState(false);
+  const [authRequest,setAuthRequest] = useState(0);
+  const sessionEpoch=useRef(0);
+  const sessionRefresh=useRef(0);
+  const currentUserId=useRef<string|null>(null);
+  function openAuth(mode:'login'|'register') {setAuthMode(mode);setAuthRequest(value=>value+1);setAuthVisible(true);}
   useEffect(() => {
-    apiClient.auth
-      .getSession()
-      .then((session) => {
-        if (session.authenticated && session.user) {
-          setUser(session.user);
-          loadUserData();
-        }
-      })
-      .catch(() => {
-        // Guest mode
-      });
+    const media=window.matchMedia('(max-width: 760px)');
+    const changed=()=>{setMobile(media.matches);if(!media.matches)setMenuOpen(false);};
+    media.addEventListener('change',changed);
+    return ()=>media.removeEventListener('change',changed);
+  },[]);
+  useEffect(() => {
+    if(!menuOpen)return;
+    const overflow=document.body.style.overflow;
+    document.body.style.overflow='hidden';
+    sidebarRef.current?.querySelector<HTMLElement>('.close-menu')?.focus();
+    const keydown=(event:KeyboardEvent)=>{
+      if(event.key==='Escape'){event.preventDefault();setMenuOpen(false);}
+      if(event.key!=='Tab')return;
+      const controls=Array.from(sidebarRef.current?.querySelectorAll<HTMLElement>('a[href],button:not(:disabled)')||[]);
+      const first=controls[0],last=controls[controls.length-1];
+      if(event.shiftKey&&document.activeElement===first){event.preventDefault();last?.focus();}
+      else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first?.focus();}
+    };
+    document.addEventListener('keydown',keydown);
+    return ()=>{document.body.style.overflow=overflow;document.removeEventListener('keydown',keydown);if(menuButtonRef.current?.getClientRects().length)menuButtonRef.current.focus();else mainRef.current?.focus({preventScroll:true});};
+  },[menuOpen]);
+  useEffect(() => {
+    const key=`${route.view}:${route.lessonId || ''}`;
+    if(previousRoute.current===key)return;
+    previousRoute.current=key;
+    mainRef.current?.focus({preventScroll:true});
+  },[route.view,route.lessonId]);
+  const refreshCourses = useCallback(async () => {
+    setLoading(true);
+    try { setCourses(await getCourses()); setError(''); }
+    catch (cause) { setError(cause instanceof Error ? cause.message : 'Không thể tải nội dung.'); }
+    finally { setLoading(false); }
   }, []);
-
-  function handleAuthSuccess(authenticatedUser: PublicUser) {
-    setUser(authenticatedUser);
-    loadUserData();
-  }
-
-  async function handleLogout() {
+  const refreshSession = useCallback(async () => {
+    const epoch=sessionEpoch.current,request=++sessionRefresh.current;
+    const current=()=>epoch===sessionEpoch.current&&request===sessionRefresh.current;
     try {
-      await apiClient.auth.logout();
-    } catch {
-      // Ignore
-    }
-    setUser(null);
-    setLessonsCompleted([]);
-    setPetState(DEFAULT_GUEST_PET_STATE);
-    setStreakMeta({ lastVisit: "", streak: 0 });
-  }
-
-  function openAuthModal(mode: "login" | "register" = "login", customMsg = "") {
-    setAuthModalMode(mode);
-    setAuthModalMessage(customMsg);
-    setIsAuthModalOpen(true);
-  }
-
-  function setActiveTab(tab: AppTab) {
-    if (DISABLED_TABS.includes(tab)) {
-      setIsComingSoonOpen(true);
-      return;
-    }
-
-    startTransition(() => {
-      setActiveTabState(tab);
-    });
-  }
-
-  function resetLessonFlow() {
-    setLessonStage("video");
-    setQuizAnswers({});
-    setIsQuizSubmitted(false);
-    setFeedbackMsg("");
-    activeSubmissionKeyRef.current = null;
-  }
-
-  function openLearn() {
-    startTransition(() => {
-      setActiveTabState("learn");
-      setLearnView("catalog");
-    });
-  }
-
-  function openShop() {
-    setIsComingSoonOpen(true);
-  }
-
-  function openLesson(lessonId: string, categoryOverride?: CourseCategory) {
-    const nextEntry = findLessonEntry(lessonId);
-
-    if (!nextEntry) {
-      return;
-    }
-
-    startTransition(() => {
-      setActiveTabState("learn");
-      if (categoryOverride) {
-        setSelectedCategory(categoryOverride);
-      }
-      setLearnView("lesson");
-      setActiveLessonId(lessonId);
-    });
-
-    resetLessonFlow();
-
-    // If authenticated, sync in_progress status
-    if (user) {
-      apiClient.progress.update(lessonId, "in_progress").catch(() => {});
-    }
-  }
-
-  function openCourse(category: CourseCategory) {
-    const nextEntry = getFirstLessonByCategory(category);
-
-    if (!nextEntry) {
-      openLearn();
-      return;
-    }
-
-    openLesson(nextEntry.lesson.id, category);
-  }
-
-  function continueLearning() {
-    if (!nextLessonInfo) {
-      openLearn();
-      return;
-    }
-
-    openLesson(nextLessonInfo.lessonId, nextLessonInfo.category);
-  }
-
-  function backToLessonCatalog() {
-    startTransition(() => {
-      setActiveTabState("learn");
-      setLearnView("catalog");
-    });
-
-    resetLessonFlow();
-  }
-
-  function handleSpeciesChange(species: PetState["species"]) {
-    setPetState((currentState) => ({
-      ...currentState,
-      species,
-    }));
-  }
-
-  function handleRename(name: string) {
-    const trimmedName = name.trim();
-
-    if (!trimmedName) {
-      return;
-    }
-
-    setPetState((currentState) => ({
-      ...currentState,
-      name: trimmedName,
-    }));
-  }
-
-  function handleShopAction(item: PetAccessory) {
-    const isOwned = petState.ownedAccessories.includes(item.id);
-
-    if (isOwned) {
-      setPetState((currentState) => {
-        const isEquipped = currentState.equipped[item.category] === item.id;
-
-        return {
-          ...currentState,
-          equipped: {
-            ...currentState.equipped,
-            [item.category]: isEquipped ? null : item.id,
-          },
-        };
-      });
-      return;
-    }
-
-    if (petState.points < item.price) {
-      window.alert(
-        "Bạn chưa đủ XP cho món này. Học thêm một bài rồi quay lại mua nhé!",
-      );
-      return;
-    }
-
-    setPetState((currentState) => ({
-      ...currentState,
-      points: currentState.points - item.price,
-      ownedAccessories: [...currentState.ownedAccessories, item.id],
-    }));
-
-    setShopItems((currentItems) =>
-      currentItems.map((currentItem) =>
-        currentItem.id === item.id
-          ? { ...currentItem, unlocked: true }
-          : currentItem,
-      ),
-    );
-  }
-
-  function handleSelectQuizOption(questionId: string, optionIndex: number) {
-    setQuizAnswers((currentAnswers) => ({
-      ...currentAnswers,
-      [questionId]: optionIndex,
-    }));
-
-    if (isQuizSubmitted) {
-      setIsQuizSubmitted(false);
-      setFeedbackMsg("");
-    }
-  }
-
-  async function handleSubmitQuiz() {
-    if (!activeLesson) {
-      return;
-    }
-
-    // Require authentication to submit quizzes and earn XP
-    if (!user) {
-      openAuthModal(
-        "login",
-        "Vui lòng đăng nhập hoặc tạo tài khoản để nộp bài và tích lũy XP!",
-      );
-      return;
-    }
-
-    const unansweredQuestion = activeLesson.quiz.find(
-      (question) => quizAnswers[question.id] === undefined,
-    );
-
-    if (unansweredQuestion) {
-      setFeedbackMsg("Vui lòng chọn đáp án cho tất cả câu hỏi trước khi nộp bài.");
-      return;
-    }
-
-    // Generate or reuse idempotency key for this attempt
-    if (!activeSubmissionKeyRef.current) {
-      activeSubmissionKeyRef.current = "idemp_" + crypto.randomUUID().replace(/-/g, "");
-    }
-
-    try {
-      const res = await apiClient.quizzes.submit(activeLesson.id, {
-        answers: quizAnswers,
-        idempotencyKey: activeSubmissionKeyRef.current,
-      });
-
-      setIsQuizSubmitted(true);
-
-      if (res.lessonCompleted && res.xpAwarded > 0) {
-        setLessonsCompleted((prev) =>
-          prev.includes(activeLesson.id) ? prev : [...prev, activeLesson.id],
-        );
-        setFeedbackMsg(
-          `Chúc mừng! Bạn đã hoàn thành bài học xuất sắc và nhận +${res.xpAwarded} XP. Có thể quay lại danh sách để mở bài tiếp theo.`,
-        );
-        // Refresh server gamification
-        const gamif = await apiClient.gamification.get().catch(() => null);
-        if (gamif) {
-          setPetState((prev) => ({
-            ...prev,
-            points: gamif.totalXp,
-            level: gamif.level,
-          }));
-          setStreakMeta({
-            lastVisit: gamif.updatedAt || "",
-            streak: gamif.currentStreak,
-          });
-        }
-        return;
-      }
-
-      if (res.lessonCompleted && res.xpAwarded === 0) {
-        setFeedbackMsg(
-          "Bài học này bạn đã hoàn thành trước đó rồi. Đạt điểm tối đa nhưng không nhận thêm XP.",
-        );
-        return;
-      }
-
-      setFeedbackMsg(
-        `Bạn đúng ${res.correctCount}/${res.totalQuestions} câu (Điểm: ${res.score}%). Hãy xem lại nội dung và thử nộp lại nhé.`,
-      );
-    } catch (err: any) {
-      setFeedbackMsg(
-        err?.message || "Đã xảy ra lỗi khi nộp bài. Vui lòng thử lại sau.",
-      );
-    }
-  }
-
-  function handleLikePost(postId: string) {
-    setSocialPosts((currentPosts) =>
-      currentPosts.map((post) =>
-        post.id === postId ? { ...post, likes: post.likes + 1 } : post,
-      ),
-    );
-  }
-
-  function handleAddComment(postId: string) {
-    setSocialPosts((currentPosts) =>
-      currentPosts.map((post) =>
-        post.id === postId ? { ...post, comments: post.comments + 1 } : post,
-      ),
-    );
-  }
-
-  function updateMemeScenario(value: string) {
-    setMemeScenario(value);
-    setIsMemeGenerated(false);
-  }
-
-  function updateMemeSolution(value: string) {
-    setMemeSolution(value);
-    setIsMemeGenerated(false);
-  }
-
-  function updateCustomMemeText(value: string) {
-    setCustomMemeText(value);
-    setIsMemeGenerated(false);
-  }
-
-  return (
-    <div className="app-frame">
-      <div className="app-shell">
-        <Header
-          activeTab={activeTab}
-          petState={petState}
-          streakDays={streakMeta.streak}
-          completedLessonCount={lessonsCompleted.length}
-          totalLessonCount={totalLessonCount}
-          user={user}
-          onChangeTab={setActiveTab}
-          onOpenLearn={openLearn}
-          onOpenAuth={() => openAuthModal("login")}
-          onLogout={handleLogout}
-        />
-
-        <div className="app-canvas">
-          <main className="space-y-6 px-4 py-4 sm:px-6 sm:py-6 xl:px-8 xl:py-8">
-            <section className="surface-card overflow-hidden p-5 sm:p-6 xl:p-7">
-              <div className="grid gap-6 xl:grid-cols-[minmax(0,1.45fr)_minmax(360px,0.95fr)] xl:items-end">
-                <div className="space-y-4">
-                  <span className="badge badge-lime">
-                    <Icons.Sparkles className="h-4 w-4" />
-                    {pageMeta.eyebrow}
-                  </span>
-                  <div className="space-y-3">
-                    <h2 className="font-display text-3xl font-bold tracking-tight text-[#17191D] sm:text-4xl xl:text-[2.95rem]">
-                      {pageMeta.title}
-                    </h2>
-                    <p className="max-w-3xl text-sm leading-7 text-[#5E6571] sm:text-[0.98rem]">
-                      {pageMeta.description}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="grid gap-3 sm:grid-cols-3">
-                  <QuickMetricCard
-                    label="Tiến độ"
-                    value={`${lessonsCompleted.length}/${totalLessonCount}`}
-                    caption="Bài đã hoàn thành"
-                    accentClassName="text-[#4C3C86]"
-                  />
-                  <QuickMetricCard
-                    label="Ví XP"
-                    value={`${petState.points}`}
-                    caption={`Level ${petState.level} hiện tại`}
-                    accentClassName="text-[#365114]"
-                  />
-                  <QuickMetricCard
-                    label="Chuỗi học"
-                    value={`${streakMeta.streak} ngày`}
-                    caption="Giữ nhịp đều mỗi hôm"
-                    accentClassName="text-[#9B365E]"
-                  />
-                </div>
-              </div>
-            </section>
-
-            {activeTab === "dashboard" && nextLessonInfo && (
-              <Dashboard
-                petState={petState}
-                completedLessonCount={lessonsCompleted.length}
-                totalLessonCount={totalLessonCount}
-                streakDays={streakMeta.streak}
-                nextLessonTitle={nextLessonInfo.lessonTitle}
-                nextLessonCategoryLabel={nextLessonInfo.categoryLabel}
-                onContinueLearning={continueLearning}
-                onOpenCourse={openCourse}
-                onOpenPet={() => setActiveTab("pet")}
-                onOpenShop={openShop}
-              />
-            )}
-
-            {activeTab === "learn" && (
-              <LearnPage
-                modules={COURSE_MODULES}
-                selectedCategory={selectedCategory}
-                activeModule={activeModule}
-                activeLesson={learnView === "lesson" ? activeLesson : null}
-                lessonStage={lessonStage}
-                lessonsCompleted={lessonsCompleted}
-                quizAnswers={quizAnswers}
-                isQuizSubmitted={isQuizSubmitted}
-                feedbackMsg={feedbackMsg}
-                onSelectCategory={setSelectedCategory}
-                onOpenLesson={openLesson}
-                onBackToCatalog={backToLessonCatalog}
-                onChangeLessonStage={setLessonStage}
-                onSelectQuizAnswer={handleSelectQuizOption}
-                onSubmitQuiz={handleSubmitQuiz}
-              />
-            )}
-
-            {activeTab === "pet" && (
-              <PetPage
-                petState={petState}
-                completedLessonCount={lessonsCompleted.length}
-                totalLessonCount={totalLessonCount}
-                onSpeciesChange={handleSpeciesChange}
-                onRename={handleRename}
-                onOpenLearn={continueLearning}
-                onOpenShop={openShop}
-              />
-            )}
-
-            {activeTab === "shop" && (
-              <ShopPage
-                petState={petState}
-                shopItems={shopItems}
-                onShopAction={handleShopAction}
-                onOpenLearn={continueLearning}
-              />
-            )}
-
-            {activeTab === "media" && (
-              <MediaPage
-                socialPosts={socialPosts}
-                memeScenario={memeScenario}
-                memeSolution={memeSolution}
-                customMemeText={customMemeText}
-                isMemeGenerated={isMemeGenerated}
-                onScenarioChange={updateMemeScenario}
-                onSolutionChange={updateMemeSolution}
-                onCustomTextChange={updateCustomMemeText}
-                onGenerateMeme={() => setIsMemeGenerated(true)}
-                onLikePost={handleLikePost}
-                onAddComment={handleAddComment}
-              />
-            )}
-          </main>
-
-          <Footer />
-        </div>
-
-        <ComingSoonModal
-          isOpen={isComingSoonOpen}
-          onClose={() => setIsComingSoonOpen(false)}
-        />
-
-        <AuthModal
-          isOpen={isAuthModalOpen}
-          initialMode={authModalMode}
-          message={authModalMessage}
-          onClose={() => setIsAuthModalOpen(false)}
-          onSuccess={handleAuthSuccess}
-        />
-      </div>
-    </div>
-  );
-}
-
-function getPageMeta(
-  activeTab: AppTab,
-  context: {
-    activeLessonTitle: string | null;
-    selectedCategory: LearnCategoryFilter;
-    petName: string;
-    isInLessonFlow: boolean;
-  },
-) {
-  if (activeTab === "dashboard") {
-    return {
-      eyebrow: "Học theo nhịp riêng",
-      title: "Chào mừng trở lại với ECONVERSE.",
-      description:
-        "Bắt đầu bài học hôm nay, làm quiz nhận XP và chăm sóc người bạn đồng hành theo cách trực quan nhất.",
-    };
-  }
-
-  if (activeTab === "learn") {
-    if (context.isInLessonFlow && context.activeLessonTitle) {
-      return {
-        eyebrow: "Chi tiết bài học",
-        title: context.activeLessonTitle,
-        description:
-          "Xem nội dung bài học, theo dõi video và hoàn thành quiz để nhận XP.",
-      };
-    }
-
-    const categoryText =
-      context.selectedCategory === "economics"
-        ? "Kinh tế cơ bản"
-        : context.selectedCategory === "finance"
-          ? "Tài chính cá nhân"
-          : "Toàn bộ bài học";
-
-    return {
-      eyebrow: "Chương trình học",
-      title: `Danh mục bài học: ${categoryText}`,
-      description:
-        "Chọn bài học bạn muốn khám phá và bắt đầu học ngay bây giờ.",
-    };
-  }
-
-  if (activeTab === "pet") {
-    return {
-      eyebrow: "Bạn đồng hành",
-      title: `Hồ sơ pet: ${context.petName}`,
-      description:
-        "Tùy biến loài pet, đổi tên và theo dõi cấp bậc tăng trưởng theo XP tích lũy.",
-    };
-  }
-
-  if (activeTab === "shop") {
-    return {
-      eyebrow: "Cửa hàng phụ kiện",
-      title: "Đổi XP lấy đồ cho pet",
-      description:
-        "Mở khóa các phụ kiện thời trang và hình nền độc đáo để trang bị cho pet.",
-    };
-  }
-
-  return {
-    eyebrow: "Góc thư giãn",
-    title: "Mẹo tài chính & Media",
-    description:
-      "Khám phá các mẹo quản lý chi tiêu và tạo meme thú vị về kinh tế đời sống.",
+      const session = await apiClient.auth.getSession();
+      if(!current())return;
+      if (session.authenticated && session.user) {
+        if(currentUserId.current!==session.user.id)setProgress(EMPTY_PROGRESS);
+        currentUserId.current=session.user.id;setUser(session.user);
+        const nextProgress=await apiClient.progress.get();
+        if(current())setProgress(nextProgress);
+      } else {currentUserId.current=null;setUser(null);setProgress(EMPTY_PROGRESS);}
+    } catch (cause) {if(current())setError(cause instanceof Error ? cause.message : 'Không thể đồng bộ tài khoản.');}
+    finally {if(current())setSessionLoading(false);}
+  }, []);
+  useEffect(()=>()=>{sessionEpoch.current++;sessionRefresh.current++;},[]);
+  useEffect(() => { void refreshCourses(); void refreshSession(); }, [refreshCourses, refreshSession]);
+  useEffect(() => {
+    const changed = () => { setRoute(readLocation()); setMenuOpen(false); window.scrollTo({top:0,behavior:'instant'}); };
+    window.addEventListener('hashchange', changed); window.addEventListener('focus', refreshSession);
+    return () => { window.removeEventListener('hashchange', changed); window.removeEventListener('focus', refreshSession); };
+  }, [refreshSession]);
+  const navigate = (view: View) => { location.hash = view; if (view === 'library') void refreshCourses(); void refreshSession(); };
+  const openLesson = (id: string) => { location.hash = `lesson/${encodeURIComponent(id)}`; };
+  const authenticated = (next: PublicUser) => {
+    sessionEpoch.current++;
+    if(currentUserId.current!==next.id)setProgress(EMPTY_PROGRESS);
+    currentUserId.current=next.id;setUser(next);void refreshSession();
   };
-}
-
-function QuickMetricCard({
-  label,
-  value,
-  caption,
-  accentClassName,
-}: {
-  label: string;
-  value: string;
-  caption: string;
-  accentClassName: string;
-}) {
-  return (
-    <div className="surface-card-muted flex flex-col justify-between p-4 rounded-2xl">
-      <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[#7E8692]">
-        {label}
-      </p>
-      <div className="mt-2">
-        <p className={`text-2xl font-black tracking-tight ${accentClassName}`}>
-          {value}
-        </p>
-        <p className="mt-0.5 text-xs text-[#5E6571]">{caption}</p>
-      </div>
-    </div>
-  );
+  const updatedUser=(next:PublicUser)=>{if(next.id===currentUserId.current){setUser(next);void refreshSession();}};
+  const logout = async () => {
+    const epoch=++sessionEpoch.current;
+    try { await apiClient.auth.logout();if(epoch!==sessionEpoch.current)return;sessionRefresh.current++;currentUserId.current=null;setUser(null);setProgress(EMPTY_PROGRESS);navigate('dashboard'); }
+    catch (cause) {if(epoch===sessionEpoch.current)setError(cause instanceof Error ? cause.message : 'Không thể đăng xuất.');}
+  };
+  const activeEntry = courses.flatMap(course => course.lessons.map(lesson => ({ course, lesson }))).find(entry => entry.lesson.id === route.lessonId);
+  const privileged = user?.role === 'editor' || user?.role === 'admin';
+  const navItems = [
+    { view:'dashboard' as View, label:'Tổng quan', icon:House },
+    { view:'library' as View, label:'Thư viện bài học', icon:BookOpen },
+    { view:'profile' as View, label:'Hồ sơ của tôi', icon:UserRound },
+    ...(privileged ? [{view:'management' as View,label:user?.role === 'admin' ? 'Admin Console' : 'Content Studio',icon:ShieldCheck}] : []),
+  ];
+  const title = route.view === 'lesson' ? 'Không gian học tập' : navItems.find(item => item.view === route.view)?.label || 'ECONVERSE';
+  return <div className="learning-app">
+    <a className="skip-link" href="#main-content" onClick={event => { event.preventDefault(); document.getElementById('main-content')?.focus(); }}>Đến nội dung chính</a>
+    <aside ref={sidebarRef} id="primary-navigation" inert={mobile && !menuOpen} role={mobile && menuOpen ? 'dialog' : undefined} aria-modal={mobile && menuOpen ? true : undefined} className={`sidebar ${menuOpen ? 'is-open' : ''}`} aria-label="Điều hướng chính">
+      <a className="brand" href="#dashboard"><img src={mascot} alt="" /><span>ECONVERSE<small>LEARN. THINK. GROW.</small></span></a>
+      <button className="icon-button close-menu" aria-label="Đóng menu" onClick={() => setMenuOpen(false)}><X size={20}/></button>
+      <p className="nav-caption">KHÔNG GIAN CỦA BẠN</p>
+      <nav>{navItems.map(({view,label,icon:Icon}) => <a key={view} href={`#${view}`} aria-current={(route.view === view || view === 'library' && route.view === 'lesson') ? 'page' : undefined} className={(route.view === view || view === 'library' && route.view === 'lesson') ? 'active' : ''} onClick={event => {event.preventDefault();navigate(view);}}><Icon size={19}/>{label}</a>)}</nav>
+      <div className="sidebar-bottom"><div className="sidebar-note"><GraduationCap size={23}/><strong>Mỗi bài học, một góc nhìn mới.</strong><p>Cùng Tũn khám phá kinh tế từ những điều gần gũi.</p><button onClick={() => navigate('library')}>Khám phá thư viện <ArrowUpRight size={16}/></button></div>{user && <button className="sidebar-logout" onClick={logout}><LogOut size={17}/>Đăng xuất</button>}<span className="sidebar-foot">ECONVERSE · Học để hiểu hơn</span></div>
+    </aside>
+    {menuOpen && <button className="menu-backdrop" aria-label="Đóng điều hướng" onClick={() => setMenuOpen(false)}/>}
+    <div className="workspace" inert={mobile && menuOpen}><header className="topbar"><div className="topbar-left"><button className="icon-button open-menu" ref={menuButtonRef} aria-controls="primary-navigation" aria-label="Mở menu" aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}><Menu size={23}/></button><span className="breadcrumb">ECONVERSE <span>/</span> <b>{title}</b></span></div><div className="top-actions">{user ? <><span className="account-role">{user.role === 'learner' ? 'Học viên' : user.role === 'editor' ? 'Editor' : 'Admin'}</span><button className="account-button" onClick={() => navigate('profile')} aria-label={`Hồ sơ ${user.displayName}`}><span className="avatar">{user.displayName.slice(0,1).toUpperCase()}</span><span>{user.displayName}</span></button></> : <button className="button button-dark" disabled={sessionLoading} onClick={event => {event.currentTarget.focus();openAuth('login');}}>{sessionLoading ? 'Đang kết nối…' : 'Đăng nhập'}</button>}</div></header>
+      <main ref={mainRef} id="main-content" tabIndex={-1}><div className="page-transition" key={`${route.view}:${route.lessonId || ''}`}>
+        {error && <div className="notice notice-error" role="alert"><span>{error}</span><button onClick={() => {void refreshCourses();void refreshSession();}}>Thử lại</button></div>}
+        {loading && !courses.length ? <div className="page-loading" role="status"><BookOpen size={30}/><p>Đang mở thư viện của bạn…</p></div> : <>
+          {route.view === 'dashboard' && <LearnerDashboard user={user} courses={courses} progress={progress} onOpenLesson={openLesson} onOpenLibrary={() => navigate('library')} onRegister={() => openAuth('register')}/>}
+          {route.view === 'library' && <CourseLibrary courses={courses} progress={progress.lessons} onOpenLesson={openLesson}/>}
+          {route.view === 'lesson' && (activeEntry ? <LessonExperience key={`${activeEntry.lesson.id}:${activeEntry.lesson.revisionId}`} user={user} {...activeEntry} progress={progress.lessons} onOpenLesson={openLesson} onBack={() => navigate('library')} onLogin={() => openAuth('login')} onProgressChange={refreshSession}/> : <div className="empty-state"><BookOpen size={32}/><h1>Bài học chưa được xuất bản</h1><p>Nội dung có thể đã được cập nhật hoặc tạm ẩn.</p><button className="button button-dark" onClick={() => navigate('library')}>Về thư viện</button></div>)}
+          {route.view === 'profile' && <LearnerProfile key={user?.id || 'guest'} user={user} courses={courses} progress={progress} onLogin={() => openAuth('login')} onUserChange={updatedUser} onOpenLesson={openLesson} onLogout={logout}/>}
+          {route.view === 'management' && (privileged && user ? <ManagementPage key={user.id} user={user} onUserChange={() => {void refreshSession();void refreshCourses();}}/> : <div className="empty-state"><LayoutDashboard size={32}/><h1>Không có quyền truy cập</h1><p>Không gian này dành cho Editor và Admin.</p><button className="button button-dark" onClick={() => navigate('dashboard')}>Về tổng quan</button></div>)}
+        </>}
+      </div></main><footer className="page-footer"><span>ECONVERSE</span><span>Kiến thức nhỏ. Thay đổi lớn.</span></footer>
+    </div>{authMode && <AuthModal key={`${authMode}:${authRequest}`} isOpen={authVisible} initialMode={authMode} onClose={() => setAuthVisible(false)} onSuccess={authenticated}/>}
+  </div>;
 }
